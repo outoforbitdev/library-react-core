@@ -25,7 +25,7 @@ A React library.
 
 ## Features
 
-- 
+-
 
 ## Installation
 
