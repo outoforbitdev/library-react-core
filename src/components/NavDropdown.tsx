@@ -9,7 +9,7 @@ export interface INavDropdownProps extends IComponentProps {
 
 export function NavDropdown(props: INavDropdownProps) {
   return (
-    <div {...getDomProps(props, styles.dropdown)}>
+    <div {...getDomProps(props, styles.dropdown, "hoverable")}>
       <button className={styles.dropdown_button}>
         {props.label}
         {props.hideIcon ? null : <ArrowDown />}

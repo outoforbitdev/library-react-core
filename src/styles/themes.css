@@ -1,0 +1,121 @@
+:root {
+  /* https://colordesigner.io/gradient-generator */
+  /* https://webaim.org/resources/contrastchecker/ */
+  --ood-text-primary: var(--ood-gray-600);
+  --ood-text-secondary: var(--ood-gray-700);
+  --ood-background-primary: var(--ood-gray-200);
+  --ood-background-secondary: var(--ood-gray-300);
+  --ood-background-shade: var(--ood-gray-100);
+  --ood-accent-text: var(--ood-royal-blue-500);
+  --ood-accent-block: var(--ood-royal-blue-300);
+  --ood-accent-block-text: var(--ood-royal-blue-500);
+  --ood-error-text: var(--ood-red-600);
+  --ood-error-block: var(--ood-yellow-100);
+  --ood-error-block-text: var(--ood-red-500);
+  --ood-warning-text: var(--ood-yellow-800);
+  --ood-warning-block: var(--ood-yellow-500);
+  --ood-warning-block-text: var(--ood-gray-700);
+  --ood-submit-text: var(--ood-green-600);
+  --ood-submit-block: var(--ood-green-600);
+  --ood-submit-block-text: var(--ood-green-100);
+  --ood-color-dark-red: var(--ood-red-700);
+  --ood-color-red: var(--ood-red-500);
+  --ood-color-orange: var(--ood-orange-500);
+  --ood-color-yellow: var(--ood-yellow-600);
+  --ood-color-green: var(--ood-green-400);
+  --ood-color-teal: var(--ood-teal-500);
+  --ood-color-cyan: var(--ood-cyan-500);
+  --ood-color-dark-green: var(--ood-green-600);
+  --ood-color-blue: var(--ood-blue-500);
+  --ood-color-indigo: var(--ood-royal-blue-500);
+  --ood-color-dark-blue: var(--ood-blue-700);
+  --ood-color-magenta: var(--ood-magenta-500);
+  --ood-color-dark-violet: var(--ood-purple-600);
+  --ood-color-violet: var(--ood-purple-400);
+  --ood-color-light-yellow: var(--ood-orange-400);
+  --ood-color-pink: var(--ood-pink-400);
+  --ood-color-light-indigo: var(--ood-royal-blue-400);
+  --ood-color-light-blue: var(--ood-blue-400);
+  --ood-color-gray: var(--ood-gray-500);
+  --ood-color-white-black: var(--ood-royal-blue-900);
+}
+
+.ood-primary {
+  color: var(--ood-text-primary);
+  background: var(--ood-background-primary);
+  .hoverable:hover {
+    background: var(--ood-background-shade);
+  }
+}
+
+.ood-secondary {
+  color: var(--ood-text-secondary);
+  background: var(--ood-background-secondary);
+  .hoverable:hover {
+    background: var(--ood-background-shade);
+  }
+}
+
+.ood-accent {
+  color: var(--ood-accent-text);
+  .hoverable:hover {
+    background: var(--ood-background-shade);
+  }
+}
+
+.ood-accent-block {
+  color: var(--ood-accent-block-text);
+  background: var(--ood-accent-block);
+  .hoverable:hover {
+    background: var(--ood-background-shade);
+  }
+}
+
+.ood-error {
+  color: var(--ood-error-text);
+}
+
+.ood-error-block {
+  color: var(--ood-error-block-text);
+  background: var(--ood-error-block);
+}
+
+.ood-warning {
+  color: var(--ood-warning-text);
+}
+
+.ood-warning-block {
+  color: var(--ood-warning-block-text);
+  background: var(--ood-warning-block);
+}
+
+.ood-submit {
+  color: var(--ood-submit-text);
+}
+
+.ood-submit-block {
+  color: var(--ood-submit-block-text);
+  background: var(--ood-submit-block);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ood-text-primary: var(--ood-gray-300);
+    --ood-text-secondary: var(--ood-gray-200);
+    --ood-background-primary: var(--ood-gray-800);
+    --ood-background-secondary: var(--ood-gray-700);
+    --ood-background-shade: var(--ood-gray-600);
+    --ood-accent-text: var(--ood-royal-blue-300);
+    --ood-accent-block: var(--ood-royal-blue-600);
+    --ood-accent-block-text: var(--ood-royal-blue-300);
+    --ood-error-text: var(--ood-red-300);
+    --ood-error-block: var(--ood-red-600);
+    --ood-error-block-text: var(--ood-red-300);
+    --ood-warning-text: var(--ood-yellow-500);
+    --ood-warning-block: var(--ood-yellow-900);
+    --ood-warning-block-text: var(--ood-yellow-400);
+    --ood-submit-text: var(--ood-green-300);
+    --ood-submit-block: var(--ood-green-600);
+    --ood-submit-block-text: var(--ood-green-300);
+  }
+}
