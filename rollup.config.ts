@@ -50,8 +50,13 @@ export default [
         respectExternal: true, // avoids bundling css/types
       }),
     ],
-    external: ["react", "react-dom", /\.css$/, "@types/react",
-  "react/jsx-runtime",
-  "react/jsx-dev-runtime"]
+    external: [
+      "react",
+      "react-dom",
+      /\.css$/,
+      "@types/react",
+      "react/jsx-runtime",
+      "react/jsx-dev-runtime",
+    ],
   },
 ];
