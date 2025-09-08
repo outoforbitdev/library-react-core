@@ -19,8 +19,8 @@ export function NavBar(props: INavBarProps) {
     >
       {props.home ? (
         <a href={props.home} {...getDomProps({}, styles.nav, styles.item)}>
-              {props.homeLabel ?? "Home"}
-            </a>
+          {props.homeLabel ?? "Home"}
+        </a>
       ) : null}
       {props.children}
       <NavLink

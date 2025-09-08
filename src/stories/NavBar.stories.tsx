@@ -1,24 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
-import { NavBar } from '../components/NavBar';
-import { NavLink } from '../components/NavLink';
-import { NavDropdown } from '../components/NavDropdown';
+import { NavBar } from "../components/NavBar";
+import { NavLink } from "../components/NavLink";
+import { NavDropdown } from "../components/NavDropdown";
 
 const meta = {
-  title: 'Example/NavBar',
+  title: "Example/NavBar",
   component: NavBar,
   subcomponents: {
     NavLink,
     NavDropdown,
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  args: {
-  },
+  args: {},
 } satisfies Meta<typeof NavBar>;
 
 export default meta;

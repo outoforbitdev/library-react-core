@@ -29,7 +29,7 @@ export default [
       peerDepsExternal(),
       // 🔑 make sure CSS is handled before resolve()
       postcss({
-        extract: false,  // creates a .css file in dist
+        extract: false, // creates a .css file in dist
         minimize: true, // optional, minify CSS
       }),
       resolve(),
@@ -50,6 +50,8 @@ export default [
         respectExternal: true, // avoids bundling css/types
       }),
     ],
-    external: ["react", "react-dom", /\.css$/], // 🔑 exclude css imports from dts
+    external: ["react", "react-dom", /\.css$/, "@types/react",
+  "react/jsx-runtime",
+  "react/jsx-dev-runtime"]
   },
 ];
