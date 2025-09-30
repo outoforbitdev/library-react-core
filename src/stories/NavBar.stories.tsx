@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { NavBar } from "../components/NavBar";
 import { NavLink } from "../components/NavLink";
@@ -17,22 +17,40 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
   },
-  args: {},
-} satisfies Meta<typeof NavBar>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const LoggedIn: Story = {
+  args: {
+    className: "ood-primary",
+  },
   render: (args) => (
     <NavBar {...args}>
-      <NavLink to="./">Home</NavLink>
+      <NavLink to="#">Home</NavLink>
       <NavDropdown label="More">
         <NavLink to="./">About</NavLink>
         <NavLink to="./">Contact</NavLink>
       </NavDropdown>
     </NavBar>
   ),
+} satisfies Meta<typeof NavBar>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {
 };
 
-export const LoggedOut: Story = {};
+export const Secondary: Story = {
+  args: {
+    className: "ood-secondary",
+  }
+};
+
+export const Accent: Story = {
+  args: {
+    className: "ood-accent",
+  }
+};
+
+export const AccentBlock: Story = {
+  args: {
+    className: "ood-accent-block",
+  }
+}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { getDomProps, IComponentProps } from "./IComponent";
 import styles from "../styles/expandable.module.css";
 import { DoubleArrowDown, DoubleArrowUp } from "./icons";
+import { Button } from "./Button";
 
 interface IExpandableProps extends IComponentProps {
   title?: string;
@@ -16,18 +17,14 @@ export function Expandable(props: IExpandableProps) {
           {expanded && props.title ? (
             <span className={styles.title}>{props.title}</span>
           ) : null}
-          <DoubleArrowUp
-            onClick={() => setExpanded(false)}
-            className={styles.toggle}
-            clickable
-          />
+          <Button onClick={() => setExpanded(false)} className={styles.toggle}>
+            <DoubleArrowUp />
+          </Button>
         </span>
       ) : (
-        <DoubleArrowDown
-          onClick={() => setExpanded(true)}
-          className={styles.toggle}
-          clickable
-        />
+        <Button onClick={() => setExpanded(true)} className={styles.toggle}>
+          <DoubleArrowDown />
+        </Button>
       )}
       {expanded ? props.children : null}
     </div>
