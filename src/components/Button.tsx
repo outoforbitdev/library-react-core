@@ -6,5 +6,7 @@ import "../styles/themes.css";
 interface IButtonProps extends IComponentProps {}
 
 export function Button(props: IButtonProps) {
-    return <button {...getDomProps(props, styles.button)}>{props.children}</button>;
+  return (
+    <button {...getDomProps(props, styles.button)}>{props.children}</button>
+  );
 }

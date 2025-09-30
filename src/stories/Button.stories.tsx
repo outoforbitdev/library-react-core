@@ -14,67 +14,64 @@ const meta = {
   args: {
     className: "ood-primary",
   },
-  render: (args) => (
-    <Button {...args}>Press Me</Button>
-  ),
+  render: (args) => <Button {...args}>Press Me</Button>,
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-};
+export const Primary: Story = {};
 
 export const Secondary: Story = {
   args: {
     className: "ood-secondary",
-  }
+  },
 };
 
 export const Accent: Story = {
   args: {
     className: "ood-primary ood-accent",
-  }
+  },
 };
 
 export const AccentBlock: Story = {
   args: {
     className: "ood-accent-block",
-  }
-}
+  },
+};
 
 export const Submit: Story = {
   args: {
     className: "ood-primary ood-submit",
-  }
-}
+  },
+};
 
 export const SubmitBlock: Story = {
   args: {
     className: "ood-primary ood-submit-block",
-  }
-}
+  },
+};
 
 export const Warning: Story = {
   args: {
     className: "ood-primary ood-warning",
-  }
-}
+  },
+};
 
 export const WarningBlock: Story = {
   args: {
     className: "ood-primary ood-warning-block",
-  }
-}
+  },
+};
 
 export const Error: Story = {
   args: {
     className: "ood-primary ood-error",
-  }
-}
+  },
+};
 
 export const ErrorBlock: Story = {
   args: {
     className: "ood-primary ood-error-block",
-  }
-}
+  },
+};

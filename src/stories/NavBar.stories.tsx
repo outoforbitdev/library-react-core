@@ -34,23 +34,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-};
+export const Primary: Story = {};
 
 export const Secondary: Story = {
   args: {
     className: "ood-secondary",
-  }
+  },
 };
 
 export const Accent: Story = {
   args: {
     className: "ood-accent",
-  }
+  },
 };
 
 export const AccentBlock: Story = {
   args: {
     className: "ood-accent-block",
-  }
-}
+  },
+};
