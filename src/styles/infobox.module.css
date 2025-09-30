@@ -8,15 +8,9 @@ table.infobox {
   border-collapse: collapse;
 }
 
-.infoboxTitle {
-}
-
 .infoboxTitle th {
   padding: 0.5rem;
   background: var(--ood-accent);
-}
-
-.infoboxSection {
 }
 
 .infoboxSectionHeader {

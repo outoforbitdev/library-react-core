@@ -12,6 +12,7 @@ import styles from "../styles/draggable.module.css";
 
 interface IDraggableProps extends IComponentProps {
   initialPosition: IPosition;
+  setIsDragging?: (isDragging: boolean) => void;
 }
 
 export interface IPosition {
@@ -60,6 +61,7 @@ export function Draggable(props: IDraggableProps) {
     if (!isDragging) return;
     if (e.pointerId != pointerId) return;
     setIsDragging(false);
+    props.setIsDragging?.(false);
 
     e.stopPropagation();
     e.preventDefault();
@@ -75,6 +77,7 @@ export function Draggable(props: IDraggableProps) {
       y: e.pageY - relativePosition.y,
     };
     setPosition(currentPosition);
+    props.setIsDragging?.(true);
 
     e.stopPropagation();
     e.preventDefault();
