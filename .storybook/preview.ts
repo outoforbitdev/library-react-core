@@ -5,7 +5,6 @@ const preview: Preview = {
     className: "ood-primary",
   },
   argTypes: {
-    // 👇 All stories expect a label arg
     children: {
       table: {
         disable: true,
