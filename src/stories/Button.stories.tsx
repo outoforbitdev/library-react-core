@@ -11,9 +11,6 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
   },
-  args: {
-    className: "ood-primary",
-  },
   render: (args) => <Button {...args}>Press Me</Button>,
 } satisfies Meta<typeof Button>;
 

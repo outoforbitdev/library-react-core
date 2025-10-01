@@ -17,9 +17,6 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
   },
-  args: {
-    className: "ood-primary",
-  },
   render: (args) => (
     <NavBar {...args}>
       <NavLink to="#">Home</NavLink>
@@ -44,7 +41,7 @@ export const Secondary: Story = {
 
 export const Accent: Story = {
   args: {
-    className: "ood-accent",
+    className: "ood-primary ood-accent",
   },
 };
 
