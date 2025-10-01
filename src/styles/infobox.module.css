@@ -1,0 +1,42 @@
+.infobox {
+  width: 300px;
+  max-width: 100%;
+  border: 1px solid;
+}
+
+table.infobox {
+  border-collapse: collapse;
+}
+
+.infoboxTitle th {
+  padding: 0.5rem;
+  background: var(--ood-accent);
+}
+
+.infoboxSectionHeader {
+  border: 1px solid;
+  background: var(--ood-shade);
+}
+
+.infoboxSectionHeader th {
+  padding: 0.5rem;
+}
+
+.infoboxRow td,
+.infoboxRow th {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.infoboxRow td ul {
+  margin: 0;
+  padding-left: 0.75rem;
+}
+
+.infoboxRow {
+  background: var(--ood-background);
+}
+
+.infoboxRow:nth-child(odd) {
+  background: var(--ood-shade);
+}

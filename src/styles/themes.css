@@ -1,23 +1,34 @@
 :root {
   /* https://colordesigner.io/gradient-generator */
   /* https://webaim.org/resources/contrastchecker/ */
-  --ood-text-primary: var(--ood-gray-600);
-  --ood-text-secondary: var(--ood-gray-700);
-  --ood-background-primary: var(--ood-gray-200);
-  --ood-background-secondary: var(--ood-gray-300);
-  --ood-background-shade: var(--ood-gray-100);
+  --ood-primary-text: var(--ood-gray-700);
+  --ood-primary-background: var(--ood-gray-200);
+  --ood-primary-shade: var(--ood-gray-300);
+  --ood-primary-link: var(--ood-blue-600);
+  --ood-primary-link-visited: var(--ood-purple-600);
+  --ood-secondary-text: var(--ood-gray-800);
+  --ood-secondary-background: var(--ood-gray-400);
+  --ood-secondary-shade: var(--ood-gray-300);
+  --ood-secondary-link: var(--ood-blue-800);
+  --ood-secondary-link-visited: var(--ood-purple-700);
   --ood-accent-text: var(--ood-royal-blue-500);
-  --ood-accent-block: var(--ood-royal-blue-300);
   --ood-accent-block-text: var(--ood-royal-blue-500);
+  --ood-accent-block-background: var(--ood-royal-blue-300);
+  --ood-accent-block-shade: var(--ood-royal-blue-200);
+  --ood-accent-block-link: var(--ood-orange-700);
+  --ood-accent-block-link-visited: var(--ood-purple-600);
   --ood-error-text: var(--ood-red-600);
-  --ood-error-block: var(--ood-yellow-100);
-  --ood-error-block-text: var(--ood-red-500);
+  --ood-error-block-text: var(--ood-red-300);
+  --ood-error-block-background: var(--ood-red-600);
+  --ood-error-block-shade: var(--ood-red-700);
   --ood-warning-text: var(--ood-yellow-800);
-  --ood-warning-block: var(--ood-yellow-500);
   --ood-warning-block-text: var(--ood-gray-700);
+  --ood-warning-block-background: var(--ood-yellow-500);
+  --ood-warning-block-shade: var(--ood-yellow-400);
   --ood-submit-text: var(--ood-green-600);
-  --ood-submit-block: var(--ood-green-600);
   --ood-submit-block-text: var(--ood-green-100);
+  --ood-submit-block-background: var(--ood-green-600);
+  --ood-submit-block-shade: var(--ood-green-700);
   --ood-color-dark-red: var(--ood-red-700);
   --ood-color-red: var(--ood-red-500);
   --ood-color-orange: var(--ood-orange-500);
@@ -40,82 +51,150 @@
   --ood-color-white-black: var(--ood-royal-blue-900);
 }
 
-.ood-primary {
-  color: var(--ood-text-primary);
-  background: var(--ood-background-primary);
-  .hoverable:hover {
-    background: var(--ood-background-shade);
+.ood-primary,
+.ood-secondary,
+.ood-accent,
+.ood-accent-block,
+.ood-error,
+.ood-error-block,
+.ood-warning,
+.ood-warning-block,
+.ood-submit,
+.ood-submit-block {
+  color: var(--ood-text);
+  background: var(--ood-background);
+  a {
+    color: var(--ood-link);
+    text-decoration: none;
+    &:visited {
+      color: var(--ood-link-visited);
+    }
+    &:hover {
+      text-decoration: underline;
+    }
   }
+  .hoverable:hover {
+    background: var(--ood-shade);
+  }
+}
+
+.ood-primary,
+.ood-accent,
+.ood-error,
+.ood-warning,
+.ood-submit {
+}
+
+.ood-primary {
+  --ood-text: var(--ood-primary-text);
+  --ood-background: var(--ood-primary-background);
+  --ood-shade: var(--ood-primary-shade);
+  --ood-accent: var(--ood-accent-block-background);
+  --ood-link: var(--ood-primary-link);
+  --ood-link-visited: var(--ood-primary-link-visited);
 }
 
 .ood-secondary {
-  color: var(--ood-text-secondary);
-  background: var(--ood-background-secondary);
-  .hoverable:hover {
-    background: var(--ood-background-shade);
-  }
+  --ood-text: var(--ood-secondary-text);
+  --ood-background: var(--ood-secondary-background);
+  --ood-shade: var(--ood-secondary-shade);
+  --ood-accent: var(--ood-accent-block-background);
+  --ood-link: var(--ood-primary-link);
+  --ood-link-visited: var(--ood-primary-link-visited);
 }
 
 .ood-accent {
-  color: var(--ood-accent-text);
-  .hoverable:hover {
-    background: var(--ood-background-shade);
-  }
+  --ood-text: var(--ood-accent-text);
 }
 
 .ood-accent-block {
-  color: var(--ood-accent-block-text);
-  background: var(--ood-accent-block);
-  .hoverable:hover {
-    background: var(--ood-background-shade);
-  }
+  --ood-text: var(--ood-accent-block-text);
+  --ood-background: var(--ood-accent-block-background);
+  --ood-shade: var(--ood-accent-block-shade);
+  --ood-accent: var(--ood-primary-background);
+  --ood-link: var(--ood-accent-block-link);
+  --ood-link-visited: var(--ood-accent-block-link-visited);
 }
 
 .ood-error {
-  color: var(--ood-error-text);
+  --ood-text: var(--ood-error-text);
 }
 
 .ood-error-block {
-  color: var(--ood-error-block-text);
-  background: var(--ood-error-block);
+  --ood-text: var(--ood-error-block-text);
+  --ood-background: var(--ood-error-block-background);
+  --ood-shade: var(--ood-error-block-shade);
 }
 
 .ood-warning {
-  color: var(--ood-warning-text);
+  --ood-text: var(--ood-warning-text);
 }
 
 .ood-warning-block {
-  color: var(--ood-warning-block-text);
-  background: var(--ood-warning-block);
+  --ood-text: var(--ood-warning-block-text);
+  --ood-background: var(--ood-warning-block-background);
+  --ood-shade: var(--ood-warning-block-shade);
 }
 
 .ood-submit {
-  color: var(--ood-submit-text);
+  --ood-text: var(--ood-submit-text);
 }
 
 .ood-submit-block {
-  color: var(--ood-submit-block-text);
-  background: var(--ood-submit-block);
+  --ood-text: var(--ood-submit-block-text);
+  --ood-background: var(--ood-submit-block-background);
+  --ood-shade: var(--ood-submit-block-shade);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ood-text-primary: var(--ood-gray-300);
-    --ood-text-secondary: var(--ood-gray-200);
-    --ood-background-primary: var(--ood-gray-800);
-    --ood-background-secondary: var(--ood-gray-700);
-    --ood-background-shade: var(--ood-gray-600);
+    --ood-primary-text: var(--ood-gray-400);
+    --ood-primary-background: var(--ood-gray-900);
+    --ood-primary-shade: var(--ood-gray-800);
+    --ood-primary-link: var(--ood-blue-400);
+    --ood-primary-link-visited: var(--ood-purple-400);
+    --ood-secondary-text: var(--ood-gray-200);
+    --ood-secondary-background: var(--ood-gray-600);
+    --ood-secondary-shade: var(--ood-gray-700);
+    --ood-secondary-link: var(--ood-blue-200);
+    --ood-secondary-link-visited: var(--ood-purple-200);
     --ood-accent-text: var(--ood-royal-blue-300);
-    --ood-accent-block: var(--ood-royal-blue-600);
     --ood-accent-block-text: var(--ood-royal-blue-300);
-    --ood-error-text: var(--ood-red-300);
-    --ood-error-block: var(--ood-red-600);
+    --ood-accent-block-background: var(--ood-royal-blue-600);
+    --ood-accent-block-shade: var(--ood-royal-blue-500);
+    --ood-accent-block-link: var(--ood-orange-400);
+    --ood-accent-block-link-visited: var(--ood-purple-300);
+    --ood-error-text: var(--ood-red-400);
     --ood-error-block-text: var(--ood-red-300);
+    --ood-error-block-background: var(--ood-red-700);
+    --ood-error-block-shade: var(--ood-red-600);
     --ood-warning-text: var(--ood-yellow-500);
-    --ood-warning-block: var(--ood-yellow-900);
-    --ood-warning-block-text: var(--ood-yellow-400);
+    --ood-warning-block-text: var(--ood-royal-blue-900);
+    --ood-warning-block-background: var(--ood-yellow-600);
+    --ood-warning-block-shade: var(--ood-yellow-500);
     --ood-submit-text: var(--ood-green-300);
-    --ood-submit-block: var(--ood-green-600);
-    --ood-submit-block-text: var(--ood-green-300);
+    --ood-submit-block-text: var(--ood-green-200);
+    --ood-submit-block-background: var(--ood-green-600);
+    --ood-submit-block-shade: var(--ood-green-700);
+    --ood-color-dark-red: var(--ood-red-700);
+    --ood-color-red: var(--ood-red-500);
+    --ood-color-orange: var(--ood-orange-500);
+    --ood-color-yellow: var(--ood-yellow-600);
+    --ood-color-green: var(--ood-green-400);
+    --ood-color-teal: var(--ood-teal-500);
+    --ood-color-cyan: var(--ood-cyan-500);
+    --ood-color-dark-green: var(--ood-green-600);
+    --ood-color-blue: var(--ood-blue-500);
+    --ood-color-indigo: var(--ood-royal-blue-500);
+    --ood-color-dark-blue: var(--ood-blue-700);
+    --ood-color-magenta: var(--ood-magenta-500);
+    --ood-color-dark-violet: var(--ood-purple-600);
+    --ood-color-violet: var(--ood-purple-400);
+    --ood-color-light-yellow: var(--ood-orange-400);
+    --ood-color-pink: var(--ood-pink-400);
+    --ood-color-light-indigo: var(--ood-royal-blue-400);
+    --ood-color-light-blue: var(--ood-blue-400);
+    --ood-color-gray: var(--ood-gray-500);
+    --ood-color-white-black: var(--ood-royal-blue-900);
   }
 }

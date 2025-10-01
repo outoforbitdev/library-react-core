@@ -15,8 +15,8 @@ A React library.
   <a href="https://github.com/outoforbitdev/library-react-core/releases/latest">
     <img alt="Latest github release" src="https://img.shields.io/github/v/release/outoforbitdev/library-react-core?logo=github">
   </a>
-  <a href ="https://www.npmjs.com/package/@outoforbitdev/galaxy-map">
-    <img alt="NPM Version" src="https://img.shields.io/npm/v/%40outoforbitdev%2Fgalaxy-map" />
+  <a href ="https://www.npmjs.com/package/@outoforbitdev/ood-react">
+    <img alt="NPM Version" src="https://img.shields.io/npm/v/%40outoforbitdev%2Food-react" />
   </a>
   <a href="https://github.com/outoforbitdev/library-react-core/issues">
     <img alt="Open issues" src="https://img.shields.io/github/issues/outoforbitdev/library-react-core?logo=github">

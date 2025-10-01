@@ -12,6 +12,7 @@ nav.nav {
   float: left;
   text-decoration: none;
   padding: 0.5rem 1rem;
+  color: inherit;
 }
 
 .dropdown {
