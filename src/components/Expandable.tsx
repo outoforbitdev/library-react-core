@@ -17,12 +17,18 @@ export function Expandable(props: IExpandableProps) {
       {showTitle ? (
         <span>
           <span className={styles.title}>{props.title}</span>
-          <Button onClick={() => setExpanded(!expanded)} className={styles.toggle}>
+          <Button
+            onClick={() => setExpanded(!expanded)}
+            className={styles.toggle}
+          >
             {expanded ? <DoubleArrowUp /> : <DoubleArrowDown />}
           </Button>
         </span>
       ) : (
-        <Button onClick={() => setExpanded(!expanded)} className={styles.toggle}>
+        <Button
+          onClick={() => setExpanded(!expanded)}
+          className={styles.toggle}
+        >
           {expanded ? <DoubleArrowUp /> : <DoubleArrowDown />}
         </Button>
       )}
