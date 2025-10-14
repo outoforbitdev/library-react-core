@@ -2,9 +2,9 @@ import { useState } from "react";
 import { getDomProps, IComponentProps } from "./IComponent";
 import { HamburgerMenu, IconSize, X } from "./icons";
 import styles from "../styles/nav.module.css";
-import { NavLink } from "./NavLink";
 import "../styles/theme-colors.css";
 import "../styles/themes.css";
+import { NavLink } from "./NavLink";
 
 export interface INavBarProps extends IComponentProps {
   home?: string;
