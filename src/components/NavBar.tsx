@@ -18,7 +18,7 @@ export function NavBar(props: INavBarProps) {
       {...getDomProps(props, styles.nav, responsive ? styles.responsive : "")}
     >
       {props.home ? (
-        <a href={props.home} {...getDomProps({}, styles.nav, styles.item)}>
+        <a href={props.home} {...getDomProps({}, styles.nav, styles.home)}>
           {props.homeLabel ?? "Home"}
         </a>
       ) : null}

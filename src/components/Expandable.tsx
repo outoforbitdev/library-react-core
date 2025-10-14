@@ -6,24 +6,24 @@ import { Button } from "./Button";
 
 interface IExpandableProps extends IComponentProps {
   title?: string;
+  titleAlwaysVisible?: boolean;
 }
 
 export function Expandable(props: IExpandableProps) {
   const [expanded, setExpanded] = useState(false);
+  const showTitle = (expanded || props.titleAlwaysVisible) && props.title;
   return (
     <div {...getDomProps(props, styles.expandable)}>
-      {expanded ? (
+      {showTitle ? (
         <span>
-          {expanded && props.title ? (
-            <span className={styles.title}>{props.title}</span>
-          ) : null}
-          <Button onClick={() => setExpanded(false)} className={styles.toggle}>
-            <DoubleArrowUp />
+          <span className={styles.title}>{props.title}</span>
+          <Button onClick={() => setExpanded(!expanded)} className={styles.toggle}>
+            {expanded ? <DoubleArrowUp /> : <DoubleArrowDown />}
           </Button>
         </span>
       ) : (
-        <Button onClick={() => setExpanded(true)} className={styles.toggle}>
-          <DoubleArrowDown />
+        <Button onClick={() => setExpanded(!expanded)} className={styles.toggle}>
+          {expanded ? <DoubleArrowUp /> : <DoubleArrowDown />}
         </Button>
       )}
       {expanded ? props.children : null}
