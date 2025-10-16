@@ -17,9 +17,13 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
   },
+  args: {
+    home: "#",
+    homeLabel: "My Site",
+  },
   render: (args) => (
     <NavBar {...args}>
-      <NavLink to="#">Home</NavLink>
+      <NavLink to="#">A page</NavLink>
       <NavDropdown label="More">
         <NavLink to="./">About</NavLink>
         <NavLink to="./">Contact</NavLink>
