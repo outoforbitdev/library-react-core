@@ -1,3 +1,14 @@
+## Next
+
+### Features
+
+- Allow `Expandable` titles to be visible when the block is collapsed, using the new `titleAlwaysVisible` prop.
+
+### Bug Fixes
+
+- Show `NavBar` home button on mobile.
+- Don't style `NavBar` links as standard links.
+
 ## 0.0.2 (2025-10-01)
 
 ### Features
