@@ -17,7 +17,7 @@
     "@rollup/plugin-typescript": "^12.1.2",
     "@storybook/addon-docs": "^9.1.4",
     "@storybook/addon-onboarding": "^9.1.4",
-    "@storybook/addon-styling-webpack": "^2.0.0",
+    "@storybook/addon-styling-webpack": "^3.0.0",
     "@storybook/addon-webpack5-compiler-swc": "^4.0.1",
     "@storybook/react-webpack5": "^9.1.4",
     "@types/react": "^19.1.1",
