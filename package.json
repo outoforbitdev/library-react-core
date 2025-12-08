@@ -19,7 +19,7 @@
     "@storybook/addon-onboarding": "^9.1.4",
     "@storybook/addon-styling-webpack": "^2.0.0",
     "@storybook/addon-webpack5-compiler-swc": "^4.0.1",
-    "@storybook/react-webpack5": "^9.1.4",
+    "@storybook/react-webpack5": "^10.1.4",
     "@types/react": "^19.1.1",
     "commitlint": "^20.1.0",
     "husky": "^9.1.7",
