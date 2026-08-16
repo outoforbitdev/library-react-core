@@ -11,7 +11,7 @@
       "linkVisitedHover": "purple-700"
     },
     "secondary": {
-      "text": "gray-800",
+      "text": "gray-900",
       "background": "gray-300",
       "shade": "gray-400",
       "link": "blue-800",
@@ -20,25 +20,25 @@
       "linkVisitedHover": "purple-800"
     },
     "accent": {
-      "text": "royal-blue-600"
+      "text": "royal-blue-700"
     },
     "error": {
       "text": "red-700",
-      "blockText": "red-100",
-      "blockBackground": "red-600",
-      "blockHover": "red-700"
+      "blockText": "gray-900",
+      "blockBackground": "red-200",
+      "blockHover": "red-300"
     },
     "warning": {
       "text": "yellow-900",
-      "blockText": "gray-100",
-      "blockBackground": "yellow-500",
-      "blockHover": "yellow-600"
+      "blockText": "gray-900",
+      "blockBackground": "yellow-200",
+      "blockHover": "yellow-300"
     },
     "submission": {
       "text": "green-700",
-      "blockText": "green-100",
-      "blockBackground": "green-600",
-      "blockHover": "green-700"
+      "blockText": "gray-900",
+      "blockBackground": "green-200",
+      "blockHover": "green-300"
     },
     "stock": {
       "red": "red-500",
@@ -67,9 +67,9 @@
       "linkVisitedHover": "purple-300"
     },
     "secondary": {
-      "text": "gray-200",
-      "background": "gray-700",
-      "shade": "gray-600",
+      "text": "gray-100",
+      "background": "gray-800",
+      "shade": "gray-700",
       "link": "blue-300",
       "linkHover": "blue-300",
       "linkVisited": "purple-300",
@@ -80,21 +80,21 @@
     },
     "error": {
       "text": "red-300",
-      "blockText": "red-900",
-      "blockBackground": "red-600",
-      "blockHover": "red-700"
+      "blockText": "gray-900",
+      "blockBackground": "red-200",
+      "blockHover": "red-300"
     },
     "warning": {
       "text": "yellow-300",
       "blockText": "gray-900",
-      "blockBackground": "yellow-500",
-      "blockHover": "yellow-600"
+      "blockBackground": "yellow-200",
+      "blockHover": "yellow-300"
     },
     "submission": {
       "text": "green-300",
-      "blockText": "green-900",
-      "blockBackground": "green-600",
-      "blockHover": "green-700"
+      "blockText": "gray-900",
+      "blockBackground": "green-200",
+      "blockHover": "green-300"
     },
     "stock": {
       "red": "red-500",
