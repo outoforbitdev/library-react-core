@@ -22,7 +22,10 @@ function flattenThemeTokens(theme: Theme, prefix = ""): Record<string, string> {
   const processObj = (obj: any, currentPrefix: string) => {
     for (const [key, value] of Object.entries(obj)) {
       if (typeof value === "string") {
-        const tokenName = currentPrefix ? `${currentPrefix}-${key}` : key;
+        // Use "color" prefix for stock colors instead of "stock"
+        const keyPrefix =
+          currentPrefix === "stock" ? "color" : currentPrefix;
+        const tokenName = keyPrefix ? `${keyPrefix}-${key}` : key;
         tokens[tokenName] = value;
       } else if (typeof value === "object" && value !== null) {
         const newPrefix = currentPrefix ? `${currentPrefix}-${key}` : key;
@@ -131,7 +134,9 @@ function generateUtilityClasses(): string {
 .ood-warning,
 .ood-warning-block,
 .ood-submission,
-.ood-submission-block {
+.ood-submission-block,
+.ood-submit,
+.ood-submit-block {
   color: var(--ood-text);
   background: var(--ood-background);
 }
@@ -164,7 +169,9 @@ function generateUtilityClasses(): string {
 .ood-warning .hoverable:hover,
 .ood-warning-block .hoverable:hover,
 .ood-submission .hoverable:hover,
-.ood-submission-block .hoverable:hover {
+.ood-submission-block .hoverable:hover,
+.ood-submit .hoverable:hover,
+.ood-submit-block .hoverable:hover {
   background: var(--ood-shade);
 }
 
@@ -221,6 +228,16 @@ function generateUtilityClasses(): string {
 }
 
 .ood-submission-block {
+  --ood-text: var(--ood-submission-block-text);
+  --ood-background: var(--ood-submission-block-background);
+  --ood-shade: var(--ood-submission-block-shade);
+}
+
+.ood-submit {
+  --ood-text: var(--ood-submission-text);
+}
+
+.ood-submit-block {
   --ood-text: var(--ood-submission-block-text);
   --ood-background: var(--ood-submission-block-background);
   --ood-shade: var(--ood-submission-block-shade);
