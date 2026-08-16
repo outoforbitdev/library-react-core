@@ -1,6 +1,6 @@
 import { getDomProps, IComponentProps } from "./IComponent";
 import styles from "../styles/button.module.css";
-import "../themes/themes.css";
+import "../styles/themes.css";
 
 interface IButtonProps extends IComponentProps {}
 
