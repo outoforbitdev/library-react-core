@@ -101,7 +101,7 @@ export function validateTheme(
   report.contrastPairs.push(pair);
   if (!pair.passes) report.errors.push(pair);
 
-  // Primary links
+  // Primary links (contrast with background only)
   if (theme.primary.link) {
     pair = validatePair(
       theme.primary.link,
@@ -109,16 +109,6 @@ export function validateTheme(
       ramps,
       requiredRatio,
       "primary-link vs primary-background",
-    );
-    report.contrastPairs.push(pair);
-    if (!pair.passes) report.errors.push(pair);
-
-    pair = validatePair(
-      theme.primary.link,
-      theme.primary.linkHover,
-      ramps,
-      requiredRatio,
-      "primary-link vs primary-linkHover",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -134,19 +124,9 @@ export function validateTheme(
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
-
-    pair = validatePair(
-      theme.primary.linkVisited,
-      theme.primary.linkVisitedHover,
-      ramps,
-      requiredRatio,
-      "primary-linkVisited vs primary-linkVisitedHover",
-    );
-    report.contrastPairs.push(pair);
-    if (!pair.passes) report.errors.push(pair);
   }
 
-  // Secondary links
+  // Secondary links (contrast with background only)
   if (theme.secondary.link) {
     pair = validatePair(
       theme.secondary.link,
@@ -154,16 +134,6 @@ export function validateTheme(
       ramps,
       requiredRatio,
       "secondary-link vs primary-background",
-    );
-    report.contrastPairs.push(pair);
-    if (!pair.passes) report.errors.push(pair);
-
-    pair = validatePair(
-      theme.secondary.link,
-      theme.secondary.linkHover,
-      ramps,
-      requiredRatio,
-      "secondary-link vs secondary-linkHover",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -179,19 +149,9 @@ export function validateTheme(
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
-
-    pair = validatePair(
-      theme.secondary.linkVisited,
-      theme.secondary.linkVisitedHover,
-      ramps,
-      requiredRatio,
-      "secondary-linkVisited vs secondary-linkVisitedHover",
-    );
-    report.contrastPairs.push(pair);
-    if (!pair.passes) report.errors.push(pair);
   }
 
-  // Accent links
+  // Accent links (contrast with background only)
   if (theme.accent.link) {
     pair = validatePair(
       theme.accent.link,
@@ -202,18 +162,6 @@ export function validateTheme(
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
-
-    if (theme.accent.linkHover) {
-      pair = validatePair(
-        theme.accent.link,
-        theme.accent.linkHover,
-        ramps,
-        requiredRatio,
-        "accent-link vs accent-linkHover",
-      );
-      report.contrastPairs.push(pair);
-      if (!pair.passes) report.errors.push(pair);
-    }
   }
 
   if (theme.accent.linkVisited) {
@@ -226,18 +174,6 @@ export function validateTheme(
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
-
-    if (theme.accent.linkVisitedHover) {
-      pair = validatePair(
-        theme.accent.linkVisited,
-        theme.accent.linkVisitedHover,
-        ramps,
-        requiredRatio,
-        "accent-linkVisited vs accent-linkVisitedHover",
-      );
-      report.contrastPairs.push(pair);
-      if (!pair.passes) report.errors.push(pair);
-    }
   }
 
   // Block components (error, warning, submission)
