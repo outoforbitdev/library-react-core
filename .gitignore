@@ -44,5 +44,5 @@ storybook-static
 .agent-wip/
 
 # generated themes
-src/themes/themes.css
-validation-report.json
+src/styles/themes.css
+scripts/themes/validation-report.json

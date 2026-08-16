@@ -13,8 +13,8 @@ async function main() {
   try {
     const rampsPath = resolve(__dirname, "ramps.json");
     const themesPath = resolve(__dirname, "themes.json");
-    const cssOutputPath = resolve(__dirname, "../../src/themes/themes.css");
-    const reportPath = resolve(__dirname, "../../validation-report.json");
+    const cssOutputPath = resolve(__dirname, "../../src/styles/themes.css");
+    const reportPath = resolve(__dirname, "validation-report.json");
 
     console.log("🎨 Theme Validation & CSS Generation");
     console.log("=====================================\n");

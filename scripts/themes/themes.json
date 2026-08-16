@@ -1,6 +1,6 @@
 {
   "light": {
-    "accessibilityLevel": "AA",
+    "accessibilityLevel": "AAA",
     "primary": {
       "text": "gray-900",
       "background": "gray-100",
@@ -56,7 +56,7 @@
     }
   },
   "dark": {
-    "accessibilityLevel": "AA",
+    "accessibilityLevel": "AAA",
     "primary": {
       "text": "gray-100",
       "background": "gray-900",
