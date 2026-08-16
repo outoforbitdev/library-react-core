@@ -18,6 +18,13 @@
     "accent": {
       "text": "royal-blue-700"
     },
+    "accent-block": {
+      "text": "gray-100",
+      "background": "royal-blue-700",
+      "shade": "royal-blue-800",
+      "link": "blue-100",
+      "link-visited": "purple-100"
+    },
     "error": {
       "text": "red-700",
       "block-text": "gray-100",
@@ -69,6 +76,13 @@
     },
     "accent": {
       "text": "royal-blue-100"
+    },
+    "accent-block": {
+      "text": "gray-100",
+      "background": "royal-blue-700",
+      "shade": "royal-blue-800",
+      "link": "blue-100",
+      "link-visited": "purple-100"
     },
     "error": {
       "text": "red-300",

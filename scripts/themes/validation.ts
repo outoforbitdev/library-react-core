@@ -177,6 +177,61 @@ export function validateTheme(
     if (!pair.passes) report.errors.push(pair);
   }
 
+  // Accent block
+  if (
+    (theme as any)["accent-block"] &&
+    (theme as any)["accent-block"].text &&
+    (theme as any)["accent-block"].background
+  ) {
+    const accentBlock = (theme as any)["accent-block"];
+
+    pair = validatePair(
+      accentBlock.text,
+      accentBlock.background,
+      ramps,
+      requiredRatio,
+      "accent-block-text vs accent-block-background",
+    );
+    report.contrastPairs.push(pair);
+    if (!pair.passes) report.errors.push(pair);
+
+    if (accentBlock.shade) {
+      pair = validatePair(
+        accentBlock.text,
+        accentBlock.shade,
+        ramps,
+        requiredRatio,
+        "accent-block-text vs accent-block-shade",
+      );
+      report.contrastPairs.push(pair);
+      if (!pair.passes) report.errors.push(pair);
+    }
+
+    if (accentBlock.link) {
+      pair = validatePair(
+        accentBlock.link,
+        accentBlock.background,
+        ramps,
+        requiredRatio,
+        "accent-block-link vs accent-block-background",
+      );
+      report.contrastPairs.push(pair);
+      if (!pair.passes) report.errors.push(pair);
+    }
+
+    if (accentBlock["link-visited"]) {
+      pair = validatePair(
+        accentBlock["link-visited"],
+        accentBlock.background,
+        ramps,
+        requiredRatio,
+        "accent-block-link-visited vs accent-block-background",
+      );
+      report.contrastPairs.push(pair);
+      if (!pair.passes) report.errors.push(pair);
+    }
+  }
+
   // Block components (error, warning, submission)
   for (const blockType of ["error", "warning", "submission"] as const) {
     const block = (theme as any)[blockType];

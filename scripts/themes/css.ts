@@ -23,8 +23,7 @@ function flattenThemeTokens(theme: Theme, prefix = ""): Record<string, string> {
     for (const [key, value] of Object.entries(obj)) {
       if (typeof value === "string") {
         // Use "color" prefix for stock colors instead of "stock"
-        const keyPrefix =
-          currentPrefix === "stock" ? "color" : currentPrefix;
+        const keyPrefix = currentPrefix === "stock" ? "color" : currentPrefix;
         const tokenName = keyPrefix ? `${keyPrefix}-${key}` : key;
         tokens[tokenName] = value;
       } else if (typeof value === "object" && value !== null) {
@@ -90,9 +89,11 @@ function generateMediaQueryThemeTokens(
 
   for (const [name, swatchRef] of Object.entries(tokens)) {
     if (name === "accessibility-level") continue;
-    const hex = ramps[swatchRef.split("-")[0]]?.[swatchRef.split("-")[1]];
-    if (hex) {
+    try {
+      resolveSwatchRefForCSS(swatchRef, ramps);
       css += `    --ood-${name}: var(--ood-${swatchRef});\n`;
+    } catch {
+      // Skip invalid references
     }
   }
 
@@ -112,9 +113,11 @@ function generateExplicitThemeTokens(
 
     for (const [name, swatchRef] of Object.entries(tokens)) {
       if (name === "accessibility-level") continue;
-      const hex = ramps[swatchRef.split("-")[0]]?.[swatchRef.split("-")[1]];
-      if (hex) {
+      try {
+        resolveSwatchRefForCSS(swatchRef, ramps);
         css += `  --ood-${name}: var(--ood-${swatchRef});\n`;
+      } catch {
+        // Skip invalid references
       }
     }
 
@@ -143,20 +146,47 @@ function generateUtilityClasses(): string {
 
 .ood-primary a,
 .ood-secondary a,
-.ood-accent a {
+.ood-accent a,
+.ood-accent-block a,
+.ood-error a,
+.ood-error-block a,
+.ood-warning a,
+.ood-warning-block a,
+.ood-submission a,
+.ood-submission-block a,
+.ood-submit a,
+.ood-submit-block a {
   color: var(--ood-link);
   text-decoration: none;
 }
 
 .ood-primary a:visited,
 .ood-secondary a:visited,
-.ood-accent a:visited {
+.ood-accent a:visited,
+.ood-accent-block a:visited,
+.ood-error a:visited,
+.ood-error-block a:visited,
+.ood-warning a:visited,
+.ood-warning-block a:visited,
+.ood-submission a:visited,
+.ood-submission-block a:visited,
+.ood-submit a:visited,
+.ood-submit-block a:visited {
   color: var(--ood-link-visited);
 }
 
 .ood-primary a:hover,
 .ood-secondary a:hover,
-.ood-accent a:hover {
+.ood-accent a:hover,
+.ood-accent-block a:hover,
+.ood-error a:hover,
+.ood-error-block a:hover,
+.ood-warning a:hover,
+.ood-warning-block a:hover,
+.ood-submission a:hover,
+.ood-submission-block a:hover,
+.ood-submit a:hover,
+.ood-submit-block a:hover {
   text-decoration: underline;
 }
 
