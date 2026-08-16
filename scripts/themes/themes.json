@@ -1,44 +1,44 @@
 {
   "light": {
-    "accessibilityLevel": "AAA",
+    "accessibility-level": "AAA",
     "primary": {
       "text": "gray-900",
       "background": "gray-100",
       "shade": "gray-200",
       "link": "blue-700",
-      "linkHover": "blue-700",
-      "linkVisited": "purple-700",
-      "linkVisitedHover": "purple-700"
+      "link-hover": "blue-700",
+      "link-visited": "purple-700",
+      "link-visited-hover": "purple-700"
     },
     "secondary": {
       "text": "gray-900",
       "background": "gray-300",
       "shade": "gray-400",
       "link": "blue-800",
-      "linkHover": "blue-800",
-      "linkVisited": "purple-800",
-      "linkVisitedHover": "purple-800"
+      "link-hover": "blue-800",
+      "link-visited": "purple-800",
+      "link-visited-hover": "purple-800"
     },
     "accent": {
       "text": "royal-blue-700"
     },
     "error": {
       "text": "red-700",
-      "blockText": "gray-100",
-      "blockBackground": "red-700",
-      "blockHover": "red-800"
+      "block-text": "gray-100",
+      "block-background": "red-700",
+      "block-hover": "red-800"
     },
     "warning": {
       "text": "yellow-900",
-      "blockText": "gray-900",
-      "blockBackground": "yellow-200",
-      "blockHover": "yellow-300"
+      "block-text": "gray-900",
+      "block-background": "yellow-200",
+      "block-hover": "yellow-300"
     },
     "submission": {
       "text": "green-700",
-      "blockText": "gray-100",
-      "blockBackground": "green-800",
-      "blockHover": "green-900"
+      "block-text": "gray-100",
+      "block-background": "green-800",
+      "block-hover": "green-900"
     },
     "stock": {
       "red": "red-500",
@@ -56,45 +56,45 @@
     }
   },
   "dark": {
-    "accessibilityLevel": "AAA",
+    "accessibility-level": "AAA",
     "primary": {
       "text": "gray-100",
       "background": "gray-900",
       "shade": "gray-800",
       "link": "blue-100",
-      "linkHover": "blue-100",
-      "linkVisited": "purple-100",
-      "linkVisitedHover": "purple-100"
+      "link-hover": "blue-100",
+      "link-visited": "purple-100",
+      "link-visited-hover": "purple-100"
     },
     "secondary": {
       "text": "gray-100",
       "background": "gray-800",
       "shade": "gray-700",
       "link": "blue-100",
-      "linkHover": "blue-100",
-      "linkVisited": "purple-100",
-      "linkVisitedHover": "purple-100"
+      "link-hover": "blue-100",
+      "link-visited": "purple-100",
+      "link-visited-hover": "purple-100"
     },
     "accent": {
       "text": "royal-blue-100"
     },
     "error": {
       "text": "red-300",
-      "blockText": "gray-100",
-      "blockBackground": "red-700",
-      "blockHover": "red-800"
+      "block-text": "gray-100",
+      "block-background": "red-700",
+      "block-hover": "red-800"
     },
     "warning": {
       "text": "yellow-300",
-      "blockText": "gray-900",
-      "blockBackground": "yellow-200",
-      "blockHover": "yellow-300"
+      "block-text": "gray-900",
+      "block-background": "yellow-200",
+      "block-hover": "yellow-300"
     },
     "submission": {
       "text": "green-300",
-      "blockText": "gray-100",
-      "blockBackground": "green-800",
-      "blockHover": "green-900"
+      "block-text": "gray-100",
+      "block-background": "green-800",
+      "block-hover": "green-900"
     },
     "stock": {
       "red": "red-500",

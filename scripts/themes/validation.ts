@@ -58,11 +58,11 @@ export function validateTheme(
   theme: Theme,
   ramps: InterpolatedRamps,
 ): ThemeValidationReport {
-  const requiredRatio = theme.accessibilityLevel === "AAA" ? 7.0 : 4.5;
+  const requiredRatio = (theme["accessibility-level"] as any) === "AAA" ? 7.0 : 4.5;
 
   const report: ThemeValidationReport = {
     name: themeName,
-    accessibilityLevel: theme.accessibilityLevel,
+    accessibilityLevel: (theme["accessibility-level"] as any),
     status: "pass",
     errors: [],
     contrastPairs: [],
@@ -102,9 +102,9 @@ export function validateTheme(
   if (!pair.passes) report.errors.push(pair);
 
   // Primary links (contrast with background only)
-  if (theme.primary.link) {
+  if ((theme.primary as any)["link"]) {
     pair = validatePair(
-      theme.primary.link,
+      (theme.primary as any)["link"],
       theme.primary.background,
       ramps,
       requiredRatio,
@@ -114,22 +114,22 @@ export function validateTheme(
     if (!pair.passes) report.errors.push(pair);
   }
 
-  if (theme.primary.linkVisited) {
+  if ((theme.primary as any)["link-visited"]) {
     pair = validatePair(
-      theme.primary.linkVisited,
+      (theme.primary as any)["link-visited"],
       theme.primary.background,
       ramps,
       requiredRatio,
-      "primary-linkVisited vs primary-background",
+      "primary-link-visited vs primary-background",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
   }
 
   // Secondary links (contrast with background only)
-  if (theme.secondary.link) {
+  if ((theme.secondary as any)["link"]) {
     pair = validatePair(
-      theme.secondary.link,
+      (theme.secondary as any)["link"],
       theme.primary.background,
       ramps,
       requiredRatio,
@@ -139,22 +139,22 @@ export function validateTheme(
     if (!pair.passes) report.errors.push(pair);
   }
 
-  if (theme.secondary.linkVisited) {
+  if ((theme.secondary as any)["link-visited"]) {
     pair = validatePair(
-      theme.secondary.linkVisited,
+      (theme.secondary as any)["link-visited"],
       theme.primary.background,
       ramps,
       requiredRatio,
-      "secondary-linkVisited vs primary-background",
+      "secondary-link-visited vs primary-background",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
   }
 
   // Accent links (contrast with background only)
-  if (theme.accent.link) {
+  if ((theme.accent as any)["link"]) {
     pair = validatePair(
-      theme.accent.link,
+      (theme.accent as any)["link"],
       theme.primary.background,
       ramps,
       requiredRatio,
@@ -164,13 +164,13 @@ export function validateTheme(
     if (!pair.passes) report.errors.push(pair);
   }
 
-  if (theme.accent.linkVisited) {
+  if ((theme.accent as any)["link-visited"]) {
     pair = validatePair(
-      theme.accent.linkVisited,
+      (theme.accent as any)["link-visited"],
       theme.primary.background,
       ramps,
       requiredRatio,
-      "accent-linkVisited vs primary-background",
+      "accent-link-visited vs primary-background",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -178,39 +178,42 @@ export function validateTheme(
 
   // Block components (error, warning, submission)
   for (const blockType of ["error", "warning", "submission"] as const) {
-    const block = theme[blockType];
+    const block = (theme as any)[blockType];
 
     pair = validatePair(
-      block.blockText,
-      block.blockBackground,
+      block["block-text"],
+      block["block-background"],
       ramps,
       requiredRatio,
-      `${blockType}-blockText vs ${blockType}-blockBackground`,
+      `${blockType}-block-text vs ${blockType}-block-background`,
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
 
     pair = validatePair(
-      block.blockText,
-      block.blockHover,
+      block["block-text"],
+      block["block-hover"],
       ramps,
       requiredRatio,
-      `${blockType}-blockText vs ${blockType}-blockHover`,
+      `${blockType}-block-text vs ${blockType}-block-hover`,
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
   }
 
   // Stock colors (informational only, no validation failure)
-  for (const [colorName, colorRef] of Object.entries(theme.stock)) {
-    pair = validatePair(
-      colorRef,
-      theme.primary.background,
-      ramps,
-      null,
-      `stock-${colorName} vs primary-background`,
-    );
-    report.contrastPairs.push(pair);
+  const stock = (theme as any).stock;
+  if (stock) {
+    for (const [colorName, colorRef] of Object.entries(stock)) {
+      pair = validatePair(
+        colorRef as string,
+        theme.primary.background,
+        ramps,
+        null,
+        `stock-${colorName} vs primary-background`,
+      );
+      report.contrastPairs.push(pair);
+    }
   }
 
   // Classification check
@@ -221,7 +224,7 @@ export function validateTheme(
 
   if (failedPairs.length > 0) {
     report.errors.unshift(
-      `Theme classified as ${theme.accessibilityLevel} but fails ${theme.accessibilityLevel} contrast requirements`,
+      `Theme classified as ${theme["accessibility-level"]} but fails ${theme["accessibility-level"]} contrast requirements`,
     );
     report.status = "fail";
   }

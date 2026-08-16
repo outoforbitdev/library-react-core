@@ -59,6 +59,7 @@ function generateDefaultThemeTokens(
   let css = ":root {\n";
 
   for (const [name, swatchRef] of Object.entries(tokens)) {
+    if (name === "accessibility-level") continue;
     try {
       resolveSwatchRefForCSS(swatchRef, ramps);
       css += `  --ood-${name}: var(--ood-${swatchRef});\n`;
@@ -85,6 +86,7 @@ function generateMediaQueryThemeTokens(
     "@media (prefers-color-scheme: dark) {\n  :root:not([data-theme]) {\n";
 
   for (const [name, swatchRef] of Object.entries(tokens)) {
+    if (name === "accessibility-level") continue;
     const hex = ramps[swatchRef.split("-")[0]]?.[swatchRef.split("-")[1]];
     if (hex) {
       css += `    --ood-${name}: var(--ood-${swatchRef});\n`;
@@ -106,6 +108,7 @@ function generateExplicitThemeTokens(
     css += `:root[data-theme="${themeName}"] {\n`;
 
     for (const [name, swatchRef] of Object.entries(tokens)) {
+      if (name === "accessibility-level") continue;
       const hex = ramps[swatchRef.split("-")[0]]?.[swatchRef.split("-")[1]];
       if (hex) {
         css += `  --ood-${name}: var(--ood-${swatchRef});\n`;
