@@ -58,11 +58,12 @@ export function validateTheme(
   theme: Theme,
   ramps: InterpolatedRamps,
 ): ThemeValidationReport {
-  const requiredRatio = (theme["accessibility-level"] as any) === "AAA" ? 7.0 : 4.5;
+  const requiredRatio =
+    (theme["accessibility-level"] as any) === "AAA" ? 7.0 : 4.5;
 
   const report: ThemeValidationReport = {
     name: themeName,
-    accessibilityLevel: (theme["accessibility-level"] as any),
+    accessibilityLevel: theme["accessibility-level"] as any,
     status: "pass",
     errors: [],
     contrastPairs: [],
@@ -130,10 +131,10 @@ export function validateTheme(
   if ((theme.secondary as any)["link"]) {
     pair = validatePair(
       (theme.secondary as any)["link"],
-      theme.primary.background,
+      theme.secondary.background,
       ramps,
       requiredRatio,
-      "secondary-link vs primary-background",
+      "secondary-link vs secondary-background",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -142,10 +143,10 @@ export function validateTheme(
   if ((theme.secondary as any)["link-visited"]) {
     pair = validatePair(
       (theme.secondary as any)["link-visited"],
-      theme.primary.background,
+      theme.secondary.background,
       ramps,
       requiredRatio,
-      "secondary-link-visited vs primary-background",
+      "secondary-link-visited vs secondary-background",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -192,10 +193,10 @@ export function validateTheme(
 
     pair = validatePair(
       block["block-text"],
-      block["block-hover"],
+      block["block-shade"],
       ramps,
       requiredRatio,
-      `${blockType}-block-text vs ${blockType}-block-hover`,
+      `${blockType}-block-text vs ${blockType}-block-shade`,
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);

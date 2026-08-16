@@ -42,7 +42,9 @@ export function interpolateRamp(
   return ramp;
 }
 
-export function generateRampFromSwatch(swatchHex: string): Record<string, string> {
+export function generateRampFromSwatch(
+  swatchHex: string,
+): Record<string, string> {
   const swatch = hexToRGB(swatchHex);
   const white = { r: 255, g: 255, b: 255 };
   const black = { r: 0, g: 0, b: 0 };

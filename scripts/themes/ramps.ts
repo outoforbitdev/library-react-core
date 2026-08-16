@@ -17,9 +17,7 @@ export function interpolateRamps(rampsInput: RampsInput): InterpolatedRamps {
 
   for (const [colorFamily, swatch] of Object.entries(rampsInput)) {
     if (!swatch["500"]) {
-      errors.push(
-        `Ramp ${colorFamily}: missing required 500 swatch value`,
-      );
+      errors.push(`Ramp ${colorFamily}: missing required 500 swatch value`);
       continue;
     }
 
