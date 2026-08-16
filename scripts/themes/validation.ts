@@ -34,7 +34,7 @@ function validatePair(
   background: string,
   ramps: InterpolatedRamps,
   requiredRatio: number | null,
-  label: string
+  label: string,
 ): ContrastPair {
   const fgHex = resolveSwatchRef(foreground, ramps);
   const bgHex = resolveSwatchRef(background, ramps);
@@ -56,7 +56,7 @@ function validatePair(
 export function validateTheme(
   themeName: string,
   theme: Theme,
-  ramps: InterpolatedRamps
+  ramps: InterpolatedRamps,
 ): ThemeValidationReport {
   const requiredRatio = theme.accessibilityLevel === "AAA" ? 7.0 : 4.5;
 
@@ -74,7 +74,7 @@ export function validateTheme(
     theme.primary.background,
     ramps,
     requiredRatio,
-    "primary-text vs primary-background"
+    "primary-text vs primary-background",
   );
   report.contrastPairs.push(pair);
   if (!pair.passes) report.errors.push(pair);
@@ -85,7 +85,7 @@ export function validateTheme(
     theme.secondary.background,
     ramps,
     requiredRatio,
-    "secondary-text vs secondary-background"
+    "secondary-text vs secondary-background",
   );
   report.contrastPairs.push(pair);
   if (!pair.passes) report.errors.push(pair);
@@ -96,7 +96,7 @@ export function validateTheme(
     theme.primary.background,
     ramps,
     requiredRatio,
-    "accent-text vs primary-background"
+    "accent-text vs primary-background",
   );
   report.contrastPairs.push(pair);
   if (!pair.passes) report.errors.push(pair);
@@ -108,7 +108,7 @@ export function validateTheme(
       theme.primary.background,
       ramps,
       requiredRatio,
-      "primary-link vs primary-background"
+      "primary-link vs primary-background",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -118,7 +118,7 @@ export function validateTheme(
       theme.primary.linkHover,
       ramps,
       requiredRatio,
-      "primary-link vs primary-linkHover"
+      "primary-link vs primary-linkHover",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -130,7 +130,7 @@ export function validateTheme(
       theme.primary.background,
       ramps,
       requiredRatio,
-      "primary-linkVisited vs primary-background"
+      "primary-linkVisited vs primary-background",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -140,7 +140,7 @@ export function validateTheme(
       theme.primary.linkVisitedHover,
       ramps,
       requiredRatio,
-      "primary-linkVisited vs primary-linkVisitedHover"
+      "primary-linkVisited vs primary-linkVisitedHover",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -153,7 +153,7 @@ export function validateTheme(
       theme.primary.background,
       ramps,
       requiredRatio,
-      "secondary-link vs primary-background"
+      "secondary-link vs primary-background",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -163,7 +163,7 @@ export function validateTheme(
       theme.secondary.linkHover,
       ramps,
       requiredRatio,
-      "secondary-link vs secondary-linkHover"
+      "secondary-link vs secondary-linkHover",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -175,7 +175,7 @@ export function validateTheme(
       theme.primary.background,
       ramps,
       requiredRatio,
-      "secondary-linkVisited vs primary-background"
+      "secondary-linkVisited vs primary-background",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -185,7 +185,7 @@ export function validateTheme(
       theme.secondary.linkVisitedHover,
       ramps,
       requiredRatio,
-      "secondary-linkVisited vs secondary-linkVisitedHover"
+      "secondary-linkVisited vs secondary-linkVisitedHover",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -198,7 +198,7 @@ export function validateTheme(
       theme.primary.background,
       ramps,
       requiredRatio,
-      "accent-link vs primary-background"
+      "accent-link vs primary-background",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -209,7 +209,7 @@ export function validateTheme(
         theme.accent.linkHover,
         ramps,
         requiredRatio,
-        "accent-link vs accent-linkHover"
+        "accent-link vs accent-linkHover",
       );
       report.contrastPairs.push(pair);
       if (!pair.passes) report.errors.push(pair);
@@ -222,7 +222,7 @@ export function validateTheme(
       theme.primary.background,
       ramps,
       requiredRatio,
-      "accent-linkVisited vs primary-background"
+      "accent-linkVisited vs primary-background",
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -233,7 +233,7 @@ export function validateTheme(
         theme.accent.linkVisitedHover,
         ramps,
         requiredRatio,
-        "accent-linkVisited vs accent-linkVisitedHover"
+        "accent-linkVisited vs accent-linkVisitedHover",
       );
       report.contrastPairs.push(pair);
       if (!pair.passes) report.errors.push(pair);
@@ -249,7 +249,7 @@ export function validateTheme(
       block.blockBackground,
       ramps,
       requiredRatio,
-      `${blockType}-blockText vs ${blockType}-blockBackground`
+      `${blockType}-blockText vs ${blockType}-blockBackground`,
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -259,7 +259,7 @@ export function validateTheme(
       block.blockHover,
       ramps,
       requiredRatio,
-      `${blockType}-blockText vs ${blockType}-blockHover`
+      `${blockType}-blockText vs ${blockType}-blockHover`,
     );
     report.contrastPairs.push(pair);
     if (!pair.passes) report.errors.push(pair);
@@ -272,18 +272,20 @@ export function validateTheme(
       theme.primary.background,
       ramps,
       null,
-      `stock-${colorName} vs primary-background`
+      `stock-${colorName} vs primary-background`,
     );
     report.contrastPairs.push(pair);
   }
 
   // Classification check
-  const requiredPairs = report.contrastPairs.filter((p) => p.requiredRatio !== null);
+  const requiredPairs = report.contrastPairs.filter(
+    (p) => p.requiredRatio !== null,
+  );
   const failedPairs = requiredPairs.filter((p) => !p.passes);
 
   if (failedPairs.length > 0) {
     report.errors.unshift(
-      `Theme classified as ${theme.accessibilityLevel} but fails ${theme.accessibilityLevel} contrast requirements`
+      `Theme classified as ${theme.accessibilityLevel} but fails ${theme.accessibilityLevel} contrast requirements`,
     );
     report.status = "fail";
   }
@@ -297,7 +299,7 @@ export function validateTheme(
 
 export function validateAllThemes(
   themes: Themes,
-  ramps: InterpolatedRamps
+  ramps: InterpolatedRamps,
 ): Record<string, ThemeValidationReport> {
   const result: Record<string, ThemeValidationReport> = {};
 

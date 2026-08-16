@@ -1,7 +1,7 @@
 import { writeFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
-import { loadRamps, interpolateRamps, validateRamps } from "./ramps.js";
+import { loadRamps, interpolateRamps } from "./ramps.js";
 import { loadThemes, validateAllThemes } from "./validation.js";
 import { writeConsolidatedCSS } from "./css.js";
 import { ValidationReport } from "./types.js";
@@ -24,17 +24,7 @@ async function main() {
     const rampsInput = loadRamps(rampsPath);
     const interpolatedRamps = interpolateRamps(rampsInput);
 
-    // Validate ramps
     console.log("✓ Ramps loaded and interpolated");
-    console.log("🔍 Validating ramps...");
-    const rampsReport = validateRamps(interpolatedRamps);
-
-    if (rampsReport.status === "fail") {
-      console.error("✗ Ramp validation failed:");
-      rampsReport.errors.forEach((error) => console.error(`  - ${error}`));
-      process.exit(1);
-    }
-    console.log("✓ Ramps valid");
 
     // Load and validate themes
     console.log("📦 Loading themes...");
@@ -60,7 +50,9 @@ async function main() {
             console.log(`    - ${msg}`);
           });
           if (report.errors.length > 3) {
-            console.log(`    ... and ${report.errors.length - 3} more error(s)`);
+            console.log(
+              `    ... and ${report.errors.length - 3} more error(s)`,
+            );
           }
         }
       }
@@ -80,7 +72,6 @@ async function main() {
         failedThemes: failedCount,
         overallStatus: failedCount === 0 ? "pass" : "fail",
       },
-      ramps: rampsReport,
       themes: themesReport,
     };
 
@@ -95,7 +86,9 @@ async function main() {
       process.exit(0);
     } else {
       console.error("✗ VALIDATION FAILED");
-      console.error(`${passedCount} theme(s) passed, ${failedCount} theme(s) failed`);
+      console.error(
+        `${passedCount} theme(s) passed, ${failedCount} theme(s) failed`,
+      );
       console.error("\nSee validation-report.json for details");
       process.exit(1);
     }

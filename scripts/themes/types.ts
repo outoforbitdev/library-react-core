@@ -13,7 +13,10 @@ export interface RampsInput {
 
 export type InterpolatedRamps = Record<
   string,
-  Record<"100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900", string>
+  Record<
+    "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900",
+    string
+  >
 >;
 
 export interface PrimaryComponent {
@@ -89,11 +92,6 @@ export interface ThemeValidationReport {
   contrastPairs: ContrastPair[];
 }
 
-export interface RampsValidationReport {
-  status: "pass" | "fail";
-  errors: string[];
-}
-
 export interface ValidationReport {
   timestamp: string;
   summary: {
@@ -102,6 +100,5 @@ export interface ValidationReport {
     failedThemes: number;
     overallStatus: "pass" | "fail";
   };
-  ramps: RampsValidationReport;
   themes: Record<string, ThemeValidationReport>;
 }

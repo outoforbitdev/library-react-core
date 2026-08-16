@@ -14,23 +14,34 @@ export function hslToHex(h: number, s: number, l: number): string {
   return chroma.hsl(h, s / 100, l / 100).hex();
 }
 
-export function validateRampEndpoints(hsl100: HSL, hsl900: HSL): string[] {
-  const errors: string[] = [];
-
-  const hDiff = Math.abs(hsl100.h - hsl900.h);
-
-  if (hDiff > 15 && hDiff < 345) {
-    errors.push(
-      `Hue mismatch: 100=${hsl100.h.toFixed(1)}° vs 900=${hsl900.h.toFixed(1)}° (diff=${hDiff.toFixed(1)}°, max=15°)`
-    );
+export function hexToRGB(
+  hex: string,
+): { r: number; g: number; b: number } {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (!result) {
+    throw new Error(`Invalid hex color: ${hex}`);
   }
-
-  return errors;
+  return {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16),
+  };
 }
 
-export function interpolateRamp(lightHex: string, darkHex: string): Record<string, string> {
-  const hsl100 = hexToHSL(lightHex);
-  const hsl900 = hexToHSL(darkHex);
+export function rgbToHex(r: number, g: number, b: number): string {
+  const toHex = (n: number) => {
+    const hex = Math.round(Math.max(0, Math.min(255, n))).toString(16);
+    return hex.length === 1 ? "0" + hex : hex;
+  };
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
+
+export function interpolateRamp(
+  lightHex: string,
+  darkHex: string,
+): Record<string, string> {
+  const rgb100 = hexToRGB(lightHex);
+  const rgb900 = hexToRGB(darkHex);
 
   const ramp: Record<string, string> = {
     "100": lightHex,
@@ -39,11 +50,11 @@ export function interpolateRamp(lightHex: string, darkHex: string): Record<strin
 
   for (let step = 200; step < 900; step += 100) {
     const t = (step - 100) / 800;
-    const h = hsl100.h;
-    const s = hsl100.s;
-    const l = hsl100.l + (hsl900.l - hsl100.l) * t;
+    const r = rgb100.r + (rgb900.r - rgb100.r) * t;
+    const g = rgb100.g + (rgb900.g - rgb100.g) * t;
+    const b = rgb100.b + (rgb900.b - rgb100.b) * t;
 
-    ramp[step.toString()] = hslToHex(h, s, l);
+    ramp[step.toString()] = rgbToHex(r, g, b);
   }
 
   return ramp;

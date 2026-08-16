@@ -46,7 +46,10 @@ function resolveSwatchRefForCSS(ref: string, ramps: InterpolatedRamps): string {
   return ramps[colorFamily][step];
 }
 
-function generateDefaultThemeTokens(themes: Themes, ramps: InterpolatedRamps): string {
+function generateDefaultThemeTokens(
+  themes: Themes,
+  ramps: InterpolatedRamps,
+): string {
   const lightTheme = themes.light;
   if (!lightTheme) {
     throw new Error("Light theme not found in themes.json");
@@ -68,14 +71,18 @@ function generateDefaultThemeTokens(themes: Themes, ramps: InterpolatedRamps): s
   return css;
 }
 
-function generateMediaQueryThemeTokens(themes: Themes, ramps: InterpolatedRamps): string {
+function generateMediaQueryThemeTokens(
+  themes: Themes,
+  ramps: InterpolatedRamps,
+): string {
   const darkTheme = themes.dark;
   if (!darkTheme) {
     return "";
   }
 
   const tokens = flattenThemeTokens(darkTheme);
-  let css = "@media (prefers-color-scheme: dark) {\n  :root:not([data-theme]) {\n";
+  let css =
+    "@media (prefers-color-scheme: dark) {\n  :root:not([data-theme]) {\n";
 
   for (const [name, swatchRef] of Object.entries(tokens)) {
     const hex = ramps[swatchRef.split("-")[0]]?.[swatchRef.split("-")[1]];
@@ -88,7 +95,10 @@ function generateMediaQueryThemeTokens(themes: Themes, ramps: InterpolatedRamps)
   return css;
 }
 
-function generateExplicitThemeTokens(themes: Themes, ramps: InterpolatedRamps): string {
+function generateExplicitThemeTokens(
+  themes: Themes,
+  ramps: InterpolatedRamps,
+): string {
   let css = "";
 
   for (const [themeName, theme] of Object.entries(themes)) {
@@ -218,7 +228,7 @@ function generateUtilityClasses(): string {
 export function writeConsolidatedCSS(
   ramps: InterpolatedRamps,
   themes: Themes,
-  outputPath: string
+  outputPath: string,
 ): void {
   let css = "";
 
@@ -228,7 +238,8 @@ export function writeConsolidatedCSS(
   css += "/* Default theme (light) */\n";
   css += generateDefaultThemeTokens(themes, ramps);
 
-  css += "/* Dark theme via prefers-color-scheme (unless data-theme is set) */\n";
+  css +=
+    "/* Dark theme via prefers-color-scheme (unless data-theme is set) */\n";
   css += generateMediaQueryThemeTokens(themes, ramps);
 
   css += "/* Explicit theme overrides via data-theme attribute */\n";
