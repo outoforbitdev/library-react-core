@@ -1,22 +1,5 @@
-import chroma from "chroma-js";
-import { HSL } from "./types.js";
 
-export function hexToHSL(hex: string): HSL {
-  const [h, s, l] = chroma(hex).hsl();
-  return {
-    h: h ?? 0,
-    s: (s ?? 0) * 100,
-    l: l * 100,
-  };
-}
-
-export function hslToHex(h: number, s: number, l: number): string {
-  return chroma.hsl(h, s / 100, l / 100).hex();
-}
-
-export function hexToRGB(
-  hex: string,
-): { r: number; g: number; b: number } {
+export function hexToRGB(hex: string): { r: number; g: number; b: number } {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) {
     throw new Error(`Invalid hex color: ${hex}`);
@@ -61,13 +44,12 @@ export function interpolateRamp(
 }
 
 export function relativeLuminance(hex: string): number {
-  const rgb = chroma(hex).rgb();
-  const [r, g, b] = rgb.map((c) => {
-    const c2 = c / 255;
-    return c2 <= 0.03928 ? c2 / 12.92 : Math.pow((c2 + 0.055) / 1.055, 2.4);
-  });
+  const { r, g, b } = hexToRGB(hex);
+  const channels = [r / 255, g / 255, b / 255].map((c) =>
+    c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4),
+  );
 
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
 }
 
 export function contrastRatio(fgHex: string, bgHex: string): number {

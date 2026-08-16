@@ -32,4 +32,3 @@ export function interpolateRamps(rampsInput: RampsInput): InterpolatedRamps {
 
   return result;
 }
-
