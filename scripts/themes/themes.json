@@ -1,0 +1,114 @@
+{
+  "light": {
+    "accessibilityLevel": "AA",
+    "primary": {
+      "text": "gray-900",
+      "background": "gray-100",
+      "shade": "gray-200",
+      "link": "blue-700",
+      "linkHover": "blue-700",
+      "linkVisited": "purple-700",
+      "linkVisitedHover": "purple-700"
+    },
+    "secondary": {
+      "text": "gray-800",
+      "background": "gray-300",
+      "shade": "gray-400",
+      "link": "blue-800",
+      "linkHover": "blue-800",
+      "linkVisited": "purple-800",
+      "linkVisitedHover": "purple-800"
+    },
+    "accent": {
+      "text": "royal-blue-600"
+    },
+    "error": {
+      "text": "red-700",
+      "blockText": "red-100",
+      "blockBackground": "red-600",
+      "blockHover": "red-700"
+    },
+    "warning": {
+      "text": "yellow-900",
+      "blockText": "gray-100",
+      "blockBackground": "yellow-500",
+      "blockHover": "yellow-600"
+    },
+    "submission": {
+      "text": "green-700",
+      "blockText": "green-100",
+      "blockBackground": "green-600",
+      "blockHover": "green-700"
+    },
+    "stock": {
+      "red": "red-500",
+      "orange": "orange-500",
+      "yellow": "yellow-600",
+      "green": "green-400",
+      "teal": "teal-500",
+      "cyan": "cyan-500",
+      "blue": "blue-500",
+      "indigo": "royal-blue-500",
+      "purple": "purple-500",
+      "magenta": "magenta-500",
+      "pink": "pink-400",
+      "gray": "gray-500"
+    }
+  },
+  "dark": {
+    "accessibilityLevel": "AA",
+    "primary": {
+      "text": "gray-100",
+      "background": "gray-900",
+      "shade": "gray-800",
+      "link": "blue-300",
+      "linkHover": "blue-300",
+      "linkVisited": "purple-300",
+      "linkVisitedHover": "purple-300"
+    },
+    "secondary": {
+      "text": "gray-200",
+      "background": "gray-700",
+      "shade": "gray-600",
+      "link": "blue-300",
+      "linkHover": "blue-300",
+      "linkVisited": "purple-300",
+      "linkVisitedHover": "purple-300"
+    },
+    "accent": {
+      "text": "royal-blue-200"
+    },
+    "error": {
+      "text": "red-300",
+      "blockText": "red-900",
+      "blockBackground": "red-600",
+      "blockHover": "red-700"
+    },
+    "warning": {
+      "text": "yellow-300",
+      "blockText": "gray-900",
+      "blockBackground": "yellow-500",
+      "blockHover": "yellow-600"
+    },
+    "submission": {
+      "text": "green-300",
+      "blockText": "green-900",
+      "blockBackground": "green-600",
+      "blockHover": "green-700"
+    },
+    "stock": {
+      "red": "red-500",
+      "orange": "orange-500",
+      "yellow": "yellow-600",
+      "green": "green-400",
+      "teal": "teal-500",
+      "cyan": "cyan-500",
+      "blue": "blue-500",
+      "indigo": "royal-blue-500",
+      "purple": "purple-500",
+      "magenta": "magenta-500",
+      "pink": "pink-400",
+      "gray": "gray-500"
+    }
+  }
+}

@@ -1,6 +1,5 @@
 import { getDomProps, IComponentProps } from "./IComponent";
-import "../styles/theme-colors.css";
-import "../styles/themes.css";
+import "../themes/themes.css";
 import styles from "../styles/nav.module.css";
 
 export interface INavLinkProps extends IComponentProps {
