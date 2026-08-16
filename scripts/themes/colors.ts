@@ -42,6 +42,48 @@ export function interpolateRamp(
   return ramp;
 }
 
+export function generateRampFromSwatch(swatchHex: string): Record<string, string> {
+  const swatch = hexToRGB(swatchHex);
+  const white = { r: 255, g: 255, b: 255 };
+  const black = { r: 0, g: 0, b: 0 };
+
+  const ramp: Record<string, string> = {
+    "500": swatchHex,
+  };
+
+  let current = swatch;
+  for (let step = 400; step >= 100; step -= 100) {
+    const distance = {
+      r: white.r - current.r,
+      g: white.g - current.g,
+      b: white.b - current.b,
+    };
+    current = {
+      r: current.r + 0.25 * distance.r,
+      g: current.g + 0.25 * distance.g,
+      b: current.b + 0.25 * distance.b,
+    };
+    ramp[step.toString()] = rgbToHex(current.r, current.g, current.b);
+  }
+
+  current = swatch;
+  for (let step = 600; step <= 900; step += 100) {
+    const distance = {
+      r: black.r - current.r,
+      g: black.g - current.g,
+      b: black.b - current.b,
+    };
+    current = {
+      r: current.r + 0.25 * distance.r,
+      g: current.g + 0.25 * distance.g,
+      b: current.b + 0.25 * distance.b,
+    };
+    ramp[step.toString()] = rgbToHex(current.r, current.g, current.b);
+  }
+
+  return ramp;
+}
+
 export function relativeLuminance(hex: string): number {
   const { r, g, b } = hexToRGB(hex);
   const channels = [r / 255, g / 255, b / 255].map((c) =>

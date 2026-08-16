@@ -24,9 +24,9 @@
     },
     "error": {
       "text": "red-700",
-      "blockText": "gray-900",
-      "blockBackground": "red-200",
-      "blockHover": "red-300"
+      "blockText": "gray-100",
+      "blockBackground": "red-700",
+      "blockHover": "red-800"
     },
     "warning": {
       "text": "yellow-900",
@@ -36,9 +36,9 @@
     },
     "submission": {
       "text": "green-700",
-      "blockText": "gray-900",
-      "blockBackground": "green-200",
-      "blockHover": "green-300"
+      "blockText": "gray-100",
+      "blockBackground": "green-800",
+      "blockHover": "green-900"
     },
     "stock": {
       "red": "red-500",
@@ -61,28 +61,28 @@
       "text": "gray-100",
       "background": "gray-900",
       "shade": "gray-800",
-      "link": "blue-300",
-      "linkHover": "blue-300",
-      "linkVisited": "purple-300",
-      "linkVisitedHover": "purple-300"
+      "link": "blue-100",
+      "linkHover": "blue-100",
+      "linkVisited": "purple-100",
+      "linkVisitedHover": "purple-100"
     },
     "secondary": {
       "text": "gray-100",
       "background": "gray-800",
       "shade": "gray-700",
-      "link": "blue-300",
-      "linkHover": "blue-300",
-      "linkVisited": "purple-300",
-      "linkVisitedHover": "purple-300"
+      "link": "blue-100",
+      "linkHover": "blue-100",
+      "linkVisited": "purple-100",
+      "linkVisitedHover": "purple-100"
     },
     "accent": {
-      "text": "royal-blue-200"
+      "text": "royal-blue-100"
     },
     "error": {
       "text": "red-300",
-      "blockText": "gray-900",
-      "blockBackground": "red-200",
-      "blockHover": "red-300"
+      "blockText": "gray-100",
+      "blockBackground": "red-700",
+      "blockHover": "red-800"
     },
     "warning": {
       "text": "yellow-300",
@@ -92,9 +92,9 @@
     },
     "submission": {
       "text": "green-300",
-      "blockText": "gray-900",
-      "blockBackground": "green-200",
-      "blockHover": "green-300"
+      "blockText": "gray-100",
+      "blockBackground": "green-800",
+      "blockHover": "green-900"
     },
     "stock": {
       "red": "red-500",
