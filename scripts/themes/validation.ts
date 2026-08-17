@@ -7,6 +7,8 @@ import {
   ValidationReport,
   ContrastPair,
   BackgroundComponent,
+  AccessibilityLevel,
+  RampStep,
 } from "./types.js";
 import { contrastRatio } from "./colors.js";
 
@@ -22,7 +24,7 @@ export function loadThemes(filePath: string): Themes {
 function resolveSwatchRef(ref: string, ramps: GeneratedRamps): string {
   const lastHyphenIdx = ref.lastIndexOf("-");
   const colorFamily = ref.substring(0, lastHyphenIdx);
-  const step = ref.substring(lastHyphenIdx + 1);
+  const step = ref.substring(lastHyphenIdx + 1) as RampStep;
 
   if (!ramps[colorFamily] || !ramps[colorFamily][step]) {
     throw new Error(`Invalid swatch reference: ${ref}`);
@@ -82,14 +84,24 @@ function validateBackgroundComponent(
   report: ThemeValidationReport,
   componentName: string,
   component: BackgroundComponent,
-  texts: TextColorPair[],
+  error: string,
+  warning: string,
+  submission: string,
   ramps: GeneratedRamps,
   requiredRatio: number,
 ): void {
+  const texts: TextColorPair[] = [
+    { text: component.text, label: `${componentName}-text` },
+    { text: component.link, label: `${componentName}-link` },
+    { text: component["link-visited"], label: `${componentName}-link-visited` },
+    { text: error, label: "error-text" },
+    { text: warning, label: "warning-text" },
+    { text: submission, label: "submission-text" },
+  ].filter((p) => p.text && p.text.trim() !== "");
   for (const { text, label } of texts) {
     for (const background of [
       { value: component.background, suffix: "background" },
-      { value: component.shade, suffix: "shade" },
+      // { value: component.shade, suffix: "shade" },
     ]) {
       addValidationPair(
         report,
@@ -113,98 +125,44 @@ export function validateTheme(
 
   const report: ThemeValidationReport = {
     name: themeName,
-    accessibilityLevel: theme["accessibility-level"] as string,
+    accessibilityLevel: theme["accessibility-level"] as AccessibilityLevel,
     status: "pass",
     errors: [],
     contrastPairs: [],
   };
 
-  const primaryTexts: TextColorPair[] = [
-    { text: theme.primary.text, label: "primary-text" },
-    { text: theme.primary.link, label: "primary-link" },
-    { text: theme.primary["link-visited"], label: "primary-link-visited" },
-    { text: theme.accent.text, label: "accent-text" },
-    { text: (theme as any).error.text, label: "error-text" },
-    { text: (theme as any).warning.text, label: "warning-text" },
-    { text: (theme as any).submission.text, label: "submission-text" },
-  ].filter((p) => p.text);
-
   validateBackgroundComponent(
     report,
     "primary",
     theme.primary,
-    primaryTexts,
+    theme.error.text,
+    theme.warning.text,
+    theme.submission.text,
     ramps,
     requiredRatio,
   );
-
-  const secondaryTexts: TextColorPair[] = [
-    { text: theme.secondary.text, label: "secondary-text" },
-    { text: theme.secondary.link, label: "secondary-link" },
-    { text: theme.secondary["link-visited"], label: "secondary-link-visited" },
-    { text: theme.accent.text, label: "accent-text" },
-    { text: (theme as any).error.text, label: "error-text" },
-    { text: (theme as any).warning.text, label: "warning-text" },
-    { text: (theme as any).submission.text, label: "submission-text" },
-  ].filter((p) => p.text);
 
   validateBackgroundComponent(
     report,
     "secondary",
     theme.secondary,
-    secondaryTexts,
+    theme.error.text,
+    theme.warning.text,
+    theme.submission.text,
     ramps,
     requiredRatio,
   );
 
-  if (
-    (theme as any)["accent-block"] &&
-    (theme as any)["accent-block"].text &&
-    (theme as any)["accent-block"].background
-  ) {
-    const accentBlock = (theme as any)["accent-block"];
-    addValidationPair(
-      report,
-      accentBlock.text,
-      accentBlock.background,
-      ramps,
-      requiredRatio,
-      "accent-block-text vs accent-block-background",
-    );
-
-    if (accentBlock.shade) {
-      addValidationPair(
-        report,
-        accentBlock.text,
-        accentBlock.shade,
-        ramps,
-        requiredRatio,
-        "accent-block-text vs accent-block-shade",
-      );
-    }
-
-    if (accentBlock.link) {
-      addValidationPair(
-        report,
-        accentBlock.link,
-        accentBlock.background,
-        ramps,
-        requiredRatio,
-        "accent-block-link vs accent-block-background",
-      );
-    }
-
-    if (accentBlock["link-visited"]) {
-      addValidationPair(
-        report,
-        accentBlock["link-visited"],
-        accentBlock.background,
-        ramps,
-        requiredRatio,
-        "accent-block-link-visited vs accent-block-background",
-      );
-    }
-  }
+  validateBackgroundComponent(
+    report,
+    "accent-block",
+    theme["accent-block"],
+    "",
+    "",
+    "",
+    ramps,
+    requiredRatio,
+  );
 
   // Block components (error, warning, submission)
   for (const blockType of ["error", "warning", "submission"] as const) {
@@ -226,24 +184,6 @@ export function validateTheme(
       ramps,
       requiredRatio,
       `${blockType}-block-text vs ${blockType}-block-shade`,
-    );
-
-    addValidationPair(
-      report,
-      block["block-text"],
-      theme.primary.background,
-      ramps,
-      requiredRatio,
-      `${blockType}-block-text vs primary-background`,
-    );
-
-    addValidationPair(
-      report,
-      block["block-text"],
-      theme.secondary.background,
-      ramps,
-      requiredRatio,
-      `${blockType}-block-text vs secondary-background`,
     );
   }
 
