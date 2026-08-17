@@ -17,7 +17,11 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+  args: {
+    className: "ood-primary",
+  },
+};
 
 export const Secondary: Story = {
   args: {
@@ -45,7 +49,7 @@ export const Submit: Story = {
 
 export const SubmitBlock: Story = {
   args: {
-    className: "ood-primary ood-submit-block",
+    className: "ood-submit-block",
   },
 };
 
@@ -69,6 +73,6 @@ export const Error: Story = {
 
 export const ErrorBlock: Story = {
   args: {
-    className: "ood-primary ood-error-block",
+    className: "ood-error-block",
   },
 };
