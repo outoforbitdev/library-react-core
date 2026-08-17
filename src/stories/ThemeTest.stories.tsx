@@ -16,7 +16,23 @@ const meta = {
       </tr>
       <tr>
         <td>.....</td>
-        <td>ood-primary</td>
+        <td>ood-text</td>
+        <td>.....</td>
+      </tr>
+      <tr>
+        <td colSpan={3}>.....</td>
+      </tr>
+      <tr className={args.customBlockOneClassName}>
+        <td>.....</td>
+        <td>{args.customBlockOneClassName}</td>
+        <td>.....</td>
+      </tr>
+      <tr>
+        <td colSpan={3}>.....</td>
+      </tr>
+      <tr className={args.customBlockTwoClassName}>
+        <td>.....</td>
+        <td>{args.customBlockTwoClassName}</td>
         <td>.....</td>
       </tr>
       <tr>
@@ -127,22 +143,33 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+  args: {
+    customBlockOneClassName: "ood-secondary",
+    customBlockTwoClassName: "ood-accent-block",
+  },
+};
 
 export const Secondary: Story = {
   args: {
     className: "ood-secondary",
+    customBlockOneClassName: "ood-primary",
+    customBlockTwoClassName: "ood-accent-block",
   },
 };
 
 export const Accent: Story = {
   args: {
     className: "ood-primary ood-accent",
+    customBlockOneClassName: "ood-secondary",
+    customBlockTwoClassName: "ood-accent-block",
   },
 };
 
 export const AccentBlock: Story = {
   args: {
     className: "ood-accent-block",
+    customBlockOneClassName: "ood-primary",
+    customBlockTwoClassName: "ood-secondary",
   },
 };

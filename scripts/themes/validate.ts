@@ -1,7 +1,7 @@
 import { writeFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
-import { loadRamps, interpolateRamps } from "./ramps.js";
+import { loadRamps, generateRamps } from "./ramps.js";
 import { loadThemes, validateAllThemes } from "./validation.js";
 import { writeConsolidatedCSS } from "./css.js";
 import { ValidationReport } from "./types.js";
@@ -19,12 +19,12 @@ async function main() {
     console.log("🎨 Theme Validation & CSS Generation");
     console.log("=====================================\n");
 
-    // Load and interpolate ramps
+    // Load and generate ramps
     console.log("📦 Loading color ramps...");
     const rampsInput = loadRamps(rampsPath);
-    const interpolatedRamps = interpolateRamps(rampsInput);
+    const generatedRamps = generateRamps(rampsInput);
 
-    console.log("✓ Ramps loaded and interpolated");
+    console.log("✓ Ramps loaded and generated");
 
     // Load and validate themes
     console.log("📦 Loading themes...");
@@ -32,7 +32,7 @@ async function main() {
     console.log(`✓ Loaded ${Object.keys(themes).length} theme(s)`);
 
     console.log("🔍 Validating themes...");
-    const themesReport = validateAllThemes(themes, interpolatedRamps);
+    const themesReport = validateAllThemes(themes, generatedRamps);
 
     let passedCount = 0;
     let failedCount = 0;
@@ -60,7 +60,7 @@ async function main() {
 
     // Generate CSS for valid themes
     console.log("\n📝 Generating CSS...");
-    writeConsolidatedCSS(interpolatedRamps, themes, cssOutputPath);
+    writeConsolidatedCSS(generatedRamps, themes, cssOutputPath);
     console.log(`✓ Generated ${cssOutputPath}`);
 
     // Write validation report

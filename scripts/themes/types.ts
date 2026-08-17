@@ -10,13 +10,18 @@ export interface RampsInput {
   };
 }
 
-export type GeneratedRamps = Record<
-  string,
-  Record<
-    "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900",
-    string
-  >
->;
+export type RampStep =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "600"
+  | "700"
+  | "800"
+  | "900";
+
+export type GeneratedRamps = Record<string, Record<RampStep, string>>;
 
 export interface BackgroundComponent {
   text: string;
@@ -37,13 +42,26 @@ export interface StatusBlockComponent {
   ["block-shade"]: string;
 }
 
-export type StockColors = Record<
-  "red" | "orange" | "yellow" | "green" | "teal" | "cyan" | "blue" | "indigo" | "purple" | "magenta" | "pink" | "gray",
-  string
->;
+export type StockColorName =
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "teal"
+  | "cyan"
+  | "blue"
+  | "indigo"
+  | "purple"
+  | "magenta"
+  | "pink"
+  | "gray";
+
+export type StockColors = Record<StockColorName, string>;
+
+export type AccessibilityLevel = "AAA" | "AA";
 
 export interface Theme {
-  ["accessibility-level"]: "AAA" | "AA";
+  ["accessibility-level"]: AccessibilityLevel;
   primary: BackgroundComponent;
   secondary: BackgroundComponent;
   accent: AccentComponent;
@@ -71,7 +89,7 @@ export interface ContrastPair {
 
 export interface ThemeValidationReport {
   name: string;
-  accessibilityLevel: "AAA" | "AA";
+  accessibilityLevel: AccessibilityLevel;
   status: "pass" | "fail";
   errors: (string | ContrastPair)[];
   contrastPairs: ContrastPair[];
