@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { RampsInput, InterpolatedRamps } from "./types.js";
+import { RampsInput, GeneratedRamps } from "./types.js";
 import { generateRampFromSwatch } from "./colors.js";
 
 export function loadRamps(filePath: string): RampsInput {
@@ -11,8 +11,8 @@ export function loadRamps(filePath: string): RampsInput {
   }
 }
 
-export function interpolateRamps(rampsInput: RampsInput): InterpolatedRamps {
-  const result: InterpolatedRamps = {};
+export function generateRamps(rampsInput: RampsInput): GeneratedRamps {
+  const result: GeneratedRamps = {};
   const errors: string[] = [];
 
   for (const [colorFamily, swatch] of Object.entries(rampsInput)) {
@@ -25,7 +25,7 @@ export function interpolateRamps(rampsInput: RampsInput): InterpolatedRamps {
   }
 
   if (errors.length > 0) {
-    throw new Error(`Ramp interpolation errors:\n${errors.join("\n")}`);
+    throw new Error(`Ramp generation errors:\n${errors.join("\n")}`);
   }
 
   return result;

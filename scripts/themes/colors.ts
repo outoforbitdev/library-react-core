@@ -10,36 +10,15 @@ export function hexToRGB(hex: string): { r: number; g: number; b: number } {
   };
 }
 
+const LIGHTEN_STEP_FACTOR = 0.25;
+const DARKEN_STEP_FACTOR = 0.25;
+
 export function rgbToHex(r: number, g: number, b: number): string {
   const toHex = (n: number) => {
     const hex = Math.round(Math.max(0, Math.min(255, n))).toString(16);
     return hex.length === 1 ? "0" + hex : hex;
   };
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-}
-
-export function interpolateRamp(
-  lightHex: string,
-  darkHex: string,
-): Record<string, string> {
-  const rgb100 = hexToRGB(lightHex);
-  const rgb900 = hexToRGB(darkHex);
-
-  const ramp: Record<string, string> = {
-    "100": lightHex,
-    "900": darkHex,
-  };
-
-  for (let step = 200; step < 900; step += 100) {
-    const t = (step - 100) / 800;
-    const r = rgb100.r + (rgb900.r - rgb100.r) * t;
-    const g = rgb100.g + (rgb900.g - rgb100.g) * t;
-    const b = rgb100.b + (rgb900.b - rgb100.b) * t;
-
-    ramp[step.toString()] = rgbToHex(r, g, b);
-  }
-
-  return ramp;
 }
 
 export function generateRampFromSwatch(
@@ -61,9 +40,9 @@ export function generateRampFromSwatch(
       b: white.b - current.b,
     };
     current = {
-      r: current.r + 0.25 * distance.r,
-      g: current.g + 0.25 * distance.g,
-      b: current.b + 0.25 * distance.b,
+      r: current.r + LIGHTEN_STEP_FACTOR * distance.r,
+      g: current.g + LIGHTEN_STEP_FACTOR * distance.g,
+      b: current.b + LIGHTEN_STEP_FACTOR * distance.b,
     };
     ramp[step.toString()] = rgbToHex(current.r, current.g, current.b);
   }
@@ -76,9 +55,9 @@ export function generateRampFromSwatch(
       b: black.b - current.b,
     };
     current = {
-      r: current.r + 0.25 * distance.r,
-      g: current.g + 0.25 * distance.g,
-      b: current.b + 0.25 * distance.b,
+      r: current.r + DARKEN_STEP_FACTOR * distance.r,
+      g: current.g + DARKEN_STEP_FACTOR * distance.g,
+      b: current.b + DARKEN_STEP_FACTOR * distance.b,
     };
     ramp[step.toString()] = rgbToHex(current.r, current.g, current.b);
   }

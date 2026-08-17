@@ -6,12 +6,11 @@ export interface HSL {
 
 export interface RampsInput {
   [colorFamily: string]: {
-    "100": string;
-    "900": string;
+    "500": string;
   };
 }
 
-export type InterpolatedRamps = Record<
+export type GeneratedRamps = Record<
   string,
   Record<
     "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900",
@@ -19,53 +18,39 @@ export type InterpolatedRamps = Record<
   >
 >;
 
-export interface PrimaryComponent {
+export interface BackgroundComponent {
   text: string;
   background: string;
   shade: string;
   link: string;
-  linkHover: string;
-  linkVisited: string;
-  linkVisitedHover: string;
-}
-
-export interface SecondaryComponent {
-  text: string;
-  background: string;
-  shade: string;
-  link: string;
-  linkHover: string;
-  linkVisited: string;
-  linkVisitedHover: string;
+  ["link-visited"]: string;
 }
 
 export interface AccentComponent {
   text: string;
-  link?: string;
-  linkHover?: string;
-  linkVisited?: string;
-  linkVisitedHover?: string;
 }
 
-export interface BlockComponent {
+export interface StatusBlockComponent {
   text: string;
-  blockText: string;
-  blockBackground: string;
-  blockHover: string;
+  ["block-text"]: string;
+  ["block-background"]: string;
+  ["block-shade"]: string;
 }
 
-export interface StockColors {
-  [colorName: string]: string;
-}
+export type StockColors = Record<
+  "red" | "orange" | "yellow" | "green" | "teal" | "cyan" | "blue" | "indigo" | "purple" | "magenta" | "pink" | "gray",
+  string
+>;
 
 export interface Theme {
-  accessibilityLevel: "AAA" | "AA";
-  primary: PrimaryComponent;
-  secondary: SecondaryComponent;
+  ["accessibility-level"]: "AAA" | "AA";
+  primary: BackgroundComponent;
+  secondary: BackgroundComponent;
   accent: AccentComponent;
-  error: BlockComponent;
-  warning: BlockComponent;
-  submission: BlockComponent;
+  ["accent-block"]: BackgroundComponent;
+  error: StatusBlockComponent;
+  warning: StatusBlockComponent;
+  submission: StatusBlockComponent;
   stock: StockColors;
 }
 

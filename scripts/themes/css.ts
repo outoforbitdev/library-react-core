@@ -1,8 +1,8 @@
 import { writeFileSync, mkdirSync } from "fs";
 import { dirname } from "path";
-import { InterpolatedRamps, Themes, Theme } from "./types.js";
+import { GeneratedRamps, Themes, Theme } from "./types.js";
 
-function generateSwatchVariables(ramps: InterpolatedRamps): string {
+function generateSwatchVariables(ramps: GeneratedRamps): string {
   let css = ":root {\n";
 
   for (const [colorFamily, swatches] of Object.entries(ramps)) {
@@ -37,7 +37,7 @@ function flattenThemeTokens(theme: Theme, prefix = ""): Record<string, string> {
   return tokens;
 }
 
-function resolveSwatchRefForCSS(ref: string, ramps: InterpolatedRamps): string {
+function resolveSwatchRefForCSS(ref: string, ramps: GeneratedRamps): string {
   const lastHyphenIdx = ref.lastIndexOf("-");
   const colorFamily = ref.substring(0, lastHyphenIdx);
   const step = ref.substring(lastHyphenIdx + 1);
@@ -50,7 +50,7 @@ function resolveSwatchRefForCSS(ref: string, ramps: InterpolatedRamps): string {
 
 function generateDefaultThemeTokens(
   themes: Themes,
-  ramps: InterpolatedRamps,
+  ramps: GeneratedRamps,
 ): string {
   const lightTheme = themes.light;
   if (!lightTheme) {
@@ -76,7 +76,7 @@ function generateDefaultThemeTokens(
 
 function generateMediaQueryThemeTokens(
   themes: Themes,
-  ramps: InterpolatedRamps,
+  ramps: GeneratedRamps,
 ): string {
   const darkTheme = themes.dark;
   if (!darkTheme) {
@@ -103,7 +103,7 @@ function generateMediaQueryThemeTokens(
 
 function generateExplicitThemeTokens(
   themes: Themes,
-  ramps: InterpolatedRamps,
+  ramps: GeneratedRamps,
 ): string {
   let css = "";
 
@@ -276,7 +276,7 @@ function generateUtilityClasses(): string {
 }
 
 export function writeConsolidatedCSS(
-  ramps: InterpolatedRamps,
+  ramps: GeneratedRamps,
   themes: Themes,
   outputPath: string,
 ): void {
