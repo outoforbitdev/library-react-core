@@ -109,7 +109,7 @@ function generateExplicitThemeTokens(
 
   for (const [themeName, theme] of Object.entries(themes)) {
     const tokens = flattenThemeTokens(theme);
-    css += `:root[data-theme="${themeName}"] {\n`;
+    css += `[data-theme="${themeName}"] {\n`;
 
     for (const [name, swatchRef] of Object.entries(tokens)) {
       if (name === "accessibility-level") continue;
