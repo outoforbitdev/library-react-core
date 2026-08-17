@@ -8,9 +8,9 @@ import {
   ContrastPair,
   BackgroundComponent,
   AccessibilityLevel,
-  RampStep,
 } from "./types.js";
 import { contrastRatio } from "./colors.js";
+import { resolveSwatchRef } from "./utils.js";
 
 export function loadThemes(filePath: string): Themes {
   try {
@@ -19,17 +19,6 @@ export function loadThemes(filePath: string): Themes {
   } catch (error) {
     throw new Error(`Failed to load themes from ${filePath}: ${error}`);
   }
-}
-
-function resolveSwatchRef(ref: string, ramps: GeneratedRamps): string {
-  const lastHyphenIdx = ref.lastIndexOf("-");
-  const colorFamily = ref.substring(0, lastHyphenIdx);
-  const step = ref.substring(lastHyphenIdx + 1) as RampStep;
-
-  if (!ramps[colorFamily] || !ramps[colorFamily][step]) {
-    throw new Error(`Invalid swatch reference: ${ref}`);
-  }
-  return ramps[colorFamily][step];
 }
 
 function validatePair(
@@ -229,7 +218,11 @@ export function validateAllThemes(
   const result: Record<string, ThemeValidationReport> = {};
 
   for (const [themeName, theme] of Object.entries(themes)) {
-    result[themeName] = validateTheme(themeName, theme, ramps);
+    // Skip metadata properties
+    if (themeName === "default-light-theme" || themeName === "default-dark-theme") {
+      continue;
+    }
+    result[themeName] = validateTheme(themeName, theme as Theme, ramps);
   }
 
   return result;

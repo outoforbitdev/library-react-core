@@ -1,6 +1,7 @@
 import { writeFileSync, mkdirSync } from "fs";
 import { dirname } from "path";
 import { GeneratedRamps, Themes, Theme } from "./types.js";
+import { resolveSwatchRef } from "./utils.js";
 
 function generateSwatchVariables(ramps: GeneratedRamps): string {
   let css = ":root {\n";
@@ -37,68 +38,60 @@ function flattenThemeTokens(theme: Theme, prefix = ""): Record<string, string> {
   return tokens;
 }
 
-function resolveSwatchRefForCSS(ref: string, ramps: GeneratedRamps): string {
-  const lastHyphenIdx = ref.lastIndexOf("-");
-  const colorFamily = ref.substring(0, lastHyphenIdx);
-  const step = ref.substring(lastHyphenIdx + 1);
+function generateThemeTokens(
+  tokens: Record<string, string>,
+  selector: string,
+  ramps: GeneratedRamps,
+  indent: string = "",
+): string {
+  let css = `${indent}${selector} {\n`;
 
-  if (!ramps[colorFamily] || !ramps[colorFamily][step]) {
-    throw new Error(`Invalid swatch reference: ${ref}`);
+  for (const [name, swatchRef] of Object.entries(tokens)) {
+    if (name === "accessibility-level") continue;
+    try {
+      resolveSwatchRef(swatchRef, ramps);
+      css += `${indent}  --ood-${name}: var(--ood-${swatchRef});\n`;
+    } catch {
+      // Skip invalid references
+    }
   }
-  return ramps[colorFamily][step];
+
+  css += `${indent}}\n`;
+  return css;
 }
 
 function generateDefaultThemeTokens(
   themes: Themes,
   ramps: GeneratedRamps,
 ): string {
-  const lightTheme = themes.light;
-  if (!lightTheme) {
-    throw new Error("Light theme not found in themes.json");
+  const defaultLightThemeName = (themes["default-light-theme"] as string) || "light";
+  const lightTheme = themes[defaultLightThemeName];
+  if (!lightTheme || typeof lightTheme === "string") {
+    throw new Error(`Default light theme "${defaultLightThemeName}" not found in themes.json`);
   }
 
   const tokens = flattenThemeTokens(lightTheme);
-  let css = ":root {\n";
-
-  for (const [name, swatchRef] of Object.entries(tokens)) {
-    if (name === "accessibility-level") continue;
-    try {
-      resolveSwatchRefForCSS(swatchRef, ramps);
-      css += `  --ood-${name}: var(--ood-${swatchRef});\n`;
-    } catch {
-      // Skip invalid references
-    }
-  }
-
-  css += "}\n\n";
-  return css;
+  return generateThemeTokens(tokens, ":root", ramps) + "\n";
 }
 
 function generateMediaQueryThemeTokens(
   themes: Themes,
   ramps: GeneratedRamps,
 ): string {
-  const darkTheme = themes.dark;
-  if (!darkTheme) {
+  const defaultDarkThemeName = (themes["default-dark-theme"] as string) || "dark";
+  const darkTheme = themes[defaultDarkThemeName];
+  if (!darkTheme || typeof darkTheme === "string") {
     return "";
   }
 
   const tokens = flattenThemeTokens(darkTheme);
-  let css =
-    "@media (prefers-color-scheme: dark) {\n  :root:not([data-theme]) {\n";
-
-  for (const [name, swatchRef] of Object.entries(tokens)) {
-    if (name === "accessibility-level") continue;
-    try {
-      resolveSwatchRefForCSS(swatchRef, ramps);
-      css += `    --ood-${name}: var(--ood-${swatchRef});\n`;
-    } catch {
-      // Skip invalid references
-    }
-  }
-
-  css += "  }\n}\n\n";
-  return css;
+  const innerCss = generateThemeTokens(
+    tokens,
+    ":root:not([data-theme])",
+    ramps,
+    "  ",
+  );
+  return `@media (prefers-color-scheme: dark) {\n${innerCss}}\n\n`;
 }
 
 function generateExplicitThemeTokens(
@@ -108,20 +101,12 @@ function generateExplicitThemeTokens(
   let css = "";
 
   for (const [themeName, theme] of Object.entries(themes)) {
-    const tokens = flattenThemeTokens(theme);
-    css += `[data-theme="${themeName}"] {\n`;
-
-    for (const [name, swatchRef] of Object.entries(tokens)) {
-      if (name === "accessibility-level") continue;
-      try {
-        resolveSwatchRefForCSS(swatchRef, ramps);
-        css += `  --ood-${name}: var(--ood-${swatchRef});\n`;
-      } catch {
-        // Skip invalid references
-      }
+    // Skip metadata properties
+    if (themeName === "default-light-theme" || themeName === "default-dark-theme") {
+      continue;
     }
-
-    css += "}\n\n";
+    const tokens = flattenThemeTokens(theme as Theme);
+    css += generateThemeTokens(tokens, `[data-theme="${themeName}"]`, ramps) + "\n";
   }
 
   return css;

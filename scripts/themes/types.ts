@@ -1,9 +1,3 @@
-export interface HSL {
-  h: number;
-  s: number;
-  l: number;
-}
-
 export interface RampsInput {
   [colorFamily: string]: {
     "500": string;
@@ -73,7 +67,9 @@ export interface Theme {
 }
 
 export interface Themes {
-  [themeName: string]: Theme;
+  [themeName: string]: Theme | string;
+  ["default-light-theme"]?: string;
+  ["default-dark-theme"]?: string;
 }
 
 export interface ContrastPair {

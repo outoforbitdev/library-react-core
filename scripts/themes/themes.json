@@ -116,5 +116,7 @@
       "pink": "pink-400",
       "gray": "gray-500"
     }
-  }
+  },
+  "default-light-theme": "light",
+  "default-dark-theme": "dark"
 }
