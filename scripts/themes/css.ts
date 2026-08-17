@@ -64,10 +64,13 @@ function generateDefaultThemeTokens(
   themes: Themes,
   ramps: GeneratedRamps,
 ): string {
-  const defaultLightThemeName = (themes["default-light-theme"] as string) || "light";
+  const defaultLightThemeName =
+    (themes["default-light-theme"] as string) || "light";
   const lightTheme = themes[defaultLightThemeName];
   if (!lightTheme || typeof lightTheme === "string") {
-    throw new Error(`Default light theme "${defaultLightThemeName}" not found in themes.json`);
+    throw new Error(
+      `Default light theme "${defaultLightThemeName}" not found in themes.json`,
+    );
   }
 
   const tokens = flattenThemeTokens(lightTheme);
@@ -78,7 +81,8 @@ function generateMediaQueryThemeTokens(
   themes: Themes,
   ramps: GeneratedRamps,
 ): string {
-  const defaultDarkThemeName = (themes["default-dark-theme"] as string) || "dark";
+  const defaultDarkThemeName =
+    (themes["default-dark-theme"] as string) || "dark";
   const darkTheme = themes[defaultDarkThemeName];
   if (!darkTheme || typeof darkTheme === "string") {
     return "";
@@ -102,11 +106,15 @@ function generateExplicitThemeTokens(
 
   for (const [themeName, theme] of Object.entries(themes)) {
     // Skip metadata properties
-    if (themeName === "default-light-theme" || themeName === "default-dark-theme") {
+    if (
+      themeName === "default-light-theme" ||
+      themeName === "default-dark-theme"
+    ) {
       continue;
     }
     const tokens = flattenThemeTokens(theme as Theme);
-    css += generateThemeTokens(tokens, `[data-theme="${themeName}"]`, ramps) + "\n";
+    css +=
+      generateThemeTokens(tokens, `[data-theme="${themeName}"]`, ramps) + "\n";
   }
 
   return css;

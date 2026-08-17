@@ -219,7 +219,10 @@ export function validateAllThemes(
 
   for (const [themeName, theme] of Object.entries(themes)) {
     // Skip metadata properties
-    if (themeName === "default-light-theme" || themeName === "default-dark-theme") {
+    if (
+      themeName === "default-light-theme" ||
+      themeName === "default-dark-theme"
+    ) {
       continue;
     }
     result[themeName] = validateTheme(themeName, theme as Theme, ramps);

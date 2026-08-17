@@ -136,8 +136,8 @@ const ComponentInfoBox = (props: ComponentInfoBoxProps) => {
         <td style={{ background: "var(--ood-color-red)" }}>.....</td>
       </tr>
     </Infobox>
-  )
-}
+  );
+};
 
 const meta = {
   title: "Example/Themes",
@@ -148,19 +148,19 @@ const meta = {
     layout: "fullscreen",
   },
   render: (args) => (
-    <div style={{ display: "flex", flexDirection: "row"}}>
-      <ComponentInfoBox 
-        componentClassName="ood-primary" 
+    <div style={{ display: "flex", flexDirection: "row" }}>
+      <ComponentInfoBox
+        componentClassName="ood-primary"
         customBlockOneClassName="ood-secondary"
         customBlockTwoClassName="ood-accent-block"
       />
-      <ComponentInfoBox 
-        componentClassName="ood-secondary" 
+      <ComponentInfoBox
+        componentClassName="ood-secondary"
         customBlockOneClassName="ood-primary"
         customBlockTwoClassName="ood-accent-block"
       />
-      <ComponentInfoBox 
-        componentClassName="ood-accent-block" 
+      <ComponentInfoBox
+        componentClassName="ood-accent-block"
         customBlockOneClassName="ood-primary"
         customBlockTwoClassName="ood-secondary"
       />
@@ -172,21 +172,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-  decorators: [
-    (story) => (
-      <div data-theme="light">
-        {story()}
-      </div>
-    ),
-  ],
+  decorators: [(story) => <div data-theme="light">{story()}</div>],
 };
 
 export const Dark: Story = {
-  decorators: [
-    (story) => (
-      <div data-theme="dark">
-        {story()}
-      </div>
-    ),
-  ],
+  decorators: [(story) => <div data-theme="dark">{story()}</div>],
 };
