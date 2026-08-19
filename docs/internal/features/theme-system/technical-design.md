@@ -29,6 +29,7 @@ For dark steps (600-900):
 ```
 
 This approach ensures:
+
 - Vibrant mid-tone colors (not washed out)
 - Smooth, predictable gradients
 - Consistent contrast at each level
@@ -51,6 +52,7 @@ All CSS variables use slug format (kebab-case):
 ### Component Types
 
 **Background Components** (primary, secondary, accent-block, error-block, warning-block, submission-block):
+
 - `text` - Primary text color
 - `background` - Component background
 - `shade` - Hover/active state background
@@ -58,9 +60,11 @@ All CSS variables use slug format (kebab-case):
 - `link-visited` - Visited link color
 
 **Accent Components** (accent):
+
 - `text` - Accent text color
 
 **Status Components** (error, warning, submission - for use outside blocks):
+
 - `text` - Status text color
 
 ## Theme Cascade
@@ -93,6 +97,7 @@ CSS variables cascade through multiple layers:
 ```
 
 This cascade ensures:
+
 - System preference respected by default
 - Explicit data-theme overrides user/media query
 - Works with Storybook theme switching
@@ -104,6 +109,7 @@ This cascade ensures:
 Each component is validated against all possible text/background pairs:
 
 **Pairs validated per component:**
+
 1. `{component}-text` vs `{component}-background`
 2. `{component}-text` vs `{component}-shade`
 3. `{component}-link` vs `{component}-background`
@@ -121,6 +127,7 @@ Each component is validated against all possible text/background pairs:
 ### Validation Failure Behavior
 
 If a theme fails contrast validation:
+
 1. Build process reports which pairs failed
 2. Generate CSS anyway (for debugging)
 3. Exit with error status (fails CI)
@@ -156,7 +163,9 @@ If a theme fails contrast validation:
       "green": "green-400"
     }
   },
-  "dark": { /* ... */ },
+  "dark": {
+    /* ... */
+  },
   "default-light-theme": "light",
   "default-dark-theme": "dark"
 }
@@ -165,12 +174,14 @@ If a theme fails contrast validation:
 ## Type Safety
 
 The system uses TypeScript to ensure:
+
 - Theme definitions match expected structure
 - All required properties are present
 - No typos in component names or properties
 - Swatch references are valid
 
 Key types:
+
 - `Theme` - Complete theme definition
 - `BackgroundComponent` - Component with text, background, shade, links
 - `RampStep` - Valid color step values (100-900)
@@ -189,6 +200,7 @@ Key types:
 ```
 
 The validate script:
+
 1. Loads theme definitions from `themes.json`
 2. Generates color ramps from swatches
 3. Validates all contrast pairs

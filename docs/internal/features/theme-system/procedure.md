@@ -60,6 +60,7 @@ npm run validate-themes
 ```
 
 The system will:
+
 1. Generate the full 9-step ramp from the 500 value
 2. Create CSS variables `--ood-new-color-100` through `--ood-new-color-900`
 3. Validate stock colors (informational)
@@ -90,7 +91,7 @@ export interface Theme {
   ["accessibility-level"]: AccessibilityLevel;
   primary: BackgroundComponent;
   secondary: BackgroundComponent;
-  "new-component": BackgroundComponent;  // Add here
+  "new-component": BackgroundComponent; // Add here
   // ...
 }
 ```
@@ -171,8 +172,8 @@ Change color values directly:
 {
   "light": {
     "primary": {
-      "text": "gray-900",      // Old: gray-900
-      "text": "gray-800",   // New: gray-800
+      "text": "gray-900", // Old: gray-900
+      "text": "gray-800", // New: gray-800
       "background": "gray-100"
     }
   }
@@ -204,6 +205,7 @@ npm run validate-themes
 ```
 
 Output shows:
+
 - ✓ Loaded X theme(s)
 - ✓ Ramps loaded and generated
 - Validation results per theme
@@ -264,6 +266,7 @@ npm run validate-themes
 ```
 
 This creates `src/styles/themes.css` with:
+
 - Color swatch variables
 - Light theme defaults
 - Dark theme media query
@@ -273,6 +276,7 @@ This creates `src/styles/themes.css` with:
 ### Customizing Generation
 
 Edit `scripts/themes/css.ts` to modify:
+
 - CSS variable naming
 - Utility class definitions
 - Media query structure
@@ -358,7 +362,9 @@ The browser's color scheme preference automatically applies:
 
 ```css
 /* Light theme by default */
-:root { --ood-primary-text: var(--ood-gray-900); }
+:root {
+  --ood-primary-text: var(--ood-gray-900);
+}
 
 /* Dark theme if user prefers dark */
 @media (prefers-color-scheme: dark) {
@@ -405,6 +411,7 @@ export const DarkTheme: Story = {
 **Problem**: A color pair falls below the required ratio.
 
 **Solution**:
+
 1. Check which pair fails in the validation output
 2. Either darken the text color or lighten the background
 3. Use the next step in the generated ramp (100-900 scale)
@@ -415,11 +422,13 @@ export const DarkTheme: Story = {
 **Problem**: A color variable doesn't exist in generated CSS.
 
 **Possible causes**:
+
 1. Typo in `themes.json` color reference
 2. Color not defined in `ramps.json`
 3. Generation script didn't run
 
 **Solution**:
+
 1. Check spelling in `themes.json`
 2. Add missing color to `ramps.json` (500 value)
 3. Run `npm run validate-themes` again
@@ -429,6 +438,7 @@ export const DarkTheme: Story = {
 **Problem**: Setting `data-theme` doesn't change colors.
 
 **Solution**:
+
 1. Ensure themes.css is loaded
 2. Check that the selector matches exactly (e.g., `[data-theme="dark"]`)
 3. Verify CSS specificity isn't being overridden
