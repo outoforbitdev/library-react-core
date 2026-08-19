@@ -2,7 +2,6 @@ import { useState } from "react";
 import { getDomProps, IComponentProps } from "./IComponent";
 import { HamburgerMenu, IconSize, X } from "./icons";
 import styles from "../styles/nav.module.css";
-import "../styles/theme-colors.css";
 import "../styles/themes.css";
 import { NavLink } from "./NavLink";
 

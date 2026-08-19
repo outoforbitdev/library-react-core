@@ -1,22 +1,37 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Infobox } from "../components/infobox/Infobox";
 
-const meta = {
-  title: "Example/Themes",
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ["autodocs"],
-  parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
-    layout: "fullscreen",
-  },
-  render: (args) => (
-    <Infobox {...args}>
+interface ComponentInfoBoxProps {
+  componentClassName?: string;
+  customBlockOneClassName?: string;
+  customBlockTwoClassName?: string;
+}
+
+const ComponentInfoBox = (props: ComponentInfoBoxProps) => {
+  return (
+    <Infobox className={props.componentClassName}>
       <tr>
         <td colSpan={3}>.....</td>
       </tr>
       <tr>
         <td>.....</td>
-        <td>ood-primary</td>
+        <td>ood-text</td>
+        <td>.....</td>
+      </tr>
+      <tr>
+        <td colSpan={3}>.....</td>
+      </tr>
+      <tr className={props.customBlockOneClassName}>
+        <td>.....</td>
+        <td>{props.customBlockOneClassName}</td>
+        <td>.....</td>
+      </tr>
+      <tr>
+        <td colSpan={3}>.....</td>
+      </tr>
+      <tr className={props.customBlockTwoClassName}>
+        <td>.....</td>
+        <td>{props.customBlockTwoClassName}</td>
         <td>.....</td>
       </tr>
       <tr>
@@ -121,28 +136,45 @@ const meta = {
         <td style={{ background: "var(--ood-color-red)" }}>.....</td>
       </tr>
     </Infobox>
+  );
+};
+
+const meta = {
+  title: "Example/Themes",
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
+  tags: ["autodocs"],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
+    layout: "fullscreen",
+  },
+  render: (args) => (
+    <div style={{ display: "flex", flexDirection: "row" }}>
+      <ComponentInfoBox
+        componentClassName="ood-primary"
+        customBlockOneClassName="ood-secondary"
+        customBlockTwoClassName="ood-accent-block"
+      />
+      <ComponentInfoBox
+        componentClassName="ood-secondary"
+        customBlockOneClassName="ood-primary"
+        customBlockTwoClassName="ood-accent-block"
+      />
+      <ComponentInfoBox
+        componentClassName="ood-accent-block"
+        customBlockOneClassName="ood-primary"
+        customBlockTwoClassName="ood-secondary"
+      />
+    </div>
   ),
 } satisfies Meta;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {};
-
-export const Secondary: Story = {
-  args: {
-    className: "ood-secondary",
-  },
+export const Light: Story = {
+  decorators: [(story) => <div data-theme="light">{story()}</div>],
 };
 
-export const Accent: Story = {
-  args: {
-    className: "ood-primary ood-accent",
-  },
-};
-
-export const AccentBlock: Story = {
-  args: {
-    className: "ood-accent-block",
-  },
+export const Dark: Story = {
+  decorators: [(story) => <div data-theme="dark">{story()}</div>],
 };

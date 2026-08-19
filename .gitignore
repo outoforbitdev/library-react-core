@@ -39,3 +39,10 @@ next-env.d.ts
 
 *storybook.log
 storybook-static
+
+# agent working files
+.agent-wip/
+
+# generated themes
+src/styles/themes.css
+scripts/themes/validation-report.json
