@@ -8,7 +8,7 @@ The library is structured as three distinct layers:
 
 1. **Component Layer** — React components in `src/components/` that implement the user interface. Components are self-contained, composable, and designed to be used across multiple applications.
 2. **Styling Layer** — CSS Modules and utility classes in `src/styles/` that provide component styling. This layer abstracts style concerns from component logic.
-3. **Theme Layer** — CSS variables (in `src/styles/themes.css`) that define the visual language (colors, spacing, typography). The theme system is built on a cascade of CSS variables with support for light/dark modes. For detailed theme architecture and color ramp generation, see [Theme System](../features/theme-system/).
+3. **Theme Layer** — CSS variables (in `src/styles/themes.css`) that define the visual language (colors, spacing, typography). The theme system is built on a cascade of CSS variables with support for light/dark modes. For detailed theme architecture, color ramp generation, and the ramp cascade constraint, see [Theme System Architecture](./theme-system.md) (and the feature-level docs in [Theme System](../features/theme-system/)).
 
 These layers are designed to be loosely coupled, allowing styling and theming decisions to evolve independently from component implementation.
 
