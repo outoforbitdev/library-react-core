@@ -137,13 +137,13 @@ Field layout (stacked vertically vs. arranged in a row) is a structural, theme-i
 .formVertical {
   display: flex;
   flex-direction: column;
-  gap: var(--ood-spacing-md);
+  gap: 1rem;
 }
 
 .formHorizontal {
   display: flex;
   flex-direction: row;
-  gap: var(--ood-spacing-md);
+  gap: 1rem;
   flex-wrap: wrap;
   align-items: flex-start;
 }

@@ -78,7 +78,11 @@ export function UsernameField(props: IUsernameFieldProps) {
     <div className={styles.field}>
       <TextField {...fieldProps} />
       {validating && <span className={styles.hint}>Checking availability…</span>}
-      {error && <FieldError id={`${props.id}-error`}>{error}</FieldError>}
+      {error && (
+        <span id={`${props.id}-error`} role="alert" className={classNames(styles.error, "ood-error")}>
+          {error}
+        </span>
+      )}
     </div>
   );
 }
