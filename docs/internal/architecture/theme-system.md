@@ -203,7 +203,7 @@ Because switching happens entirely via CSS variable resolution, theme changes ar
 
 ## 5. Adding a New Theme
 
-Worked example: adding a theme named `ood-bright`, a high-contrast light variant.
+For the step-by-step process and PR/review checklist, see [Adding a Theme](../workflows/adding-a-theme.md). This section is a worked example of the same steps: adding a theme named `ood-bright`, a high-contrast light variant.
 
 ### Step 1 — Decide accessibility level
 

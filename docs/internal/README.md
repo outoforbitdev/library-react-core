@@ -28,7 +28,7 @@ Choose your path:
 
 - **Building your first component:** Start with [Components Overview](./components/) and [How to Build a Component](./components/how-to-build.md)
 - **Reviewing a pull request:** Read [Review Guidelines](./quality/review-guidelines.md) and [Definition of Done](./quality/definition-of-done.md)
-- **Customizing themes:** See [Theme System Architecture](./architecture/theme-system.md) and [Adding a Theme](./architecture/adding-a-theme.md)
+- **Customizing themes:** See [Theme System Architecture](./architecture/theme-system.md) and [Adding a Theme](./workflows/adding-a-theme.md)
 - **New to the project:** Visit [Quick Start](./onboarding/quick-start.md)
 
 ## About This Documentation
