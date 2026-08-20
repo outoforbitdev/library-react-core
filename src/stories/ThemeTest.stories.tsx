@@ -23,7 +23,9 @@ const ComponentInfoBox = (props: ComponentInfoBoxProps) => {
       </tr>
       <tr>
         <td>.....</td>
-        <td>ood-text <span className="ood-accent">ood-accent</span> ood-text</td>
+        <td>
+          ood-text <span className="ood-accent">ood-accent</span> ood-text
+        </td>
         <td>.....</td>
       </tr>
       <tr>

@@ -163,9 +163,7 @@ If a theme fails contrast validation:
       "green": "green-400"
     }
   },
-  "dark": {
-    /* ... */
-  },
+  "dark": {/* ... */},
   "default-light-theme": "light",
   "default-dark-theme": "dark"
 }
