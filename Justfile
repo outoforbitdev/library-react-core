@@ -9,10 +9,10 @@ test:
     npm test
 
 lint:
-    docker run -v $(pwd):/app -v $(pwd)/.linters:/polylint/.linters outoforbitdev/polylint:0.1.0
+    npx prettier --check .
 
 lint-write:
-    npm run validate-themes
+    npx prettier --write .
 
 gate: test lint
     npx tsc --noEmit
