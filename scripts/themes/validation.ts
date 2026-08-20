@@ -76,6 +76,7 @@ function validateBackgroundComponent(
   error: string,
   warning: string,
   submission: string,
+  accent: string,
   ramps: GeneratedRamps,
   requiredRatio: number,
 ): void {
@@ -86,11 +87,12 @@ function validateBackgroundComponent(
     { text: error, label: "error-text" },
     { text: warning, label: "warning-text" },
     { text: submission, label: "submission-text" },
+    { text: accent, label: "accent-text" },
   ].filter((p) => p.text && p.text.trim() !== "");
   for (const { text, label } of texts) {
     for (const background of [
       { value: component.background, suffix: "background" },
-      // { value: component.shade, suffix: "shade" },
+      { value: component.shade, suffix: "shade" },
     ]) {
       addValidationPair(
         report,
@@ -127,6 +129,7 @@ export function validateTheme(
     theme.error.text,
     theme.warning.text,
     theme.submission.text,
+    theme.accent.text,
     ramps,
     requiredRatio,
   );
@@ -138,6 +141,7 @@ export function validateTheme(
     theme.error.text,
     theme.warning.text,
     theme.submission.text,
+    theme.accent.text,
     ramps,
     requiredRatio,
   );
@@ -146,6 +150,7 @@ export function validateTheme(
     report,
     "accent-block",
     theme["accent-block"],
+    "",
     "",
     "",
     "",

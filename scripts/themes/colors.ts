@@ -10,8 +10,8 @@ export function hexToRGB(hex: string): { r: number; g: number; b: number } {
   };
 }
 
-const LIGHTEN_STEP_FACTOR = 0.25;
-const DARKEN_STEP_FACTOR = 0.25;
+const LIGHTEN_STEP_FACTOR = 0.6;
+const DARKEN_STEP_FACTOR = 0.3;
 
 export function rgbToHex(r: number, g: number, b: number): string {
   const toHex = (n: number) => {

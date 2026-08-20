@@ -21,6 +21,14 @@ const ComponentInfoBox = (props: ComponentInfoBoxProps) => {
       <tr>
         <td colSpan={3}>.....</td>
       </tr>
+      <tr>
+        <td>.....</td>
+        <td>ood-text <span className="ood-accent">ood-accent</span> ood-text</td>
+        <td>.....</td>
+      </tr>
+      <tr>
+        <td colSpan={3}>.....</td>
+      </tr>
       <tr className={props.customBlockOneClassName}>
         <td>.....</td>
         <td>{props.customBlockOneClassName}</td>
@@ -40,7 +48,7 @@ const ComponentInfoBox = (props: ComponentInfoBoxProps) => {
       <tr>
         <td>.....</td>
         <td>
-          <a href="#">ood-link</a>
+          ood-text <a href="#">ood-link</a> ood-text
         </td>
         <td>.....</td>
       </tr>
@@ -117,23 +125,43 @@ const ComponentInfoBox = (props: ComponentInfoBoxProps) => {
       </tr>
       <tr>
         <td>.....</td>
+        <td style={{ color: "var(--ood-color-teal)" }}>ood-color-teal</td>
+        <td style={{ background: "var(--ood-color-teal)" }}>.....</td>
+      </tr>
+      <tr>
+        <td>.....</td>
+        <td style={{ color: "var(--ood-color-cyan)" }}>ood-color-cyan</td>
+        <td style={{ background: "var(--ood-color-cyan)" }}>.....</td>
+      </tr>
+      <tr>
+        <td>.....</td>
         <td style={{ color: "var(--ood-color-blue)" }}>ood-color-blue</td>
         <td style={{ background: "var(--ood-color-blue)" }}>.....</td>
       </tr>
       <tr>
         <td>.....</td>
-        <td style={{ color: "var(--ood-color-violet)" }}>ood-color-violet</td>
-        <td style={{ background: "var(--ood-color-violet)" }}>.....</td>
+        <td style={{ color: "var(--ood-color-indigo)" }}>ood-color-indigo</td>
+        <td style={{ background: "var(--ood-color-indigo)" }}>.....</td>
       </tr>
       <tr>
         <td>.....</td>
-        <td style={{ color: "var(--ood-color-red)" }}>ood-color-red</td>
-        <td style={{ background: "var(--ood-color-red)" }}>.....</td>
+        <td style={{ color: "var(--ood-color-purple)" }}>ood-color-purple</td>
+        <td style={{ background: "var(--ood-color-purple)" }}>.....</td>
       </tr>
       <tr>
         <td>.....</td>
-        <td style={{ color: "var(--ood-color-red)" }}>ood-color-red</td>
-        <td style={{ background: "var(--ood-color-red)" }}>.....</td>
+        <td style={{ color: "var(--ood-color-magenta)" }}>ood-color-magenta</td>
+        <td style={{ background: "var(--ood-color-magenta)" }}>.....</td>
+      </tr>
+      <tr>
+        <td>.....</td>
+        <td style={{ color: "var(--ood-color-pink)" }}>ood-color-pink</td>
+        <td style={{ background: "var(--ood-color-pink)" }}>.....</td>
+      </tr>
+      <tr>
+        <td>.....</td>
+        <td style={{ color: "var(--ood-color-gray)" }}>ood-color-gray</td>
+        <td style={{ background: "var(--ood-color-gray)" }}>.....</td>
       </tr>
     </Infobox>
   );
