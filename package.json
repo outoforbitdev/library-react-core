@@ -39,7 +39,7 @@
     "typescript": "^5.7.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run validate-themes",
     "validate-themes": "tsx scripts/themes/validate.ts",
     "build": "npm run validate-themes && rollup -c --bundleConfigAsCjs",
     "storybook": "storybook dev -p 6006",
