@@ -8,7 +8,7 @@ function generateSwatchVariables(ramps: GeneratedRamps): string {
 
   for (const [colorFamily, swatches] of Object.entries(ramps)) {
     for (const step of [100, 200, 300, 400, 500, 600, 700, 800, 900]) {
-      const hex = swatches[step.toString()];
+      const hex = swatches[step.toString() as keyof typeof swatches];
       css += `  --ood-${colorFamily}-${step}: ${hex};\n`;
     }
   }

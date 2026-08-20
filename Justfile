@@ -1,15 +1,25 @@
+setup:
+    npm install
+    pre-commit install
+
 install:
     npm install
-    npx husky install
-    npx husky init
-    echo "npx commitlint --edit \$1 --config ./.linters/config/commitlint.config.js" > .husky/commit-msg
-    echo "just lint" > .husky/pre-commit
+
+test:
+    npm test
+    npx tsc --noEmit
+
+lint:
+    npx prettier --check .
+
+lint-write:
+    npx prettier --write .
+
+gate: test lint
+    npx tsc --noEmit
 
 build:
     npm run build
-
-lint:
-    docker run -v $(pwd):/app -v $(pwd)/.linters:/polylint/.linters outoforbitdev/polylint:0.1.0
 
 pack: build
     #!/usr/bin/env bash
