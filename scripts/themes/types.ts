@@ -59,7 +59,7 @@ export interface Theme {
 }
 
 export interface Themes {
-  [themeName: string]: Theme | string;
+  [themeName: string]: Theme | string | undefined;
   ["default-light-theme"]?: string;
   ["default-dark-theme"]?: string;
 }

@@ -7,6 +7,7 @@ install:
 
 test:
     npm test
+    npx tsc --noEmit
 
 lint:
     npx prettier --check .
