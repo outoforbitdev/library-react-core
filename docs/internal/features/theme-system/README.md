@@ -17,3 +17,4 @@ The theme system enables:
 - [Product Requirements](./product-requirements.md) - What the theme system provides and its goals
 - [Technical Design](./technical-design.md) - How the system works internally
 - [Procedure](./procedure.md) - How to use, extend, and maintain the theme system
+- [Theme System Architecture](../../architecture/theme-system.md) - The architectural view for maintainers: CSS variable cascade, the two-layer ramp/theme model, and **the ramp cascade constraint** (why editing a color ramp affects every theme at once, and how to change ramps safely)
