@@ -1,12 +1,8 @@
-export { ArrowDown } from "./ArrowDown";
-export { ArrowUp } from "./ArrowUp";
 export { Check } from "./Check";
 export { ChevronDown } from "./ChevronDown";
 export { ChevronLeft } from "./ChevronLeft";
 export { ChevronRight } from "./ChevronRight";
 export { ChevronUp } from "./ChevronUp";
-export { DoubleArrowDown } from "./DoubleArrowDown";
-export { DoubleArrowUp } from "./DoubleArrowUp";
 export { Error } from "./Error";
 export { HamburgerMenu } from "./HamburgerMenu";
 export { Plus } from "./Plus";

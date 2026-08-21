@@ -8,7 +8,6 @@ import styles from "./icon.module.css";
 
 export interface IIconProps extends IChildlessComponentProps {
   bordered?: boolean;
-  clickable?: boolean;
   inverted?: boolean;
   size?: IconSize;
 }
@@ -72,17 +71,13 @@ export function Icon(props: IIconInternalProps) {
     />
   ) : null;
 
-  const clickableClass = props.externalProps.clickable
-    ? styles.clickable
-    : undefined;
-
   return (
     <svg
       stroke={iconColor}
       fill={iconColor}
       viewBox={`0 0 ${props.viewBoxSize} ${props.viewBoxSize}`}
       strokeWidth={10}
-      {...getDomProps(props.externalProps, sizeClass, clickableClass)}
+      {...getDomProps(props.externalProps, sizeClass)}
     >
       {isInverted ? (
         <defs>

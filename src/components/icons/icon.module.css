@@ -23,12 +23,6 @@
   width: 2em;
 }
 
-/* .bordered {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-} */
-
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -41,27 +35,4 @@
 .spinner {
   animation: spin 1s linear infinite;
   transform-origin: 50% 50%;
-}
-
-@media (max-width: 768px) {
-  .clickable.xs {
-    height: 1em;
-    width: 1em;
-  }
-  .clickable.s {
-    height: 1.25em;
-    width: 1.25em;
-  }
-  .clickable.m {
-    height: 1.5em;
-    width: 1.5em;
-  }
-  .clickable.l {
-    height: 2em;
-    width: 2em;
-  }
-  .clickable.xl {
-    height: 2.5em;
-    width: 2.5em;
-  }
 }

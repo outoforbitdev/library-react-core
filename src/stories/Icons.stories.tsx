@@ -97,23 +97,23 @@ export const Sizes: StoryObj = {
   render: () => (
     <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
       <div style={{ textAlign: "center" }}>
-        <Icons.Check size={IconSize.ExtraSmall} />
+        <Icons.Check size={IconSize.ExtraSmall} bordered />
         <p style={{ fontSize: "0.75rem" }}>XS</p>
       </div>
       <div style={{ textAlign: "center" }}>
-        <Icons.Check size={IconSize.Small} />
+        <Icons.Check size={IconSize.Small} bordered />
         <p style={{ fontSize: "0.875rem" }}>S</p>
       </div>
       <div style={{ textAlign: "center" }}>
-        <Icons.Check size={IconSize.Medium} />
+        <Icons.Check size={IconSize.Medium} bordered />
         <p style={{ fontSize: "1rem" }}>M (default)</p>
       </div>
       <div style={{ textAlign: "center" }}>
-        <Icons.Check size={IconSize.Large} />
+        <Icons.Check size={IconSize.Large} bordered />
         <p style={{ fontSize: "1.125rem" }}>L</p>
       </div>
       <div style={{ textAlign: "center" }}>
-        <Icons.Check size={IconSize.ExtraLarge} />
+        <Icons.Check size={IconSize.ExtraLarge} bordered />
         <p style={{ fontSize: "1.25rem" }}>XL</p>
       </div>
     </div>
@@ -201,15 +201,19 @@ export const ChevronAdditiveRotation: StoryObj = {
   ),
 };
 
-export const Check: StoryObj = {
-  render: () => (
+function IconVariations({
+  Component,
+}: {
+  Component: React.ComponentType<any>;
+}) {
+  return (
     <div style={{ display: "flex", gap: "2rem" }}>
       <div style={{ textAlign: "center" }}>
-        <Icons.Check />
+        <Component />
         <p>Default</p>
       </div>
       <div style={{ textAlign: "center" }}>
-        <Icons.Check bordered />
+        <Component bordered />
         <p>Bordered</p>
       </div>
       <div
@@ -219,7 +223,7 @@ export const Check: StoryObj = {
           backgroundColor: "#f0f0f0",
         }}
       >
-        <Icons.Check inverted />
+        <Component inverted />
         <p>Inverted</p>
       </div>
       <div
@@ -229,114 +233,49 @@ export const Check: StoryObj = {
           backgroundColor: "#f0f0f0",
         }}
       >
-        <Icons.Check bordered inverted />
+        <Component bordered inverted />
         <p>Bordered + Inverted</p>
       </div>
     </div>
-  ),
+  );
+}
+
+export const Check: StoryObj = {
+  render: () => <IconVariations Component={Icons.Check} />,
 };
 
 export const Error: StoryObj = {
-  render: () => (
-    <div style={{ display: "flex", gap: "2rem" }}>
-      <div style={{ textAlign: "center" }}>
-        <Icons.Error />
-        <p>Default</p>
-      </div>
-      <div style={{ textAlign: "center" }}>
-        <Icons.Error bordered />
-        <p>Bordered</p>
-      </div>
-      <div
-        style={{
-          textAlign: "center",
-          padding: "1rem",
-          backgroundColor: "#f0f0f0",
-        }}
-      >
-        <Icons.Error inverted />
-        <p>Inverted</p>
-      </div>
-      <div
-        style={{
-          textAlign: "center",
-          padding: "1rem",
-          backgroundColor: "#f0f0f0",
-        }}
-      >
-        <Icons.Error bordered inverted />
-        <p>Bordered + Inverted</p>
-      </div>
-    </div>
-  ),
+  render: () => <IconVariations Component={Icons.Error} />,
 };
 
 export const Warning: StoryObj = {
-  render: () => (
-    <div style={{ display: "flex", gap: "2rem" }}>
-      <div style={{ textAlign: "center" }}>
-        <Icons.Warning />
-        <p>Default</p>
-      </div>
-      <div style={{ textAlign: "center" }}>
-        <Icons.Warning bordered />
-        <p>Bordered</p>
-      </div>
-      <div
-        style={{
-          textAlign: "center",
-          padding: "1rem",
-          backgroundColor: "#f0f0f0",
-        }}
-      >
-        <Icons.Warning inverted />
-        <p>Inverted</p>
-      </div>
-      <div
-        style={{
-          textAlign: "center",
-          padding: "1rem",
-          backgroundColor: "#f0f0f0",
-        }}
-      >
-        <Icons.Warning bordered inverted />
-        <p>Bordered + Inverted</p>
-      </div>
-    </div>
-  ),
+  render: () => <IconVariations Component={Icons.Warning} />,
 };
 
 export const Plus: StoryObj = {
-  render: () => (
-    <div style={{ display: "flex", gap: "2rem" }}>
-      <div style={{ textAlign: "center" }}>
-        <Icons.Plus />
-        <p>Default</p>
-      </div>
-      <div style={{ textAlign: "center" }}>
-        <Icons.Plus bordered />
-        <p>Bordered</p>
-      </div>
-      <div
-        style={{
-          textAlign: "center",
-          padding: "1rem",
-          backgroundColor: "#f0f0f0",
-        }}
-      >
-        <Icons.Plus inverted />
-        <p>Inverted</p>
-      </div>
-      <div
-        style={{
-          textAlign: "center",
-          padding: "1rem",
-          backgroundColor: "#f0f0f0",
-        }}
-      >
-        <Icons.Plus bordered inverted />
-        <p>Bordered + Inverted</p>
-      </div>
-    </div>
-  ),
+  render: () => <IconVariations Component={Icons.Plus} />,
+};
+
+export const HamburgerMenu: StoryObj = {
+  render: () => <IconVariations Component={Icons.HamburgerMenu} />,
+};
+
+export const X: StoryObj = {
+  render: () => <IconVariations Component={Icons.X} />,
+};
+
+export const ChevronDown: StoryObj = {
+  render: () => <IconVariations Component={Icons.ChevronDown} />,
+};
+
+export const ChevronUp: StoryObj = {
+  render: () => <IconVariations Component={Icons.ChevronUp} />,
+};
+
+export const ChevronLeft: StoryObj = {
+  render: () => <IconVariations Component={Icons.ChevronLeft} />,
+};
+
+export const ChevronRight: StoryObj = {
+  render: () => <IconVariations Component={Icons.ChevronRight} />,
 };
