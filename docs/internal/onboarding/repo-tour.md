@@ -59,30 +59,30 @@ This documentation set. See [docs/internal/README.md](../README.md) for the full
 
 ## Key files
 
-| File | Purpose |
-| --- | --- |
-| [`package.json`](../../../package.json) | Package metadata (`@outoforbitdev/ood-react`), dependencies, and npm scripts (`test`, `build`, `storybook`, `build-storybook`) |
-| [`tsconfig.json`](../../../tsconfig.json) | TypeScript compiler configuration — `strict: true`, JSX via `react-jsx`, ES module output |
-| [`rollup.config.ts`](../../../rollup.config.ts) | Build configuration: bundles `src/index.ts` to CJS and ESM (`dist/cjs`, `dist/esm`), inlines and minifies CSS, generates a rolled-up `.d.ts` file, and externalizes `react`/`react-dom` as peer dependencies |
-| [`Justfile`](../../../Justfile) | The canonical entry point for every repo task — see [Commands](#commands) below |
-| [`.pre-commit-config.yaml`](../../../.pre-commit-config.yaml) | Git hooks: conventional commit message enforcement, trailing-whitespace/EOF fixups, `npm test`, prettier check, `tsc --noEmit` |
-| `.storybook/main.ts`, `.storybook/preview.ts` | Storybook configuration |
-| `src/Globals.d.ts` | Ambient TypeScript declarations, notably typing for `*.module.css` imports |
+| File                                                          | Purpose                                                                                                                                                                                                      |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`package.json`](../../../package.json)                       | Package metadata (`@outoforbitdev/ood-react`), dependencies, and npm scripts (`test`, `build`, `storybook`, `build-storybook`)                                                                               |
+| [`tsconfig.json`](../../../tsconfig.json)                     | TypeScript compiler configuration — `strict: true`, JSX via `react-jsx`, ES module output                                                                                                                    |
+| [`rollup.config.ts`](../../../rollup.config.ts)               | Build configuration: bundles `src/index.ts` to CJS and ESM (`dist/cjs`, `dist/esm`), inlines and minifies CSS, generates a rolled-up `.d.ts` file, and externalizes `react`/`react-dom` as peer dependencies |
+| [`Justfile`](../../../Justfile)                               | The canonical entry point for every repo task — see [Commands](#commands) below                                                                                                                              |
+| [`.pre-commit-config.yaml`](../../../.pre-commit-config.yaml) | Git hooks: conventional commit message enforcement, trailing-whitespace/EOF fixups, `npm test`, prettier check, `tsc --noEmit`                                                                               |
+| `.storybook/main.ts`, `.storybook/preview.ts`                 | Storybook configuration                                                                                                                                                                                      |
+| `src/Globals.d.ts`                                            | Ambient TypeScript declarations, notably typing for `*.module.css` imports                                                                                                                                   |
 
 ## Commands
 
 Everything runs through `just` (defined in [Justfile](../../../Justfile)):
 
-| Command | What it does |
-| --- | --- |
-| `just setup` | `npm install` + `pre-commit install` — run this once after cloning |
-| `just install` | `npm install` only |
-| `just test` | `npm test` (theme validation) + `npx tsc --noEmit` |
-| `just lint` | `npx prettier --check .` |
-| `just lint-write` | `npx prettier --write .` — auto-fixes formatting |
-| `just gate` | `test` + `lint` + a second explicit `tsc --noEmit` — the full pre-merge check |
-| `just build` | `npm run build` (theme validation, then Rollup bundling) |
-| `just pack` | Builds, packs a `.tgz`, and installs it into `library-galaxy-map` and `app-galaxy-map` for local cross-repo testing |
+| Command           | What it does                                                                                                        |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `just setup`      | `npm install` + `pre-commit install` — run this once after cloning                                                  |
+| `just install`    | `npm install` only                                                                                                  |
+| `just test`       | `npm test` (theme validation) + `npx tsc --noEmit`                                                                  |
+| `just lint`       | `npx prettier --check .`                                                                                            |
+| `just lint-write` | `npx prettier --write .` — auto-fixes formatting                                                                    |
+| `just gate`       | `test` + `lint` + a second explicit `tsc --noEmit` — the full pre-merge check                                       |
+| `just build`      | `npm run build` (theme validation, then Rollup bundling)                                                            |
+| `just pack`       | Builds, packs a `.tgz`, and installs it into `library-galaxy-map` and `app-galaxy-map` for local cross-repo testing |
 
 ## Storybook
 

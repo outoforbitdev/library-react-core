@@ -4,7 +4,7 @@
 
 `library-react-core` is a reusable React component library that builds the npm package `@outoforbitdev/ood-react`. It provides the foundational UI building blocks — buttons, inputs, navigation, layout primitives, and more — that outoforbitdev applications assemble into full user experiences. Rather than every application team designing, styling, and testing its own version of a button or a navbar, this library centralizes that work so it is done once, done well, and reused everywhere.
 
-This library is built for internal teams at outoforbitdev. Its primary consumer today is `app-galaxy-map`, and it is expected to grow as new applications and teams are added to the organization. It is not intended for external or public distribution; its API, roadmap, and priorities are driven entirely by the needs of outoforbitdev's own products.
+This library is primarily built for outoforbitdev's internal teams. Its primary consumer today is `app-galaxy-map`, and it is expected to grow as new applications and teams are added to the organization. While the package is published publicly on npm as `@outoforbitdev/ood-react` and is available for external use, its API, roadmap, and priorities are driven primarily by the needs of outoforbitdev's own products. Documentation and patterns in this library should be accessible to external consumers, but the library's evolution will reflect outoforbitdev's product needs.
 
 The library matters because consistency and maintainability compound over time. Without a shared component library, every application drifts toward its own conventions, its own accessibility gaps, and its own styling inconsistencies — and every fix must be applied N times instead of once. `library-react-core` exists to prevent that drift: a bug fixed here, an accessibility improvement made here, or a design update rolled out here benefits every application that depends on it, immediately and consistently.
 
@@ -35,7 +35,7 @@ The library matters because consistency and maintainability compound over time. 
 - **Complex application logic.** Business rules, data fetching, routing, and state management belong in the consuming application, not in this library.
 - **Custom charting or visualization.** Specialized visualization needs (such as the galaxy map) are built as their own dedicated libraries, not folded into this general-purpose component set.
 - **Browser polyfills.** The library targets modern, supported browsers directly; it does not ship or maintain polyfills for legacy environments.
-- **Opinionated form frameworks.** The library provides form-related input components, but not a full form-management or validation framework — that choice is left to the consuming application.
+- **Form management frameworks.** Currently, the library provides form-related input components but not a full form-management or validation framework; that responsibility remains with the consuming application. This decision may evolve if shared form patterns emerge across multiple outoforbitdev applications.
 - Components in this library are expected to be **presentational and composable**: they render UI and expose behavior through props, and they compose cleanly with application-specific logic rather than owning it.
 
 ## Success Criteria

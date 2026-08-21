@@ -23,6 +23,19 @@
 - Git hooks enforce conventional commits via pre-commit framework
 - All PRs require passing tests, linting, and type checking
 
+## Contributor Documentation
+
+**All contributors should read the internal documentation in `docs/internal/`:**
+
+- **[Product Vision & Principles](docs/internal/product/) — Start here** to understand the library's goals and core principles (accessibility, consistency, minimal dependencies, performance, testing)
+- **[Architecture](docs/internal/architecture/) — Technical foundation** covering theme system (critical: color ramp cascade constraint), component patterns, icon library
+- **[Component Building Guide](docs/internal/components/)** — Step-by-step how to build components, with real examples
+- **[Quality Standards](docs/internal/quality/)** — Coding standards, testing strategy, accessibility checklist, code review guidelines, definition of done
+- **[Workflows](docs/internal/workflows/)** — Git workflow, how to safely add themes
+- **[Onboarding](docs/internal/onboarding/)** — Quick-start for new contributors (30 minutes)
+
+Key constraint: **Color ramp changes in the theme system cascade to all themes** — see `docs/internal/architecture/theme-system.md`
+
 ## Repository Compliance
 
 This repository follows the outoforbitdev [Repository Guidelines](../.github/docs/REPOSITORY_GUIDELINES.md).

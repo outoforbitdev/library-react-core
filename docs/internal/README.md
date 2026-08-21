@@ -4,20 +4,21 @@ Internal documentation for the `@outoforbitdev/ood-react` component library. Thi
 
 ## Structure
 
-| Directory                        | Description                                          |
-| -------------------------------- | ---------------------------------------------------- |
-| [product/](./product/)           | Product vision, strategy, and design principles     |
-| [requirements/](./requirements/) | Functional and non-functional requirements          |
-| [architecture/](./architecture/) | Technical architecture and design decisions         |
-| [components/](./components/)     | Component development guides and best practices     |
-| [quality/](./quality/)           | Testing, code review, and quality standards         |
-| [workflows/](./workflows/)       | Development workflows and release processes         |
-| [onboarding/](./onboarding/)     | Getting started and contributor orientation         |
-| [assets/](./assets/)             | Shared images, diagrams, and visual resources       |
+| Directory                        | Description                                     |
+| -------------------------------- | ----------------------------------------------- |
+| [product/](./product/)           | Product vision, strategy, and design principles |
+| [requirements/](./requirements/) | Functional and non-functional requirements      |
+| [architecture/](./architecture/) | Technical architecture and design decisions     |
+| [components/](./components/)     | Component development guides and best practices |
+| [quality/](./quality/)           | Testing, code review, and quality standards     |
+| [workflows/](./workflows/)       | Development workflows and release processes     |
+| [onboarding/](./onboarding/)     | Getting started and contributor orientation     |
+| [assets/](./assets/)             | Shared images, diagrams, and visual resources   |
 
 ## Audience
 
 This documentation is for:
+
 - **New contributors** — Getting started and understanding the library
 - **Maintainers** — Reviewing PRs, managing releases, and strategic decisions
 - **Refresh projects** — Teams building applications with this library

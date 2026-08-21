@@ -23,9 +23,16 @@ A React library.
   </a>
 </p>
 
-## Features
+## Contributing
 
--
+Interested in contributing? Start with [docs/internal/](docs/internal/) — comprehensive guides for component building, quality standards, and workflows.
+
+Key resources:
+
+- **[Contributor Onboarding](docs/internal/onboarding/quick-start.md)** — Get started in 30 minutes
+- **[Component Building Guide](docs/internal/components/building-components.md)** — Step-by-step patterns
+- **[Architecture & Patterns](docs/internal/architecture/)** — Technical foundation
+- **[Quality Standards](docs/internal/quality/)** — Testing, accessibility, review guidelines
 
 ## Installation
 

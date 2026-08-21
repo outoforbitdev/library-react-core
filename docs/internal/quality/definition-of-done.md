@@ -263,4 +263,3 @@ These items verify that the code has been reviewed and approved by the team befo
 - **For contributors:** Work through this checklist as you develop your component or feature. Refer to linked documentation for clarification on any item.
 - **For reviewers:** Use this checklist to guide your review. Verify that all items are satisfied before approving the PR. Where an item is unclear, consult the linked documentation.
 - **For maintainers:** Before merging, confirm that every item above is checked. No component or feature is considered complete and ready to ship until the entire checklist is satisfied.
-

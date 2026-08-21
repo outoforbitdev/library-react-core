@@ -137,17 +137,17 @@ A consumer then supplies the theme via `className`:
 
 Every component must render the semantic HTML element that matches its purpose, not a generic `<div>` styled to look the part. Semantic elements give screen readers, browsers, and search engines the correct built-in behavior and accessibility tree for free — this is a non-negotiable minimum per the library's [accessibility principles](../product/principles.md).
 
-| Component purpose | Required element | Library example |
-| --- | --- | --- |
-| Clickable action | `<button>` | `Button` (`src/components/Button.tsx`) |
-| Navigational link | `<a href="...">` | `NavLink` (`src/components/NavLink.tsx`) |
-| Navigation container | `<nav>` | `NavBar` (`src/components/NavBar.tsx`) |
-| Text input | `<input>` | (target pattern — see [form-patterns](../components/form-patterns.md)) |
-| Form container | `<form>` | (target pattern — see [form-patterns](../components/form-patterns.md)) |
-| Tabular data | `<table>` | `Infobox` (`src/components/infobox/Infobox.tsx`) |
-| Table row | `<tr>` | `InfoboxRow` (`src/components/infobox/InfoboxRow.tsx`) |
-| Vector graphic | `<svg>` | `Icon` (`src/components/icons/Icon.tsx`) |
-| Generic grouping with no semantic role | `<div>` / `<span>` | `Expandable`'s wrapper (`src/components/Expandable.tsx`) |
+| Component purpose                      | Required element   | Library example                                                        |
+| -------------------------------------- | ------------------ | ---------------------------------------------------------------------- |
+| Clickable action                       | `<button>`         | `Button` (`src/components/Button.tsx`)                                 |
+| Navigational link                      | `<a href="...">`   | `NavLink` (`src/components/NavLink.tsx`)                               |
+| Navigation container                   | `<nav>`            | `NavBar` (`src/components/NavBar.tsx`)                                 |
+| Text input                             | `<input>`          | (target pattern — see [form-patterns](../components/form-patterns.md)) |
+| Form container                         | `<form>`           | (target pattern — see [form-patterns](../components/form-patterns.md)) |
+| Tabular data                           | `<table>`          | `Infobox` (`src/components/infobox/Infobox.tsx`)                       |
+| Table row                              | `<tr>`             | `InfoboxRow` (`src/components/infobox/InfoboxRow.tsx`)                 |
+| Vector graphic                         | `<svg>`            | `Icon` (`src/components/icons/Icon.tsx`)                               |
+| Generic grouping with no semantic role | `<div>` / `<span>` | `Expandable`'s wrapper (`src/components/Expandable.tsx`)               |
 
 `<div>` and `<span>` are not wrong — they're correct precisely when there is no more specific semantic element for the content's role (a generic layout wrapper, for instance). The rule is: reach for the semantic element first, and only fall back to a generic element when no semantic element fits.
 
@@ -207,11 +207,13 @@ export function Infobox(props: IInfoboxProps) {
 **Custom props with sensible defaults.** Optional custom props are resolved with `??` or a conditional at render time rather than requiring the consumer to always specify them:
 
 ```tsx
-{props.home ? (
-  <a href={props.home} {...getDomProps({}, styles.nav, styles.home)}>
-    {props.homeLabel ?? "Home"}
-  </a>
-) : null}
+{
+  props.home ? (
+    <a href={props.home} {...getDomProps({}, styles.nav, styles.home)}>
+      {props.homeLabel ?? "Home"}
+    </a>
+  ) : null;
+}
 ```
 
 **Theme-driven styling via className.** Components never hardcode theme colors. A component's own Module class handles structure; the theme is applied entirely through the `className` the consumer passes in, which `getDomProps` merges in:

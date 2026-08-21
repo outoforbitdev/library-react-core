@@ -95,12 +95,12 @@ If the PR touches a swatch ramp (`scripts/themes/ramps.json` or `scripts/themes/
 
 The `test` workflow (`.github/workflows/test.yml`) runs on every pull request and on push to `main`:
 
-| Step | Command | Checks |
-|---|---|---|
-| Install | `npm install` | Dependencies resolve |
-| Test | `npm test` | Theme contrast validation (`validate-themes`) |
-| Lint | `npx prettier --check .` | Formatting |
-| Type check | `npx tsc --noEmit` | TypeScript compiles without emitting |
+| Step       | Command                  | Checks                                        |
+| ---------- | ------------------------ | --------------------------------------------- |
+| Install    | `npm install`            | Dependencies resolve                          |
+| Test       | `npm test`               | Theme contrast validation (`validate-themes`) |
+| Lint       | `npx prettier --check .` | Formatting                                    |
+| Type check | `npx tsc --noEmit`       | TypeScript compiles without emitting          |
 
 All steps must pass before merge. There is no override for a failing check — fix the underlying issue (or, for a theme contrast failure, follow the process in [Adding a Theme](./adding-a-theme.md)) rather than working around it.
 

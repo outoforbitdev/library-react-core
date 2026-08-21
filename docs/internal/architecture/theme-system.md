@@ -103,27 +103,27 @@ A **swatch ramp** is a raw, theme-agnostic color family. Each family is defined 
 
 ```ts
 const LIGHTEN_STEP_FACTOR = 0.6; // steps 400 → 100, moving toward white
-const DARKEN_STEP_FACTOR = 0.3;  // steps 600 → 900, moving toward black
+const DARKEN_STEP_FACTOR = 0.3; // steps 600 → 900, moving toward black
 ```
 
 Each step moves the previous step's RGB value a fixed fraction of the remaining distance to white (light steps) or black (dark steps), compounding outward from 500. This is why the ramps look vibrant rather than washed out — light steps lighten aggressively (0.6) while dark steps darken more gradually (0.3), keeping saturation in the low-to-mid steps.
 
-**Critically: swatch ramps are generated once, globally, and emitted into a single unscoped `:root` block** (`generateSwatchVariables` in `scripts/themes/css.ts`). `--ood-gray-100` through `--ood-gray-900`, `--ood-blue-100` through `--ood-blue-900`, and so on are the *same* values regardless of which theme (`light`, `dark`, or any future custom theme) is active. There is no per-theme override of a swatch ramp — themes only choose *which step* of a ramp to reference.
+**Critically: swatch ramps are generated once, globally, and emitted into a single unscoped `:root` block** (`generateSwatchVariables` in `scripts/themes/css.ts`). `--ood-gray-100` through `--ood-gray-900`, `--ood-blue-100` through `--ood-blue-900`, and so on are the _same_ values regardless of which theme (`light`, `dark`, or any future custom theme) is active. There is no per-theme override of a swatch ramp — themes only choose _which step_ of a ramp to reference.
 
 ### Layer B — Semantic theme tokens (`scripts/themes/themes.json`)
 
 A **theme** (`light`, `dark`, ...) is a mapping from semantic component slots to swatch references (`"<family>-<step>"`). The semantic slots are:
 
-| Component | Properties | Purpose |
-|---|---|---|
-| `primary` | text, background, shade, link, link-visited | Default surface |
-| `secondary` | text, background, shade, link, link-visited | Alternate surface |
-| `accent` | text | Inline accent text (no background) |
-| `accent-block` | text, background, shade, link, link-visited | Highlighted/callout surface |
-| `error` | text, block-text, block-background, block-shade | Inline error text + error block surface |
-| `warning` | text, block-text, block-background, block-shade | Inline warning text + warning block surface |
-| `submission` (aliased as `submit`) | text, block-text, block-background, block-shade | Success/confirmation text + block surface — this is the library's "success" ramp |
-| `stock` | one ref per named color (red, orange, yellow, green, teal, cyan, blue, indigo, purple, magenta, pink, gray) | Raw brand colors exposed as `--ood-color-<name>` for illustrative/data-viz use, not validated for contrast |
+| Component                          | Properties                                                                                                  | Purpose                                                                                                    |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `primary`                          | text, background, shade, link, link-visited                                                                 | Default surface                                                                                            |
+| `secondary`                        | text, background, shade, link, link-visited                                                                 | Alternate surface                                                                                          |
+| `accent`                           | text                                                                                                        | Inline accent text (no background)                                                                         |
+| `accent-block`                     | text, background, shade, link, link-visited                                                                 | Highlighted/callout surface                                                                                |
+| `error`                            | text, block-text, block-background, block-shade                                                             | Inline error text + error block surface                                                                    |
+| `warning`                          | text, block-text, block-background, block-shade                                                             | Inline warning text + warning block surface                                                                |
+| `submission` (aliased as `submit`) | text, block-text, block-background, block-shade                                                             | Success/confirmation text + block surface — this is the library's "success" ramp                           |
+| `stock`                            | one ref per named color (red, orange, yellow, green, teal, cyan, blue, indigo, purple, magenta, pink, gray) | Raw brand colors exposed as `--ood-color-<name>` for illustrative/data-viz use, not validated for contrast |
 
 There is no separate "neutral" ramp — neutral tones are the `gray` swatch family, referenced throughout `primary`/`secondary`/block components for text and surfaces. `indigo` in `stock` is itself an alias onto the `royal-blue` swatch family.
 
@@ -159,9 +159,9 @@ Concretely:
 
 - Changing `red-500` in `ramps.json` shifts `red-100` through `red-900`. Both `light.error.block-background` (`red-700`) and `dark.error.block-background` (`red-700`) shift together, along with every other reference to the `red` family across every theme — `stock.red` in both themes, any component that happens to reference a red step, and any future theme that also uses `red-*`.
 - Changing `LIGHTEN_STEP_FACTOR` or `DARKEN_STEP_FACTOR` in `colors.ts` regenerates **all twelve** swatch families across **all** themes at once. This is the widest-blast-radius change the system permits.
-- A single ramp edit can silently push multiple contrast pairs below their required ratio in themes you weren't even thinking about when you made the change. `npm run validate-themes` will catch the failures, but it reports *what* failed, not *why* — you have to trace the failure back to the ramp edit yourself.
+- A single ramp edit can silently push multiple contrast pairs below their required ratio in themes you weren't even thinking about when you made the change. `npm run validate-themes` will catch the failures, but it reports _what_ failed, not _why_ — you have to trace the failure back to the ramp edit yourself.
 
-**What does *not* cascade:**
+**What does _not_ cascade:**
 
 - Adding a brand-new swatch family (e.g. a new `lime` ramp) is safe — it's inert until some theme references it.
 - Changing which step a theme references (e.g. `primary.text` from `gray-600` to `gray-700` in the `light` theme only) is theme-scoped and does not affect other themes, because it only changes that theme's `[data-theme="light"]` block (or `:root` for the default theme).
@@ -178,7 +178,7 @@ The system uses three tiers of CSS custom properties, each with a distinct scope
 
 2. **Semantic theme variables** — `--ood-{component}-{property}` (e.g. `--ood-primary-text`, `--ood-error-block-background`). Theme-scoped: defined in `:root` (default light), inside the `prefers-color-scheme: dark` media query (default dark, when no explicit `data-theme`), and inside each `[data-theme="<name>"]` block (explicit override). Each one resolves via `var()` to a swatch variable — never a literal color.
 
-3. **Local component variables** — `--ood-text`, `--ood-background`, `--ood-shade`, `--ood-link`, `--ood-link-visited`. Set by the utility classes (`.ood-primary`, `.ood-error-block`, ...) applied to a container, pointing at that container's semantic variables. Components and CSS Modules consume *only* these five names — never a semantic or swatch variable directly.
+3. **Local component variables** — `--ood-text`, `--ood-background`, `--ood-shade`, `--ood-link`, `--ood-link-visited`. Set by the utility classes (`.ood-primary`, `.ood-error-block`, ...) applied to a container, pointing at that container's semantic variables. Components and CSS Modules consume _only_ these five names — never a semantic or swatch variable directly.
 
 Components should never reference `--ood-primary-text` or `--ood-gray-700` directly in their CSS Modules. A `button.module.css` that does `color: var(--ood-text)` works correctly under any utility class, in any theme, without modification — that's the entire point of the indirection:
 
@@ -211,7 +211,7 @@ Pick `"AAA"` (7:1 text, 4.5:1 links) or `"AA"` (4.5:1 both). This determines the
 
 ### Step 2 — Add the theme block to `scripts/themes/themes.json`
 
-Prefer reusing existing swatch steps over adding new ramps — a new theme rarely needs new colors, just a new *arrangement* of existing ones. Every property must be filled in; there are no defaults.
+Prefer reusing existing swatch steps over adding new ramps — a new theme rarely needs new colors, just a new _arrangement_ of existing ones. Every property must be filled in; there are no defaults.
 
 ```json
 {
@@ -289,7 +289,7 @@ This regenerates `src/styles/themes.css` and runs contrast validation on the new
 
 ### Step 4 — Fix any contrast failures
 
-If a pair fails, move the *reference* to a different step in the existing ramp (e.g. `gray-900` → `gray-800`) rather than editing the ramp itself — this keeps the change isolated to `ood-bright` (see [section 3](#3-the-ramp-cascade-constraint)). Re-run `npm run validate-themes` until the theme passes.
+If a pair fails, move the _reference_ to a different step in the existing ramp (e.g. `gray-900` → `gray-800`) rather than editing the ramp itself — this keeps the change isolated to `ood-bright` (see [section 3](#3-the-ramp-cascade-constraint)). Re-run `npm run validate-themes` until the theme passes.
 
 ### Step 5 — Add Storybook coverage
 
@@ -309,7 +309,7 @@ Add `ood-bright` to the theme list in `docs/internal/features/theme-system/READM
 
 Modifying a ramp (a swatch family in `ramps.json`, or the generation factors in `colors.ts`) is a **global, cross-theme change** — treat it with more caution than adding a theme. Follow this process:
 
-1. **Find every reference to the ramp before touching it.** Grep `themes.json` for the family name (e.g. `grep -n '"gray-' scripts/themes/themes.json`) across *every* theme, not just the one you're thinking about. This tells you the actual blast radius.
+1. **Find every reference to the ramp before touching it.** Grep `themes.json` for the family name (e.g. `grep -n '"gray-' scripts/themes/themes.json`) across _every_ theme, not just the one you're thinking about. This tells you the actual blast radius.
 2. **Prefer changing the reference, not the ramp**, when the goal is "this one theme should look different." Point the theme's token at a different existing step (`gray-700` instead of `gray-600`) or a different family entirely. This is theme-scoped and safe.
 3. **Only edit `ramps.json` or `colors.ts` when the goal is genuinely "this color family should look different everywhere."** Examples: rebranding the primary blue, correcting a swatch that turned out too desaturated at every step.
 4. **Make the edit**, then run `npm run validate-themes` and read the full `validation-report.json` — not just the pass/fail summary. Check every theme's `contrastPairs`, not only the ones that failed; a pair can still pass while dropping close to the threshold in a way worth noting.

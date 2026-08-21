@@ -49,7 +49,9 @@ For most forms in consuming applications, plain `useState` per field (or a singl
 ```tsx
 function SignUpForm() {
   const [values, setValues] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>(
+    {},
+  );
 
   function handleChange(field: keyof typeof values) {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -109,10 +111,31 @@ When several fields are logically related (a set of radio options, a billing add
 ```tsx
 <fieldset className={styles.fieldGroup}>
   <legend>Billing Address</legend>
-  <TextField id="street" label="Street" value={address.street} onChange={handleChange("street")} />
-  <TextField id="city" label="City" value={address.city} onChange={handleChange("city")} />
-  <TextField id="state" label="State" value={address.state} onChange={handleChange("state")} />
-  <TextField id="zip" label="ZIP code" pattern="[0-9]{5}" value={address.zip} onChange={handleChange("zip")} />
+  <TextField
+    id="street"
+    label="Street"
+    value={address.street}
+    onChange={handleChange("street")}
+  />
+  <TextField
+    id="city"
+    label="City"
+    value={address.city}
+    onChange={handleChange("city")}
+  />
+  <TextField
+    id="state"
+    label="State"
+    value={address.state}
+    onChange={handleChange("state")}
+  />
+  <TextField
+    id="zip"
+    label="ZIP code"
+    pattern="[0-9]{5}"
+    value={address.zip}
+    onChange={handleChange("zip")}
+  />
 </fieldset>
 ```
 

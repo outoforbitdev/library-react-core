@@ -1,16 +1,16 @@
 # Building Components
 
-This document walks through building a component from nothing to merge-ready, using `Button` as the running example. For the underlying interfaces and helpers referenced throughout (`IComponentProps`, `getDomProps`, `combineClassNames`), see [architecture/component-patterns.md](../architecture/component-patterns.md) — this document shows how to *apply* those patterns, not what they are.
+This document walks through building a component from nothing to merge-ready, using `Button` as the running example. For the underlying interfaces and helpers referenced throughout (`IComponentProps`, `getDomProps`, `combineClassNames`), see [architecture/component-patterns.md](../architecture/component-patterns.md) — this document shows how to _apply_ those patterns, not what they are.
 
 ## Component Anatomy
 
 Every component is made of three files, each with one job:
 
-| File | Location | Responsibility |
-| --- | --- | --- |
-| **Component file** | `src/components/ComponentName.tsx` | The React component itself: props interface, JSX, and any component-local logic. Renders semantic HTML and wires props to the DOM via `getDomProps`. |
-| **Styles file** | `src/styles/component-name.module.css` | Structural CSS only — layout, spacing, borders, cursor, `:hover`/`:focus` states. Never hardcodes theme colors; those come from consumer-supplied utility classes. |
-| **Stories file** | `src/stories/ComponentName.stories.tsx` | Storybook stories demonstrating the component's states and variants. Doubles as living documentation and the basis for automated interaction/a11y/visual regression tests. |
+| File               | Location                                | Responsibility                                                                                                                                                             |
+| ------------------ | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Component file** | `src/components/ComponentName.tsx`      | The React component itself: props interface, JSX, and any component-local logic. Renders semantic HTML and wires props to the DOM via `getDomProps`.                       |
+| **Styles file**    | `src/styles/component-name.module.css`  | Structural CSS only — layout, spacing, borders, cursor, `:hover`/`:focus` states. Never hardcodes theme colors; those come from consumer-supplied utility classes.         |
+| **Stories file**   | `src/stories/ComponentName.stories.tsx` | Storybook stories demonstrating the component's states and variants. Doubles as living documentation and the basis for automated interaction/a11y/visual regression tests. |
 
 A fourth step — exporting the component from `src/index.ts` — makes it part of the library's public API. A component isn't usable by consuming applications until this step is done, even if the other three files are complete.
 
@@ -153,9 +153,7 @@ interface IComponentNameProps extends IComponentProps {
 
 export function ComponentName(props: IComponentNameProps) {
   return (
-    <div {...getDomProps(props, styles.componentName)}>
-      {props.children}
-    </div>
+    <div {...getDomProps(props, styles.componentName)}>{props.children}</div>
   );
 }
 ```

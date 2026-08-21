@@ -1,6 +1,6 @@
 # Component Development Guides
 
-This section is practical, how-to documentation for contributors building or modifying components in `@outoforbitdev/ood-react`. Where [architecture/component-patterns.md](../architecture/component-patterns.md) is the *reference* for the library's conventions, and [requirements/component-requirements.md](../requirements/component-requirements.md) is the *checklist* those conventions must satisfy, this section is the *how*: step-by-step guidance for actually building a component, validating its input, and composing it into forms.
+This section is practical, how-to documentation for contributors building or modifying components in `@outoforbitdev/ood-react`. Where [architecture/component-patterns.md](../architecture/component-patterns.md) is the _reference_ for the library's conventions, and [requirements/component-requirements.md](../requirements/component-requirements.md) is the _checklist_ those conventions must satisfy, this section is the _how_: step-by-step guidance for actually building a component, validating its input, and composing it into forms.
 
 If you haven't read [product/principles.md](../product/principles.md) and [architecture/overview.md](../architecture/overview.md) yet, read those first — this section assumes you already know why the library exists and how it's structured.
 
@@ -18,11 +18,11 @@ This order matters: `building-components.md` establishes the anatomy every compo
 
 Every component in the library moves through three states over its lifetime:
 
-| Stage | Meaning | Signals |
-| --- | --- | --- |
-| **New / Experimental** | Recently added, or an existing component undergoing a breaking rework. API may still change without a major version bump. | Storybook docs call this out explicitly (e.g., "Experimental — API may change"). Used cautiously in consuming applications. |
-| **Stable** | Meets every item in the [Definition of Done](../quality/definition-of-done.md). API changes now follow [Versioning](../requirements/constraints.md#versioning) rules (breaking changes require a major version and migration guidance). | No "experimental" notice in Storybook docs. Safe for general use in consuming applications. |
-| **Deprecated** | Superseded by another component or pattern, and scheduled for removal in a future major version. Still functional, but should not be adopted in new code. | Storybook docs and the component's Storybook description state the replacement and the target removal version. `AGENTS.md`/`CHANGELOG.md` note the deprecation. |
+| Stage                  | Meaning                                                                                                                                                                                                                                 | Signals                                                                                                                                                         |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **New / Experimental** | Recently added, or an existing component undergoing a breaking rework. API may still change without a major version bump.                                                                                                               | Storybook docs call this out explicitly (e.g., "Experimental — API may change"). Used cautiously in consuming applications.                                     |
+| **Stable**             | Meets every item in the [Definition of Done](../quality/definition-of-done.md). API changes now follow [Versioning](../requirements/constraints.md#versioning) rules (breaking changes require a major version and migration guidance). | No "experimental" notice in Storybook docs. Safe for general use in consuming applications.                                                                     |
+| **Deprecated**         | Superseded by another component or pattern, and scheduled for removal in a future major version. Still functional, but should not be adopted in new code.                                                                               | Storybook docs and the component's Storybook description state the replacement and the target removal version. `AGENTS.md`/`CHANGELOG.md` note the deprecation. |
 
 A component graduates from **New/Experimental** to **Stable** by satisfying the full Definition of Done — there's no separate approval step beyond that checklist. A component moves to **Deprecated** only when a maintainer has identified and documented its replacement; deprecation is never silent.
 

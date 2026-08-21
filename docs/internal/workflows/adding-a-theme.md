@@ -10,19 +10,19 @@ Swatch ramps (`scripts/themes/ramps.json`, `scripts/themes/colors.ts`) are gener
 
 - Editing a ramp's base color or the lighten/darken factors changes that color family for **every theme at once** — `light`, `dark`, and any custom theme — not just the one you're working on.
 - A ramp edit can push contrast ratios below their required threshold in themes you weren't even thinking about when you made the change.
-- `npm run validate-themes` will catch a contrast failure, but it reports *what* failed, not *why* — you have to trace it back to the ramp edit yourself.
+- `npm run validate-themes` will catch a contrast failure, but it reports _what_ failed, not _why_ — you have to trace it back to the ramp edit yourself.
 
-**Adding a new theme almost never requires touching a ramp.** A new theme is a new *arrangement* of existing swatch steps (`themes.json`), not new colors. If you find yourself editing `ramps.json` or `colors.ts` while "just adding a theme," stop and re-read [Theme System Architecture § 3](../architecture/theme-system.md#3-the-ramp-cascade-constraint) — you are very likely about to make a global, cross-theme change disguised as a local one.
+**Adding a new theme almost never requires touching a ramp.** A new theme is a new _arrangement_ of existing swatch steps (`themes.json`), not new colors. If you find yourself editing `ramps.json` or `colors.ts` while "just adding a theme," stop and re-read [Theme System Architecture § 3](../architecture/theme-system.md#3-the-ramp-cascade-constraint) — you are very likely about to make a global, cross-theme change disguised as a local one.
 
 If the task genuinely requires a ramp edit (rebranding a color, fixing a swatch that's wrong everywhere), that's a different, higher-caution process — see [§ 6, When You Actually Need to Touch a Ramp](#6-when-you-actually-need-to-touch-a-ramp) below.
 
 ## 1. Two Cases This Process Covers
 
-| Case | What changes | Blast radius |
-|---|---|---|
-| **Adding a new theme** | New block in `themes.json`, referencing existing swatch steps | Isolated to the new theme |
-| **Modifying an existing theme's tokens** | Existing theme's block in `themes.json`, still referencing existing swatch steps | Isolated to that one theme |
-| **Modifying a ramp** (`ramps.json` / `colors.ts`) | Shared swatch generation | **Every theme, simultaneously** — see § 6 |
+| Case                                              | What changes                                                                     | Blast radius                              |
+| ------------------------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------- |
+| **Adding a new theme**                            | New block in `themes.json`, referencing existing swatch steps                    | Isolated to the new theme                 |
+| **Modifying an existing theme's tokens**          | Existing theme's block in `themes.json`, still referencing existing swatch steps | Isolated to that one theme                |
+| **Modifying a ramp** (`ramps.json` / `colors.ts`) | Shared swatch generation                                                         | **Every theme, simultaneously** — see § 6 |
 
 Sections 2–5 below cover the first two (theme-scoped) cases, which should be the common path.
 
@@ -41,7 +41,7 @@ Duplicate a full theme block and rename it to your new theme's identifier (e.g. 
 
 For each semantic slot (`primary`, `secondary`, `accent`, `accent-block`, `error`, `warning`, `submission`, `stock`), point at existing swatch steps (`"<family>-<step>"`, e.g. `"gray-700"`, `"royal-blue-600"`). Do not write a literal hex value anywhere in `themes.json` — the whole point of the swatch/theme split is that every theme resolves through the shared ramp.
 
-Prefer reusing swatch families already used elsewhere before introducing a new one. If you genuinely need a color the existing 12 families don't provide, adding a **new** swatch family to `ramps.json` (e.g. `lime`) is safe and theme-scoped in effect — it's inert until a theme references it. This is different from editing an *existing* family, which is not safe (see § 6).
+Prefer reusing swatch families already used elsewhere before introducing a new one. If you genuinely need a color the existing 12 families don't provide, adding a **new** swatch family to `ramps.json` (e.g. `lime`) is safe and theme-scoped in effect — it's inert until a theme references it. This is different from editing an _existing_ family, which is not safe (see § 6).
 
 ## 4. Ensure All Ramps/Slots Are Defined — Nothing Inherits a Default
 

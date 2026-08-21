@@ -53,9 +53,7 @@ import styles from "../styles/badge.module.css";
 interface IBadgeProps extends IComponentProps {}
 
 export function Badge(props: IBadgeProps) {
-  return (
-    <span {...getDomProps(props, styles.badge)}>{props.children}</span>
-  );
+  return <span {...getDomProps(props, styles.badge)}>{props.children}</span>;
 }
 ```
 

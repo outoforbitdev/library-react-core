@@ -6,7 +6,7 @@ This document covers how validation works for form-like components in `@outoforb
 
 Validation in this library follows one rule: **the component validates and reports; the consumer decides what to do about it.**
 
-- **The component's job** — Expose the browser's native validation constraints (`type`, `pattern`, `required`, `min`/`max`, etc.) on its underlying element, surface the *result* of validation (valid/invalid, and an error message if invalid) through props the consumer already controls, and render that error state accessibly (`aria-invalid`, an associated error message).
+- **The component's job** — Expose the browser's native validation constraints (`type`, `pattern`, `required`, `min`/`max`, etc.) on its underlying element, surface the _result_ of validation (valid/invalid, and an error message if invalid) through props the consumer already controls, and render that error state accessibly (`aria-invalid`, an associated error message).
 - **The consumer's job** — Own the actual form state (the field's value, whether it's been touched, whether the form as a whole is submittable), decide when validation should run (on blur, on submit, on every keystroke), and decide what happens when a field is invalid (disable submit, show a summary, block navigation).
 
 A component never manages its own submission blocking, its own "has this been touched yet" state, or its own retry logic for async validation — that's form-level state, and form-level state lives in the consuming application (see [Controlled vs. Uncontrolled](./form-patterns.md#controlled-vs-uncontrolled) in form-patterns.md). The component's scope stops at: given the current value, is it valid, and if not, why not.
@@ -22,8 +22,12 @@ import { getDomProps, IChildlessComponentProps } from "./IComponent";
 import styles from "../styles/text-field.module.css";
 
 interface ITextFieldProps
-  extends IChildlessComponentProps,
-    Omit<React.InputHTMLAttributes<HTMLInputElement>, "className" | "id" | "style"> {
+  extends
+    IChildlessComponentProps,
+    Omit<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      "className" | "id" | "style"
+    > {
   label: string;
 }
 
@@ -77,9 +81,15 @@ export function UsernameField(props: IUsernameFieldProps) {
   return (
     <div className={styles.field}>
       <TextField {...fieldProps} />
-      {validating && <span className={styles.hint}>Checking availability…</span>}
+      {validating && (
+        <span className={styles.hint}>Checking availability…</span>
+      )}
       {error && (
-        <span id={`${props.id}-error`} role="alert" className={classNames(styles.error, "ood-error")}>
+        <span
+          id={`${props.id}-error`}
+          role="alert"
+          className={classNames(styles.error, "ood-error")}
+        >
           {error}
         </span>
       )}
@@ -149,7 +159,11 @@ function FieldWithError(props: ITextFieldProps & { error?: string }) {
         className={classNames(styles.input, error && styles.inputError)}
       />
       {error && (
-        <span id={errorId} role="alert" className={classNames(styles.error, "ood-error")}>
+        <span
+          id={errorId}
+          role="alert"
+          className={classNames(styles.error, "ood-error")}
+        >
           {error}
         </span>
       )}

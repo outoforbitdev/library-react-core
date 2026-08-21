@@ -26,13 +26,14 @@ export interface IIconProps extends IChildlessComponentProps {
 }
 
 export enum IconSize {
-  Small = 10,   // 0.75em — inline/badge contexts
-  Medium = 15,  // 1em    — standard default
-  Large = 20,   // 1.5em  — prominent display
+  Small = 10, // 0.75em — inline/badge contexts
+  Medium = 15, // 1em    — standard default
+  Large = 20, // 1.5em  — prominent display
 }
 ```
 
 The `IChildlessComponentProps` base includes standard DOM props:
+
 - `className?: string` — Additional CSS classes
 - `id?: string` — DOM element ID
 - `onClick?: MouseEventHandler` — Click handler for interactive icons
@@ -52,7 +53,7 @@ interface IIconInternalProps extends IComponentProps {
 export function Icon(props: IIconInternalProps) {
   const sizeClass = getClassFromSize(props.externalProps.size);
   const foregroundColor = "currentColor";
-  
+
   return (
     <svg
       stroke={foregroundColor}
@@ -72,6 +73,7 @@ export function Icon(props: IIconInternalProps) {
 ```
 
 The component:
+
 1. Sets `stroke` and `fill` to `currentColor` to inherit from surrounding text color
 2. Accepts a `viewBoxSize` (typically 100) for consistent scaling
 3. Applies size classes based on the `size` prop
@@ -287,9 +289,9 @@ export interface IIconProps extends IChildlessComponentProps {
   clickable?: boolean;
   invert?: boolean;
   size?: IconSize;
-  title?: string;        // Tooltip and semantic title
-  ariaLabel?: string;    // Screen reader label
-  ariaHidden?: boolean;  // Hide from assistive tech
+  title?: string; // Tooltip and semantic title
+  ariaLabel?: string; // Screen reader label
+  ariaHidden?: boolean; // Hide from assistive tech
 }
 ```
 
@@ -302,7 +304,7 @@ Follow this process to add a new icon to the library:
 Obtain the SVG markup from a designer or icon library. For example, an X icon from [Feather Icons](https://feathericons.com/):
 
 ```xml
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <line x1="18" y1="6" x2="6" y2="18"></line>
   <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -406,6 +408,7 @@ All icon names follow consistent patterns for discoverability and clarity:
 ### Naming Examples
 
 ✅ **Good**
+
 - `settings` — Clearly represents a settings/configuration action
 - `download` — Obvious purpose
 - `arrow-down` — Specific direction indicator
@@ -413,6 +416,7 @@ All icon names follow consistent patterns for discoverability and clarity:
 - `share` — Obvious social/sharing action
 
 ❌ **Poor**
+
 - `icon` — Too generic; doesn't describe the icon
 - `arrow` — Ambiguous; which direction?
 - `menu` — Unclear if it's a menu button or menu content
@@ -439,6 +443,7 @@ Add a searchable icon gallery in Storybook that indexes all available icons by n
 ### Icon Variants
 
 Support icon variants for different styles:
+
 - **Outline** — Stroked design for lighter appearance
 - **Filled** — Solid filled design for emphasis
 - **Duo-tone** — Two-color icons for richer visual hierarchy
@@ -469,10 +474,10 @@ export interface IIconProps extends IChildlessComponentProps {
   clickable?: boolean;
   invert?: boolean;
   size?: IconSize;
-  title?: string;        // Tooltip and semantic meaning
-  ariaLabel?: string;    // Screen reader label
-  ariaHidden?: boolean;  // Hide from assistive technology
-  role?: string;         // Custom ARIA role
+  title?: string; // Tooltip and semantic meaning
+  ariaLabel?: string; // Screen reader label
+  ariaHidden?: boolean; // Hide from assistive technology
+  role?: string; // Custom ARIA role
 }
 ```
 
