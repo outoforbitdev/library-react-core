@@ -7,9 +7,12 @@ import {
 import styles from "./icon.module.css";
 
 export interface IIconProps extends IChildlessComponentProps {
+  "aria-hidden"?: boolean;
+  "aria-label"?: string;
   bordered?: boolean;
   inverted?: boolean;
   size?: IconSize;
+  title?: string;
 }
 
 interface IIconInternalProps extends IComponentProps {
@@ -71,14 +74,19 @@ export function Icon(props: IIconInternalProps) {
     />
   ) : null;
 
+  const svgProps: React.SVGProps<SVGSVGElement> & { title?: string } = {
+    stroke: iconColor,
+    fill: iconColor,
+    viewBox: `0 0 ${props.viewBoxSize} ${props.viewBoxSize}`,
+    strokeWidth: 10,
+    "aria-label": props.externalProps["aria-label"],
+    "aria-hidden": props.externalProps["aria-hidden"],
+    title: props.externalProps.title,
+    ...getDomProps(props.externalProps, sizeClass),
+  };
+
   return (
-    <svg
-      stroke={iconColor}
-      fill={iconColor}
-      viewBox={`0 0 ${props.viewBoxSize} ${props.viewBoxSize}`}
-      strokeWidth={10}
-      {...getDomProps(props.externalProps, sizeClass)}
-    >
+    <svg {...svgProps}>
       {isInverted ? (
         <defs>
           <mask id={maskId}>
