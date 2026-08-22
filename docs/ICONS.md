@@ -4,21 +4,15 @@ A set of reusable, accessible icons built with SVG and React. Icons inherit text
 
 ## Basic Usage
 
-Import icons from the library:
+Import icons from the library as a namespace:
 
 ```tsx
-import {
-  Check,
-  Error,
-  Warning,
-  Plus,
-  ChevronDown,
-} from "@outoforbitdev/ood-react";
+import { Icons } from "@outoforbitdev/ood-react";
 
 export function MyComponent() {
   return (
     <button>
-      <Check />
+      <Icons.Check />
       Save Changes
     </button>
   );
@@ -41,19 +35,19 @@ export function MyComponent() {
 Icons support five size options via the `size` prop. The default size is `Medium` (1.25em).
 
 ```tsx
-import { IconSize, Check } from "@outoforbitdev/ood-react";
+import { Icons, IconSize } from "@outoforbitdev/ood-react";
 
-<Check size={IconSize.ExtraSmall} />  {/* 0.75em */}
-<Check size={IconSize.Small} />       {/* 1em */}
-<Check size={IconSize.Medium} />      {/* 1.25em (default) */}
-<Check size={IconSize.Large} />       {/* 1.5em */}
-<Check size={IconSize.ExtraLarge} />  {/* 2em */}
+<Icons.Check size={IconSize.ExtraSmall} />  {/* 0.75em */}
+<Icons.Check size={IconSize.Small} />       {/* 1em */}
+<Icons.Check size={IconSize.Medium} />      {/* 1.25em (default) */}
+<Icons.Check size={IconSize.Large} />       {/* 1.5em */}
+<Icons.Check size={IconSize.ExtraLarge} />  {/* 2em */}
 ```
 
 Icons scale with `em` units, so they automatically size relative to the text around them. To override sizing, use CSS:
 
 ```tsx
-<Check style={{ height: "24px", width: "24px" }} />
+<Icons.Check style={{ height: "24px", width: "24px" }} />
 ```
 
 ## Appearance Variations
@@ -63,7 +57,7 @@ Icons scale with `em` units, so they automatically size relative to the text aro
 The icon appears in the text color (default).
 
 ```tsx
-<Check />
+<Icons.Check />
 ```
 
 ### Bordered
@@ -71,7 +65,7 @@ The icon appears in the text color (default).
 Adds a rounded border around the icon. Useful for emphasized or standalone icons.
 
 ```tsx
-<Check bordered />
+<Icons.Check bordered />
 ```
 
 ### Inverted
@@ -79,7 +73,7 @@ Adds a rounded border around the icon. Useful for emphasized or standalone icons
 Swaps the icon and background colors. The background becomes text color, and the icon becomes background color. Useful for creating high-contrast buttons or badges.
 
 ```tsx
-<Check inverted />
+<Icons.Check inverted />
 ```
 
 ### Bordered + Inverted
@@ -87,7 +81,7 @@ Swaps the icon and background colors. The background becomes text color, and the
 Combines both effects. The border and icon use the background color, creating a distinct visual treatment.
 
 ```tsx
-<Check bordered inverted />
+<Icons.Check bordered inverted />
 ```
 
 ## Accessibility
@@ -101,14 +95,14 @@ When an icon is inside a button or link, the parent element should provide the a
   /* Good: Button provides accessible context */
 }
 <button aria-label="Close menu">
-  <X />
+  <Icons.X />
 </button>;
 
 {
   /* Good: Text label provides context */
 }
 <button>
-  <Check />
+  <Icons.Check />
   Save
 </button>;
 ```
@@ -121,12 +115,12 @@ When an icon conveys meaning outside of an interactive context (e.g., validation
 {
   /* Error icon indicating invalid field */
 }
-<Error aria-label="This field is required" />;
+<Icons.Error aria-label="This field is required" />;
 
 {
   /* Status indicator */
 }
-<Warning aria-label="This action is irreversible" />;
+<Icons.Warning aria-label="This action is irreversible" />;
 ```
 
 ### Decorative Icons
@@ -137,7 +131,7 @@ Mark purely decorative icons with `aria-hidden`:
 {
   /* Decorative separator */
 }
-<Plus aria-hidden />;
+<Icons.Plus aria-hidden />;
 ```
 
 ### Tooltip
@@ -145,7 +139,7 @@ Mark purely decorative icons with `aria-hidden`:
 Use the `title` prop to add a browser tooltip:
 
 ```tsx
-<Warning title="This action cannot be undone" />
+<Icons.Warning title="This action cannot be undone" />
 ```
 
 ## Common Patterns
@@ -156,7 +150,7 @@ Combine icons with buttons for common actions:
 
 ```tsx
 <button aria-label="Delete item">
-  <Error />
+  <Icons.Error />
 </button>
 ```
 
@@ -166,7 +160,7 @@ Use inverted icons to create status indicators:
 
 ```tsx
 <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-  <Check inverted aria-label="Completed" />
+  <Icons.Check inverted aria-label="Completed" />
   <span>Order placed</span>
 </div>
 ```
@@ -177,7 +171,7 @@ Use chevrons to indicate expandable sections (the Expandable component handles t
 
 ```tsx
 <button>
-  {expanded ? <ChevronUp /> : <ChevronDown />}
+  {expanded ? <Icons.ChevronUp /> : <Icons.ChevronDown />}
   Show details
 </button>
 ```
@@ -188,7 +182,7 @@ The Spinner animates continuously. It respects `prefers-reduced-motion` for user
 
 ```tsx
 <div>
-  <Spinner size={IconSize.Small} />
+  <Icons.Spinner size={IconSize.Small} />
   Loading...
 </div>
 ```
@@ -202,14 +196,14 @@ Icons inherit color from their context via CSS `currentColor`. This means they a
   /* Icon is red */
 }
 <div style={{ color: "red" }}>
-  <Check />
+  <Icons.Check />
 </div>;
 
 {
   /* Icon uses theme text color */
 }
 <div className="ood-primary">
-  <Check />
+  <Icons.Check />
 </div>;
 ```
 
@@ -224,7 +218,7 @@ Icons work seamlessly with the design system's theme system. In inverted mode, t
 {
   /* In dark theme: light icon on dark background */
 }
-<Check inverted />;
+<Icons.Check inverted />;
 ```
 
 ## Type Safety
@@ -232,13 +226,13 @@ Icons work seamlessly with the design system's theme system. In inverted mode, t
 All icons are TypeScript components. The `IconSize` enum provides type-safe size options:
 
 ```tsx
-import { IconSize, Check } from "@outoforbitdev/ood-react";
+import { Icons, IconSize } from "@outoforbitdev/ood-react";
 
 // ✓ TypeScript knows IconSize.Small is valid
-const icon = <Check size={IconSize.Small} />;
+const icon = <Icons.Check size={IconSize.Small} />;
 
 // ✗ TypeScript error: "medium" is not a valid size
-const invalid = <Check size="medium" />;
+const invalid = <Icons.Check size="medium" />;
 ```
 
 ## Visual Examples
