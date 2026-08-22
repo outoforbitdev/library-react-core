@@ -1,3 +1,4 @@
+import { useId } from "react";
 import {
   getDomProps,
   IChildlessComponentProps,
@@ -6,9 +7,12 @@ import {
 import styles from "./icon.module.css";
 
 export interface IIconProps extends IChildlessComponentProps {
-  clickable?: boolean;
-  invert?: boolean;
+  "aria-hidden"?: boolean;
+  "aria-label"?: string;
+  bordered?: boolean;
+  inverted?: boolean;
   size?: IconSize;
+  title?: string;
 }
 
 interface IIconInternalProps extends IComponentProps {
@@ -18,43 +22,74 @@ interface IIconInternalProps extends IComponentProps {
 }
 
 export enum IconSize {
-  Small = 10,
-  Medium = 15,
-  Large = 20,
+  ExtraSmall = "xs",
+  Small = "s",
+  Medium = "m",
+  Large = "l",
+  ExtraLarge = "xl",
 }
 
 export function Icon(props: IIconInternalProps) {
+  const maskId = useId();
   const sizeClass = getClassFromSize(props.externalProps.size);
-  const foregroundColor = "currentColor";
-  const backgroundCornerRadius = props.viewBoxSize / 3;
-  const background = (
+  const isInverted = props.externalProps.inverted && !props.preventInvert;
+  const isBordered = props.externalProps.bordered;
+  const cornerRadius = props.viewBoxSize / 4;
+
+  const getColor = (mode: "text" | "background") => {
+    if (mode === "text") {
+      return "var(--ood-text, currentColor)";
+    }
+    return "var(--ood-background, none)";
+  };
+
+  const iconColor = isInverted ? getColor("background") : getColor("text");
+  const backgroundColor = isInverted
+    ? getColor("text")
+    : getColor("background");
+  const borderColor = isInverted ? getColor("background") : getColor("text");
+
+  const background = isInverted ? (
     <rect
-      x={0}
-      y={0}
-      height={props.viewBoxSize}
-      width={props.viewBoxSize}
-      rx={backgroundCornerRadius}
-      fill={foregroundColor}
-      stroke={foregroundColor}
-      mask="url(#iconMask)"
+      x={2}
+      y={2}
+      height={props.viewBoxSize - 4}
+      width={props.viewBoxSize - 4}
+      rx={cornerRadius}
+      fill={backgroundColor}
+      mask={`url(#${maskId})`}
     />
-  );
-  const inverted = props.externalProps.invert && !props.preventInvert;
+  ) : null;
+
+  const border = isBordered ? (
+    <rect
+      x={2}
+      y={2}
+      height={props.viewBoxSize - 4}
+      width={props.viewBoxSize - 4}
+      rx={cornerRadius}
+      fill="none"
+      stroke={borderColor}
+      strokeWidth={4}
+    />
+  ) : null;
+
+  const svgProps: React.SVGProps<SVGSVGElement> & { title?: string } = {
+    stroke: iconColor,
+    fill: iconColor,
+    viewBox: `0 0 ${props.viewBoxSize} ${props.viewBoxSize}`,
+    strokeWidth: 10,
+    "aria-label": props.externalProps["aria-label"],
+    "aria-hidden": props.externalProps["aria-hidden"],
+    title: props.externalProps.title,
+    ...getDomProps(props.externalProps, sizeClass),
+  };
+
   return (
-    <svg
-      stroke={foregroundColor}
-      fill={foregroundColor}
-      viewBox={`0 0 ${props.viewBoxSize} ${props.viewBoxSize}`}
-      strokeWidth={10}
-      {...getDomProps(
-        props.externalProps,
-        sizeClass,
-        props.externalProps.clickable ? styles.clickable : undefined,
-      )}
-    >
-      {inverted ? (
+    <svg {...svgProps}>
+      {isInverted ? (
         <defs>
-          <mask id="iconMask">
+          <mask id={maskId}>
             <rect
               x={0}
               y={0}
@@ -68,19 +103,25 @@ export function Icon(props: IIconInternalProps) {
           </mask>
         </defs>
       ) : null}
-      {inverted ? background : props.children}
+      {background}
+      {!isInverted ? props.children : null}
+      {border}
     </svg>
   );
 }
 
 function getClassFromSize(size?: IconSize) {
   switch (size) {
+    case IconSize.ExtraSmall:
+      return styles.xs;
     case IconSize.Small:
-      return styles.small;
+      return styles.s;
     case IconSize.Large:
-      return styles.large;
+      return styles.l;
+    case IconSize.ExtraLarge:
+      return styles.xl;
     case IconSize.Medium:
     default:
-      return styles.medium;
+      return styles.m;
   }
 }
