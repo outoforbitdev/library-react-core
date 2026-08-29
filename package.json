@@ -20,6 +20,8 @@
     "@storybook/addon-styling-webpack": "^2.0.0",
     "@storybook/addon-webpack5-compiler-swc": "^4.0.1",
     "@storybook/react-webpack5": "^9.1.4",
+    "@storybook/test": "^8.6.15",
+    "@storybook/test-runner": "^0.24.4",
     "@types/react": "^19.1.1",
     "commitlint": "^20.1.0",
     "postcss": "^8.5.1",
@@ -41,6 +43,7 @@
   "scripts": {
     "test": "npm run validate-themes",
     "validate-themes": "tsx scripts/themes/validate.ts",
+    "test-storybook": "test-storybook",
     "build": "npm run validate-themes && rollup -c --bundleConfigAsCjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

@@ -204,6 +204,7 @@ function generateUtilityClasses(): string {
   --ood-shade: var(--ood-primary-shade);
   --ood-link: var(--ood-primary-link);
   --ood-link-visited: var(--ood-primary-link-visited);
+  --ood-border: var(--ood-primary-text);
 }
 
 .ood-secondary {
@@ -212,10 +213,12 @@ function generateUtilityClasses(): string {
   --ood-shade: var(--ood-secondary-shade);
   --ood-link: var(--ood-secondary-link);
   --ood-link-visited: var(--ood-secondary-link-visited);
+  --ood-border: var(--ood-secondary-text);
 }
 
 .ood-accent {
   --ood-text: var(--ood-accent-text);
+  --ood-border: var(--ood-accent-text);
 }
 
 .ood-accent-block {
@@ -228,6 +231,7 @@ function generateUtilityClasses(): string {
 
 .ood-error {
   --ood-text: var(--ood-error-text);
+  --ood-border: var(--ood-error-text);
 }
 
 .ood-error-block {
@@ -238,6 +242,7 @@ function generateUtilityClasses(): string {
 
 .ood-warning {
   --ood-text: var(--ood-warning-text);
+  --ood-border: var(--ood-warning-text);
 }
 
 .ood-warning-block {
@@ -248,6 +253,7 @@ function generateUtilityClasses(): string {
 
 .ood-submission {
   --ood-text: var(--ood-submission-text);
+  --ood-border: var(--ood-submission-text);
 }
 
 .ood-submission-block {
@@ -258,6 +264,7 @@ function generateUtilityClasses(): string {
 
 .ood-submit {
   --ood-text: var(--ood-submission-text);
+  --ood-border: var(--ood-submission-text);
 }
 
 .ood-submit-block {
