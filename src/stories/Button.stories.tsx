@@ -45,22 +45,11 @@ export const Borderless: Story = {
     const canvas = within(canvasElement);
     const buttons = canvas.getAllByRole("button");
     expect(buttons.length).toBeGreaterThan(0);
-  },
-};
-
-export const BorderlessWithClick: Story = {
-  args: {
-    borderless: true,
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const buttons = canvas.getAllByRole("button");
     const firstButton = buttons[0];
 
-    // Verify button exists
     expect(firstButton).toBeInTheDocument();
 
-    // Click the button and verify it's still there
+    // Test onClick handler
     await userEvent.click(firstButton);
     expect(firstButton).toBeInTheDocument();
   },
