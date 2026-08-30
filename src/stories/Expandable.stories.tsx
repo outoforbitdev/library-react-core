@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "storybook/test";
 
 import { Expandable } from "../components/Expandable";
 
@@ -74,5 +75,75 @@ export const Error: Story = {
 export const ErrorBlock: Story = {
   args: {
     className: "ood-error-block",
+  },
+};
+
+export const WithTitleExpanded: Story = {
+  args: {
+    className: "ood-primary",
+    title: "Click to collapse this section",
+    expanded: true,
+  },
+  render: (args) => (
+    <Expandable {...args}>
+      This content starts expanded and can be collapsed by clicking the title or
+      chevron.
+    </Expandable>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Find the button (which contains both title and chevron)
+    const button = canvas.getByRole("button");
+    expect(button).toBeInTheDocument();
+
+    // Verify the title text is in the button
+    expect(button).toHaveTextContent("Click to collapse this section");
+  },
+};
+
+export const WithTitleCollapsed: Story = {
+  args: {
+    className: "ood-primary",
+    title: "Click to expand this section",
+    expanded: false,
+    titleAlwaysVisible: true,
+  },
+  render: (args) => (
+    <Expandable {...args}>
+      This content is initially hidden and will appear when you click to expand.
+    </Expandable>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Find the button
+    const button = canvas.getByRole("button");
+    expect(button).toBeInTheDocument();
+
+    // Verify title is shown even when collapsed (because titleAlwaysVisible is true)
+    expect(button).toHaveTextContent("Click to expand this section");
+
+    // Click to expand and verify button is still there
+    await userEvent.click(button);
+    expect(button).toBeInTheDocument();
+  },
+};
+
+export const NoTitle: Story = {
+  args: {
+    className: "ood-primary",
+  },
+  render: (args) => (
+    <Expandable {...args}>
+      Content with no title - only the chevron icon can be clicked to toggle.
+    </Expandable>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Should still have a button with chevron
+    const button = canvas.getByRole("button");
+    expect(button).toBeInTheDocument();
   },
 };
