@@ -19,7 +19,7 @@
   background-color: var(--ood-shade);
 }
 
-.button:focus {
+.button:focus-visible {
   outline: 2px solid var(--ood-border);
   /* outline-offset: 2px; */
 }
