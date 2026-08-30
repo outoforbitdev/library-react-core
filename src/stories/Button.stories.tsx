@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "storybook/test";
 
 import { Button } from "../components/Button";
+import { ThemePalette } from "./ThemePalette";
 
 const meta = {
   title: "Example/Button",
@@ -11,68 +13,44 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
   },
-  render: (args) => <Button {...args}>Press Me</Button>,
+  render: (args) =>
+    ThemePalette({
+      Component: (props) => (
+        <Button {...args} {...props}>
+          Press Me
+        </Button>
+      ),
+    }),
+  argTypes: {
+    onClick: { action: "clicked" },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-  args: {
-    className: "ood-primary",
+export const Bordered: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole("button");
+    expect(buttons.length).toBeGreaterThan(0);
   },
 };
 
-export const Secondary: Story = {
+export const Borderless: Story = {
   args: {
-    className: "ood-secondary",
+    borderless: true,
   },
-};
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole("button");
+    expect(buttons.length).toBeGreaterThan(0);
+    const firstButton = buttons[0];
 
-export const Accent: Story = {
-  args: {
-    className: "ood-primary ood-accent",
-  },
-};
+    expect(firstButton).toBeInTheDocument();
 
-export const AccentBlock: Story = {
-  args: {
-    className: "ood-accent-block",
-  },
-};
-
-export const Submit: Story = {
-  args: {
-    className: "ood-primary ood-submit",
-  },
-};
-
-export const SubmitBlock: Story = {
-  args: {
-    className: "ood-submit-block",
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    className: "ood-primary ood-warning",
-  },
-};
-
-export const WarningBlock: Story = {
-  args: {
-    className: "ood-primary ood-warning-block",
-  },
-};
-
-export const Error: Story = {
-  args: {
-    className: "ood-primary ood-error",
-  },
-};
-
-export const ErrorBlock: Story = {
-  args: {
-    className: "ood-error-block",
+    // Test onClick handler
+    await userEvent.click(firstButton);
+    expect(firstButton).toBeInTheDocument();
   },
 };

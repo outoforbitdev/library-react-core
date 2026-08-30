@@ -1,7 +1,29 @@
 .button {
   appearance: none;
-  border: 2px solid;
-  color: inherit;
-  background-color: inherit;
+  border: 2px solid var(--ood-border);
   cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.button:hover,
+.button:focus,
+.button:active {
+  outline: none;
+}
+
+.button:hover {
+  background-color: var(--ood-shade);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--ood-border);
+  /* outline-offset: 2px; */
+}
+
+.borderless {
+  border: none;
 }
