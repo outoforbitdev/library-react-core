@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "storybook/test";
 
 import { Expandable } from "../components/Expandable";
+import { ThemePalette } from "./ThemePalette";
 
 const meta = {
   title: "Example/Expandable",
@@ -12,69 +13,33 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
   },
-  render: (args) => <Expandable {...args}>Press Me</Expandable>,
+  render: (args) => (
+    <ThemePalette
+      Component={(props) => (
+        <Expandable
+          {...args}
+          {...props}
+          style={{ border: "1px solid var(--ood-border)" }}
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </Expandable>
+      )}
+    />
+  ),
 } satisfies Meta<typeof Expandable>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Title: Story = {
   args: {
-    className: "ood-primary",
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    className: "ood-secondary",
-  },
-};
-
-export const Accent: Story = {
-  args: {
-    className: "ood-primary ood-accent",
-  },
-};
-
-export const AccentBlock: Story = {
-  args: {
-    className: "ood-accent-block",
-  },
-};
-
-export const Submit: Story = {
-  args: {
-    className: "ood-primary ood-submit",
-  },
-};
-
-export const SubmitBlock: Story = {
-  args: {
-    className: "ood-submit-block",
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    className: "ood-primary ood-warning",
-  },
-};
-
-export const WarningBlock: Story = {
-  args: {
-    className: "ood-primary ood-warning-block",
-  },
-};
-
-export const Error: Story = {
-  args: {
-    className: "ood-primary ood-error",
-  },
-};
-
-export const ErrorBlock: Story = {
-  args: {
-    className: "ood-error-block",
+    title: "Click to expand this section",
   },
 };
 
@@ -107,7 +72,7 @@ export const WithTitleCollapsed: Story = {
     className: "ood-primary",
     title: "Click to expand this section",
     expanded: false,
-    titleAlwaysVisible: true,
+    hideTitleWhenCollapsed: false,
   },
   render: (args) => (
     <Expandable {...args}>
@@ -121,7 +86,7 @@ export const WithTitleCollapsed: Story = {
     const button = canvas.getByRole("button");
     expect(button).toBeInTheDocument();
 
-    // Verify title is shown even when collapsed (because titleAlwaysVisible is true)
+    // Verify title is shown even when collapsed (because hideTitleWhenCollapsed is false)
     expect(button).toHaveTextContent("Click to expand this section");
 
     // Click to expand and verify button is still there
