@@ -21,13 +21,16 @@ const meta = {
           {...props}
           style={{ border: "1px solid var(--ood-border)" }}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          <p>
+            <a href="#">Lorem ipsum dolor sit amet</a>, consectetur adipiscing
+            elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.
+          </p>
         </Expandable>
       )}
     />
@@ -47,7 +50,7 @@ export const WithTitleExpanded: Story = {
   args: {
     className: "ood-primary",
     title: "Click to collapse this section",
-    expanded: true,
+    defaultExpanded: true,
   },
   render: (args) => (
     <Expandable {...args}>
@@ -71,7 +74,7 @@ export const WithTitleCollapsed: Story = {
   args: {
     className: "ood-primary",
     title: "Click to expand this section",
-    expanded: false,
+    defaultExpanded: false,
     hideTitleWhenCollapsed: false,
   },
   render: (args) => (

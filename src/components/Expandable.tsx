@@ -7,11 +7,11 @@ import { Button } from "./Button";
 interface IExpandableProps extends IComponentProps {
   title?: string;
   hideTitleWhenCollapsed?: boolean;
-  expanded?: boolean;
+  defaultExpanded?: boolean;
 }
 
 export function Expandable(props: IExpandableProps) {
-  const [expanded, setExpanded] = useState(props.expanded ?? false);
+  const [expanded, setExpanded] = useState(props.defaultExpanded ?? false);
   const showTitle = (expanded || !props.hideTitleWhenCollapsed) && props.title;
   return (
     <div {...getDomProps(props, styles.expandable)}>
