@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { getDomProps, IComponentProps } from "./IComponent";
 import styles from "../styles/expandable.module.css";
-import { ChevronDown, ChevronUp } from "./icons";
-import { Button } from "./Button";
+import "../styles/themes.css";
+import { ChevronDown } from "./icons";
 
 interface IExpandableProps extends IComponentProps {
   title?: string;
@@ -11,19 +10,21 @@ interface IExpandableProps extends IComponentProps {
 }
 
 export function Expandable(props: IExpandableProps) {
-  const [expanded, setExpanded] = useState(props.defaultExpanded ?? false);
-  const showTitle = (expanded || !props.hideTitleWhenCollapsed) && props.title;
+  const showTitle =
+    (!props.hideTitleWhenCollapsed || props.defaultExpanded) && props.title;
+
   return (
-    <div {...getDomProps(props, styles.expandable)}>
-      <Button
-        onClick={() => setExpanded(!expanded)}
-        className={styles.toggle}
-        borderless
-      >
+    <details
+      {...getDomProps(props, styles.expandable)}
+      open={props.defaultExpanded}
+    >
+      <summary className={styles.summary}>
         {showTitle && <span className={styles.title}>{props.title}</span>}
-        {expanded ? <ChevronUp /> : <ChevronDown />}
-      </Button>
-      {expanded ? props.children : null}
-    </div>
+        <span className={styles.chevron}>
+          <ChevronDown />
+        </span>
+      </summary>
+      {props.children}
+    </details>
   );
 }

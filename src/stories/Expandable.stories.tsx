@@ -61,12 +61,9 @@ export const WithTitleExpanded: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    // Find the button (which contains both title and chevron)
-    const button = canvas.getByRole("button");
-    expect(button).toBeInTheDocument();
-
-    // Verify the title text is in the button
-    expect(button).toHaveTextContent("Click to collapse this section");
+    // Find the summary element using text
+    const summary = canvas.getByText("Click to collapse this section");
+    expect(summary).toBeInTheDocument();
   },
 };
 
@@ -85,16 +82,13 @@ export const WithTitleCollapsed: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    // Find the button
-    const button = canvas.getByRole("button");
-    expect(button).toBeInTheDocument();
+    // Find the summary element using text
+    const summary = canvas.getByText("Click to expand this section");
+    expect(summary).toBeInTheDocument();
 
-    // Verify title is shown even when collapsed (because hideTitleWhenCollapsed is false)
-    expect(button).toHaveTextContent("Click to expand this section");
-
-    // Click to expand and verify button is still there
-    await userEvent.click(button);
-    expect(button).toBeInTheDocument();
+    // Click to expand and verify summary is still there
+    await userEvent.click(summary);
+    expect(summary).toBeInTheDocument();
   },
 };
 
@@ -108,10 +102,9 @@ export const NoTitle: Story = {
     </Expandable>
   ),
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    // Should still have a button with chevron
-    const button = canvas.getByRole("button");
-    expect(button).toBeInTheDocument();
+    // Find the summary element - it should be the first child of details
+    const details = canvasElement.querySelector("details");
+    const summary = details?.querySelector("summary");
+    expect(summary).toBeInTheDocument();
   },
 };

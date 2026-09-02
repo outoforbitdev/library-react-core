@@ -1,16 +1,26 @@
 .expandable {
-  display: flex;
-  flex-direction: column;
   border-radius: 5px;
 }
 
-.toggle {
+.summary {
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
 }
 
 .title {
   flex: 1;
   text-align: left;
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
