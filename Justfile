@@ -21,6 +21,9 @@ gate: test lint
 build:
     npm run build
 
+storybook:
+    npm run storybook
+
 pack: build
     #!/usr/bin/env bash
     npm pack

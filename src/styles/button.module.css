@@ -1,5 +1,7 @@
 .button {
   appearance: none;
+  background-color: var(--ood-background);
+  color: var(--ood-text);
   border: 2px solid var(--ood-border);
   cursor: pointer;
   padding: 0.5rem 1rem;
