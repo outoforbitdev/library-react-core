@@ -61,9 +61,22 @@ export const WithTitleExpanded: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
+    // Find the details element
+    const details = canvasElement.querySelector("details");
+    expect(details).toBeInTheDocument();
+
+    // Verify component is initially open
+    expect(details).toHaveAttribute("open");
+
     // Find the summary element using text
     const summary = canvas.getByText("Click to collapse this section");
     expect(summary).toBeInTheDocument();
+
+    // Click to close
+    await userEvent.click(summary);
+
+    // Verify component is now closed
+    expect(details).not.toHaveAttribute("open");
   },
 };
 
@@ -72,7 +85,6 @@ export const WithTitleCollapsed: Story = {
     className: "ood-primary",
     title: "Click to expand this section",
     defaultExpanded: false,
-    hideTitleWhenCollapsed: false,
   },
   render: (args) => (
     <Expandable {...args}>
@@ -82,23 +94,35 @@ export const WithTitleCollapsed: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
+    // Find the details element
+    const details = canvasElement.querySelector("details");
+    expect(details).toBeInTheDocument();
+
+    // Verify component is initially collapsed (no open attribute)
+    expect(details).not.toHaveAttribute("open");
+
     // Find the summary element using text
     const summary = canvas.getByText("Click to expand this section");
     expect(summary).toBeInTheDocument();
 
-    // Click to expand and verify summary is still there
+    // Click to expand
     await userEvent.click(summary);
-    expect(summary).toBeInTheDocument();
+
+    // Verify component is now open
+    expect(details).toHaveAttribute("open");
   },
 };
 
-export const NoTitle: Story = {
+export const HiddenTitle: Story = {
   args: {
     className: "ood-primary",
+    title: "Expandable section",
+    hideTitle: true,
   },
   render: (args) => (
     <Expandable {...args}>
-      Content with no title - only the chevron icon can be clicked to toggle.
+      Title is hidden visually but still accessible to screen readers. Only the
+      chevron icon is visible to click.
     </Expandable>
   ),
   play: async ({ canvasElement }) => {

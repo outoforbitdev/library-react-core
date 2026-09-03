@@ -1,5 +1,6 @@
 .expandable {
   border-radius: 5px;
+  padding: 0.2rem;
 }
 
 .summary {
@@ -19,8 +20,26 @@
   text-align: left;
 }
 
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .chevron {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
+  transition: transform 0.2s ease-in-out;
+}
+
+.expandable[open] .chevron {
+  transform: rotate(180deg);
 }
