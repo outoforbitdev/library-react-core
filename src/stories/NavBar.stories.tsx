@@ -5,7 +5,7 @@ import { NavLink } from "../components/NavLink";
 import { NavDropdown } from "../components/NavDropdown";
 
 const meta = {
-  title: "Example/NavBar",
+  title: "Components/NavBar",
   component: NavBar,
   subcomponents: {
     NavLink,

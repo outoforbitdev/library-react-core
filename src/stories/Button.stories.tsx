@@ -5,7 +5,7 @@ import { Button } from "../components/Button";
 import { ThemePalette } from "./ThemePalette";
 
 const meta = {
-  title: "Example/Button",
+  title: "Components/Button",
   component: Button,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
