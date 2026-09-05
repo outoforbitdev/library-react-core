@@ -1,101 +1,204 @@
+/* Navbar container - flexbox, full width */
 .nav {
-  --header-height: 20px;
-  min-height: var(--header-height);
-  overflow: hidden;
-}
-
-nav.nav {
-  vertical-align: middle;
-}
-
-.nav {
-  a.nav {
-    float: left;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    color: inherit;
-    &:hover {
-      text-decoration: none;
-    }
-    &:visited {
-      color: inherit;
-      text-decoration: none;
-    }
-  }
-}
-
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-.dropdown_button {
-  font-size: inherit;
-  border: none;
-  outline: none;
-  color: inherit;
-  padding: 0.5rem 1rem;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-  vertical-align: middle;
-}
-
-.dropdown_content {
-  display: none;
-  position: absolute;
+  display: flex;
+  width: 100%;
+  align-items: center;
   background-color: var(--ood-background);
-  z-index: 10;
+  padding: 0;
+  margin: 0;
 }
 
-.dropdown_content a {
-  float: none;
+/* Header element - left-aligned */
+.nav__header {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+}
+
+/* Children flex container - left-aligned by default */
+.nav__content {
+  display: flex;
+  align-items: center;
+  flex-grow: 0;
+  gap: 0;
+}
+
+/* Hamburger button - hidden on desktop, visible on mobile */
+.nav__hamburger {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: inherit;
+  font-size: inherit;
+}
+
+.nav__hamburger:hover {
+  background-color: var(--ood-shade);
+}
+
+/* Mobile menu - vertical stack, hidden by default */
+.nav__menu {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  background-color: var(--ood-background);
+}
+
+.nav__menu--open {
+  display: flex;
+}
+
+/* NavLink styling */
+.navlink {
+  display: flex;
+  align-items: center;
   padding: 0.5rem 1rem;
   text-decoration: none;
-  display: block;
-  text-align: left;
+  color: inherit;
+  cursor: pointer;
 }
 
-.dropdown:hover .dropdown_content {
-  display: block;
+.navlink:hover {
+  background-color: var(--ood-shade);
 }
 
-a.hamburger {
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Native button for dropdown toggle */
+.dropdown__button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dropdown__button:hover {
+  background-color: var(--ood-shade);
+}
+
+/* Dropdown content - hidden by default */
+.dropdown__content {
   display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: var(--ood-background);
+  z-index: 10;
+  min-width: 100%;
 }
 
+.dropdown__content a {
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.dropdown__content a:hover {
+  background-color: var(--ood-shade);
+}
+
+/* Desktop: hover expands dropdown (CSS only) */
+.dropdown:hover .dropdown__content {
+  display: block;
+}
+
+/* Mobile/keyboard: .dropdown--open class expands dropdown (React state) */
+.dropdown--open .dropdown__content {
+  display: block;
+}
+
+/* Nested dropdowns - expand right on desktop */
+.dropdown--nested {
+  position: relative;
+}
+
+.dropdown--nested .dropdown__content {
+  left: 100%;
+  top: 0;
+}
+
+/* Mobile nested dropdowns - left padding for hierarchy */
+.dropdown--nested-L1 {
+  padding-left: 2rem;
+}
+
+.dropdown--nested-L2 {
+  padding-left: 3rem;
+}
+
+.dropdown--nested-L3 {
+  padding-left: 4rem;
+}
+
+/* Media queries for mobile (<600px) */
 @media screen and (max-width: 600px) {
-  .nav a.hamburger {
-    display: block;
-    float: right;
+  .nav {
+    flex-wrap: wrap;
   }
-  .nav a {
+
+  .nav__header {
+    order: 2;
+    flex-grow: 1;
+  }
+
+  .nav__hamburger {
+    display: block;
+    order: 1;
+    flex-shrink: 0;
+  }
+
+  .nav__content {
     display: none;
   }
-  div.dropdown {
-    display: none;
+
+  .nav__content--mobile-open {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    order: 3;
   }
-  .nav a.home {
-    display: block;
-  }
-  .nav.responsive {
-    position: relative;
-  }
-  .nav.responsive a {
-    float: none;
-    display: block;
-  }
-  .responsive div.dropdown {
-    float: none;
-    display: block;
-  }
-  .dropdown_content {
-    position: relative;
+
+  .navlink {
     width: 100%;
   }
-  .nav.responsive a.hamburger {
-    position: absolute;
-    top: 0;
-    right: 0;
+
+  .dropdown {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .dropdown__content {
+    position: static;
+    display: none;
+    width: 100%;
+  }
+
+  .dropdown--open .dropdown__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dropdown__content a {
+    width: 100%;
+  }
+
+  .dropdown--nested .dropdown__content {
+    left: 0;
+    top: auto;
   }
 }
