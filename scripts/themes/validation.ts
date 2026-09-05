@@ -8,6 +8,10 @@ import {
   ContrastPair,
   BackgroundComponent,
   AccessibilityLevel,
+  AA_BASELINE_RATIO,
+  AA_MINIMUM_RATIO,
+  AAA_BASELINE_RATIO,
+  AAA_MINIMUM_RATIO,
 } from "./types.js";
 import { contrastRatio } from "./colors.js";
 import { resolveSwatchRef } from "./utils.js";
@@ -67,6 +71,7 @@ function addValidationPair(
 interface TextColorPair {
   text: string;
   label: string;
+  requiredRatio: number;
 }
 
 function validateBackgroundComponent(
@@ -78,18 +83,37 @@ function validateBackgroundComponent(
   submission: string,
   accent: string,
   ramps: GeneratedRamps,
-  requiredRatio: number,
+  accessibilityLevel: AccessibilityLevel,
 ): void {
+  const baselineRatio =
+    accessibilityLevel === "AAA" ? AAA_BASELINE_RATIO : AA_BASELINE_RATIO;
+
   const texts: TextColorPair[] = [
-    { text: component.text, label: `${componentName}-text` },
-    { text: component.link, label: `${componentName}-link` },
-    { text: component["link-visited"], label: `${componentName}-link-visited` },
-    { text: error, label: "error-text" },
-    { text: warning, label: "warning-text" },
-    { text: submission, label: "submission-text" },
-    { text: accent, label: "accent-text" },
+    {
+      text: component.text,
+      label: `${componentName}-text`,
+      requiredRatio: baselineRatio,
+    },
+    {
+      text: component.link,
+      label: `${componentName}-link`,
+      requiredRatio: baselineRatio,
+    },
+    {
+      text: component["link-visited"],
+      label: `${componentName}-link-visited`,
+      requiredRatio: baselineRatio,
+    },
+    { text: error, label: "error-text", requiredRatio: baselineRatio },
+    { text: warning, label: "warning-text", requiredRatio: baselineRatio },
+    {
+      text: submission,
+      label: "submission-text",
+      requiredRatio: baselineRatio,
+    },
+    { text: accent, label: "accent-text", requiredRatio: baselineRatio },
   ].filter((p) => p.text && p.text.trim() !== "");
-  for (const { text, label } of texts) {
+  for (const { text, label, requiredRatio } of texts) {
     for (const background of [
       { value: component.background, suffix: "background" },
       { value: component.shade, suffix: "shade" },
@@ -111,12 +135,13 @@ export function validateTheme(
   theme: Theme,
   ramps: GeneratedRamps,
 ): ThemeValidationReport {
-  const requiredRatio =
-    (theme["accessibility-level"] as string) === "AAA" ? 7.0 : 4.5;
+  const accessibilityLevel = theme["accessibility-level"] as AccessibilityLevel;
+  const baselineRatio =
+    accessibilityLevel === "AAA" ? AAA_BASELINE_RATIO : AA_BASELINE_RATIO;
 
   const report: ThemeValidationReport = {
     name: themeName,
-    accessibilityLevel: theme["accessibility-level"] as AccessibilityLevel,
+    accessibilityLevel,
     status: "pass",
     errors: [],
     contrastPairs: [],
@@ -131,7 +156,7 @@ export function validateTheme(
     theme.submission.text,
     theme.accent.text,
     ramps,
-    requiredRatio,
+    accessibilityLevel,
   );
 
   validateBackgroundComponent(
@@ -143,7 +168,7 @@ export function validateTheme(
     theme.submission.text,
     theme.accent.text,
     ramps,
-    requiredRatio,
+    accessibilityLevel,
   );
 
   validateBackgroundComponent(
@@ -155,7 +180,7 @@ export function validateTheme(
     "",
     "",
     ramps,
-    requiredRatio,
+    accessibilityLevel,
   );
 
   // Block components (error, warning, submission)
@@ -167,7 +192,7 @@ export function validateTheme(
       block["block-text"],
       block["block-background"],
       ramps,
-      requiredRatio,
+      baselineRatio,
       `${blockType}-block-text vs ${blockType}-block-background`,
     );
 
@@ -176,7 +201,7 @@ export function validateTheme(
       block["block-text"],
       block["block-shade"],
       ramps,
-      requiredRatio,
+      baselineRatio,
       `${blockType}-block-text vs ${blockType}-block-shade`,
     );
   }

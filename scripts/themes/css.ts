@@ -150,7 +150,6 @@ function generateUtilityClasses(): string {
 .ood-submit a,
 .ood-submit-block a {
   color: var(--ood-link);
-  text-decoration: none;
 }
 
 .ood-primary a:visited,
