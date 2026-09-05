@@ -6,7 +6,7 @@ import { InfoboxSection } from "../components/infobox/InfoboxSection";
 import { InfoboxRow } from "../components/infobox/InfoboxRow";
 
 const meta: Meta<typeof Infobox> = {
-  title: "Example/Infobox",
+  title: "Components/Infobox",
   component: Infobox,
   subcomponents: {
     InfoboxTitle,

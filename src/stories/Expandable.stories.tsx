@@ -5,7 +5,7 @@ import { Expandable } from "../components/Expandable";
 import { ThemePalette } from "./ThemePalette";
 
 const meta = {
-  title: "Example/Expandable",
+  title: "Components/Expandable",
   component: Expandable,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
