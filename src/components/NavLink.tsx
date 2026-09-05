@@ -1,5 +1,4 @@
 import { getDomProps, IComponentProps } from "./IComponent";
-import "../styles/themes.css";
 import styles from "../styles/nav.module.css";
 
 export interface INavLinkProps extends IComponentProps {
@@ -8,10 +7,7 @@ export interface INavLinkProps extends IComponentProps {
 
 export function NavLink(props: INavLinkProps) {
   return (
-    <a
-      href={props.to}
-      {...getDomProps(props, styles.nav, styles.item, "hoverable")}
-    >
+    <a href={props.to} {...getDomProps(props, styles.navlink)}>
       {props.children}
     </a>
   );
