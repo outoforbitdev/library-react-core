@@ -12,16 +12,73 @@ export interface INavDropdownProps extends IComponentProps {
 export function NavDropdown(props: INavDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [focusedItemIndex, setFocusedItemIndex] = useState(-1);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
+    if (!isOpen) {
+      setFocusedItemIndex(0);
+    } else {
+      setFocusedItemIndex(-1);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    // Keyboard navigation handled in Part 2
-    if (e.key === " " || e.key === "Enter") {
+    switch (e.key) {
+      case " ":
+      case "Enter":
+        e.preventDefault();
+        handleToggle();
+        break;
+      case "Escape":
+        if (isOpen) {
+          e.preventDefault();
+          setIsOpen(false);
+          setFocusedItemIndex(-1);
+          buttonRef.current?.focus();
+        }
+        break;
+      case "ArrowDown":
+        if (!isOpen) {
+          e.preventDefault();
+          handleToggle();
+        } else {
+          e.preventDefault();
+          navigateItems(1);
+        }
+        break;
+      case "ArrowUp":
+        if (isOpen) {
+          e.preventDefault();
+          navigateItems(-1);
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
+  const navigateItems = (direction: 1 | -1) => {
+    const items = contentRef.current?.querySelectorAll(
+      "a, button",
+    ) as NodeListOf<HTMLAnchorElement | HTMLButtonElement>;
+    if (!items || items.length === 0) return;
+
+    let nextIndex = focusedItemIndex + direction;
+    if (nextIndex < 0) nextIndex = items.length - 1;
+    if (nextIndex >= items.length) nextIndex = 0;
+
+    setFocusedItemIndex(nextIndex);
+    items[nextIndex]?.focus();
+  };
+
+  const handleContentKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Escape") {
       e.preventDefault();
-      handleToggle();
+      setIsOpen(false);
+      setFocusedItemIndex(-1);
+      buttonRef.current?.focus();
     }
   };
 
@@ -44,7 +101,12 @@ export function NavDropdown(props: INavDropdownProps) {
         {props.label}
         {!props.hideIcon && <ArrowDown />}
       </button>
-      <div className={styles.dropdown__content} role="menu">
+      <div
+        ref={contentRef}
+        className={styles.dropdown__content}
+        role="menu"
+        onKeyDown={handleContentKeyDown}
+      >
         {props.children}
       </div>
     </div>
