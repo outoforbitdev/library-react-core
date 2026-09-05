@@ -1,3 +1,9 @@
+export const AA_BASELINE_RATIO = 4.5;
+export const AA_MINIMUM_RATIO = 3;
+
+export const AAA_BASELINE_RATIO = 7;
+export const AAA_MINIMUM_RATIO = 4.5;
+
 export interface RampsInput {
   [colorFamily: string]: {
     "500": string;
