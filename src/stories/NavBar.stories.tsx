@@ -18,8 +18,7 @@ const meta = {
     layout: "fullscreen",
   },
   args: {
-    home: "#",
-    homeLabel: "My Site",
+    header: "My Site",
   },
   render: (args) => (
     <NavBar {...args}>
