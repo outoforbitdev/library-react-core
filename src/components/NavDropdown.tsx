@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import type { ReactNode } from "react";
 import { getDomProps, IComponentProps } from "./IComponent";
 import { ArrowDown } from "./icons";
@@ -9,15 +9,39 @@ export interface INavDropdownProps extends IComponentProps {
   hideIcon?: boolean;
 }
 
+function getDepthLevel(element: Element | null): number {
+  let depth = 0;
+  let current = element?.parentElement;
+  while (current) {
+    if (current.classList?.contains(styles.dropdown__content)) {
+      depth++;
+      current = current.parentElement?.parentElement;
+    } else {
+      current = current.parentElement;
+    }
+  }
+  return depth;
+}
+
 export function NavDropdown(props: INavDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [depthLevel, setDepthLevel] = useState(0);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [focusedItemIndex, setFocusedItemIndex] = useState(-1);
 
+  useEffect(() => {
+    const depth = getDepthLevel(buttonRef.current);
+    setDepthLevel(depth);
+  }, []);
+
   const handleToggle = () => {
     setIsOpen(!isOpen);
-    setFocusedItemIndex(-1);
+    if (!isOpen) {
+      setFocusedItemIndex(0);
+    } else {
+      setFocusedItemIndex(-1);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -50,6 +74,12 @@ export function NavDropdown(props: INavDropdownProps) {
           navigateItems(-1);
         }
         break;
+      case "ArrowRight":
+        if (depthLevel === 0 && isOpen) {
+          e.preventDefault();
+          navigateItems(1);
+        }
+        break;
       default:
         break;
     }
@@ -78,12 +108,18 @@ export function NavDropdown(props: INavDropdownProps) {
     }
   };
 
+  const isNested = depthLevel > 0;
+  const nestedClass = isNested ? styles["dropdown--nested"] : "";
+  const depthClass = isNested ? styles[`dropdown--nested-L${depthLevel}`] : "";
+
   return (
     <div
       {...getDomProps(
         props,
         styles.dropdown,
         isOpen ? styles["dropdown--open"] : "",
+        nestedClass,
+        depthClass,
       )}
     >
       <button
