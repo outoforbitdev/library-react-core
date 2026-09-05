@@ -17,11 +17,7 @@ export function NavDropdown(props: INavDropdownProps) {
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
-    if (!isOpen) {
-      setFocusedItemIndex(0);
-    } else {
-      setFocusedItemIndex(-1);
-    }
+    setFocusedItemIndex(-1);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
