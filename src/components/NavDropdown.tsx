@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import type { ReactNode } from "react";
 import { getDomProps, IComponentProps } from "./IComponent";
-import { ArrowDown } from "./icons";
+import { ChevronDown } from "./icons";
 import styles from "../styles/nav.module.css";
 
 export interface INavDropdownProps extends IComponentProps {
@@ -127,7 +127,7 @@ export function NavDropdown(props: INavDropdownProps) {
         aria-haspopup="menu"
       >
         {props.label}
-        {!props.hideIcon && <ArrowDown />}
+        {!props.hideIcon && <ChevronDown />}
       </button>
       <div
         ref={contentRef}

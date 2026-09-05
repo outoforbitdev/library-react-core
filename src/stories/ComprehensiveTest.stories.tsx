@@ -31,7 +31,7 @@ const meta = {
         style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
       >
         {/* Navigation Bar */}
-        <NavBar home="#" homeLabel="Test App" className="ood-secondary">
+        <NavBar header="Test App" className="ood-secondary">
           <NavLink to="#">Home</NavLink>
           <NavDropdown label="Features">
             <NavLink to="#">Components</NavLink>
