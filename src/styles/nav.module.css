@@ -182,6 +182,11 @@ a.navlink {
   .dropdown {
     width: 100%;
     flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dropdown__button {
+    width: 100%;
   }
 
   .dropdown__content {
