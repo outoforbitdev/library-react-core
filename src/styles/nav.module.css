@@ -57,8 +57,10 @@
   align-items: center;
   padding: 0.5rem 1rem;
   text-decoration: none;
-  color: inherit;
-  cursor: pointer;
+}
+a.navlink {
+  text-decoration: none;
+  color: var(--ood-text);
 }
 
 .navlink:hover {
@@ -113,12 +115,12 @@
 }
 
 /* Desktop: hover expands dropdown (CSS only) */
-.dropdown:hover .dropdown__content {
+.dropdown:hover > .dropdown__content {
   display: block;
 }
 
 /* Mobile/keyboard: .dropdown--open class expands dropdown (React state) */
-.dropdown--open .dropdown__content {
+.dropdown--open > .dropdown__content {
   display: block;
 }
 
