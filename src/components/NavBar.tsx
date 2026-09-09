@@ -1,45 +1,43 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { getDomProps, IComponentProps } from "./IComponent";
 import { HamburgerMenu, IconSize, X } from "./icons";
 import styles from "../styles/nav.module.css";
 import "../styles/themes.css";
 import { NavLink } from "./NavLink";
+import { Button } from "./Button";
 
 export interface INavBarProps extends IComponentProps {
-  home?: string;
-  homeLabel?: string;
+  header?: ReactNode;
 }
 
 export function NavBar(props: INavBarProps) {
-  const [responsive, setResponsive] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleHamburgerClick = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
   return (
-    <nav
-      {...getDomProps(props, styles.nav, responsive ? styles.responsive : "")}
-    >
-      {props.home ? (
-        <a href={props.home} {...getDomProps({}, styles.nav, styles.home)}>
-          {props.homeLabel ?? "Home"}
-        </a>
-      ) : null}
-      {props.children}
-      <NavLink
-        to="#"
-        onClick={() => toggleResponsive(responsive, setResponsive)}
-        className={styles.hamburger}
+    <nav {...getDomProps(props, styles.nav)}>
+      <div className={styles.nav__header}>
+        <Button
+          borderless
+          className={styles.nav__hamburger}
+          onClick={handleHamburgerClick}
+        >
+          {mobileMenuOpen ? (
+            <X size={IconSize.Medium} />
+          ) : (
+            <HamburgerMenu size={IconSize.Medium} />
+          )}
+        </Button>
+        {props.header}
+      </div>
+      <div
+        className={`${styles.nav__children} ${mobileMenuOpen ? styles["nav__children--open"] : ""}`}
       >
-        {responsive ? (
-          <X size={IconSize.Large} />
-        ) : (
-          <HamburgerMenu size={IconSize.Large} />
-        )}
-      </NavLink>
+        {props.children}
+      </div>
     </nav>
   );
-}
-
-function toggleResponsive(
-  responsive: boolean,
-  setResponsive: (responsive: boolean) => void,
-) {
-  setResponsive(!responsive);
 }
