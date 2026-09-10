@@ -46,6 +46,7 @@ button.nav__hamburger:hover {
   display: flex;
   padding: 0.5rem 1rem;
   align-items: center;
+  text-align: left;
 }
 
 .nav a.nav__item {
@@ -64,6 +65,37 @@ button.nav__hamburger:hover {
   flex-grow: 1;
 }
 
+.nav__dropdown__content {
+  display: none;
+}
+
+.nav__dropdown__button {
+  display: flex;
+  align-items: center;
+}
+
+.nav__dropdown__button:hover {
+  background-color: inherit;
+}
+
+.nav__dropdown__content--open {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+
+.nav__dropdown__button--open {
+  /* background-color: var(--ood-shade); */
+}
+
+.nav__dropdown__chevron {
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav__dropdown__button--open .nav__dropdown__chevron {
+  transform: rotate(180deg);
+}
+
 /* Media queries for desktop (<600px) */
 @media screen and (min-width: 600px) {
   nav.nav {
@@ -71,9 +103,11 @@ button.nav__hamburger:hover {
     flex-direction: row;
     background-color: var(--ood-background);
   }
+
   .nav__spacer {
     flex-grow: 0;
   }
+
   .nav__hamburger {
     display: none;
   }
@@ -84,9 +118,55 @@ button.nav__hamburger:hover {
     width: auto;
     max-width: none;
     position: initial;
+    z-index: initial;
   }
 
   .nav a.nav__item:hover {
     background-color: var(--ood-shade);
+  }
+
+  .nav__dropdown {
+    position: relative;
+  }
+
+  .nav__dropdown__content {
+    /* display: none; */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    z-index: 10;
+    background-color: var(--ood-background);
+    min-width: 100%;
+    padding-left: 0;
+    width: max-content;
+  }
+
+  .nav__dropdown:hover > .nav__dropdown__button {
+    background-color: var(--ood-shade);
+  }
+
+  button.nav__dropdown__button {
+    height: 100%;
+    cursor: auto;
+  }
+
+  .nav__dropdown__content .nav__dropdown > .nav__dropdown__content {
+    top: 0;
+    left: 100%;
+  }
+
+  .nav__dropdown:hover > .nav__dropdown__content {
+    display: flex;
+  }
+
+  .nav__dropdown:hover > .nav__dropdown__button .nav__dropdown__chevron {
+    transform: rotate(180deg);
+  }
+  .nav__dropdown__content .nav__dropdown__chevron {
+    transform: rotate(270deg);
+  }
+  .nav__dropdown__content .nav__dropdown:hover .nav__dropdown__chevron,
+  .nav__dropdown__content .nav__dropdown__button--open .nav__dropdown__chevron {
+    transform: rotate(90deg);
   }
 }

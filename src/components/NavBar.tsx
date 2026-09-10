@@ -10,6 +10,11 @@ export interface INavBarProps extends IComponentProps {
   header?: ReactNode;
 }
 
+/**
+ * A navigation bar component that can be used to create a responsive navigation menu.
+ * It supports a header, navigation links, and dropdown menus.
+ * Renders a hamburger menu on smaller screens to toggle the visibility of the navigation links.
+ */
 export function NavBar(props: INavBarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

@@ -36,14 +36,14 @@ const meta = {
       Component: (props) => (
         <NavBar {...args} {...props}>
           <NavLink to="#">A page</NavLink>
-          {/* <NavDropdown label="More">
+          <NavDropdown label="More">
             <NavLink to="./">About</NavLink>
-            <NavLink to="./">Contact</NavLink>
             <NavDropdown label="Even more">
               <NavLink to="./">Subpage 1</NavLink>
               <NavLink to="./">Subpage 2</NavLink>
             </NavDropdown>
-          </NavDropdown> */}
+            <NavLink to="./">Contact</NavLink>
+          </NavDropdown>
           <NavLink to="#">Another page</NavLink>
         </NavBar>
       ),
