@@ -31,7 +31,10 @@ const meta = {
         style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
       >
         {/* Navigation Bar */}
-        <NavBar home="#" homeLabel="Test App" className="ood-secondary">
+        <NavBar
+          header={<NavLink to="#">Test App</NavLink>}
+          className="ood-secondary"
+        >
           <NavLink to="#">Home</NavLink>
           <NavDropdown label="Features">
             <NavLink to="#">Components</NavLink>
@@ -44,14 +47,20 @@ const meta = {
             aria-label={showError ? "Hide Error" : "Show Error"}
             borderless
           >
-            <ErrorIcon bordered className="ood-error-block" />
+            <ErrorIcon
+              style={{ borderRadius: "0.2rem" }}
+              className="ood-error-block"
+            />
           </Button>
           <Button
             onClick={() => setShowWarning(!showWarning)}
             aria-label={showWarning ? "Hide Warning" : "Show Warning"}
             borderless
           >
-            <WarningIcon bordered className="ood-warning-block" />
+            <WarningIcon
+              style={{ borderRadius: "0.2rem" }}
+              className="ood-warning-block"
+            />
           </Button>
         </NavBar>
 

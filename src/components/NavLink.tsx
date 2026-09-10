@@ -8,10 +8,7 @@ export interface INavLinkProps extends IComponentProps {
 
 export function NavLink(props: INavLinkProps) {
   return (
-    <a
-      href={props.to}
-      {...getDomProps(props, styles.nav, styles.item, "hoverable")}
-    >
+    <a href={props.to} {...getDomProps(props, styles.nav__item)}>
       {props.children}
     </a>
   );
