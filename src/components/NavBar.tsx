@@ -29,6 +29,8 @@ export function NavBar(props: INavBarProps) {
           borderless
           className={styles.nav__hamburger}
           onClick={handleHamburgerClick}
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? (
             <X size={IconSize.Medium} />

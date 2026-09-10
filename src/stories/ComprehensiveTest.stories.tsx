@@ -47,14 +47,20 @@ const meta = {
             aria-label={showError ? "Hide Error" : "Show Error"}
             borderless
           >
-            <ErrorIcon bordered className="ood-error-block" />
+            <ErrorIcon
+              style={{ borderRadius: "0.2rem" }}
+              className="ood-error-block"
+            />
           </Button>
           <Button
             onClick={() => setShowWarning(!showWarning)}
             aria-label={showWarning ? "Hide Warning" : "Show Warning"}
             borderless
           >
-            <WarningIcon bordered className="ood-warning-block" />
+            <WarningIcon
+              style={{ borderRadius: "0.2rem" }}
+              className="ood-warning-block"
+            />
           </Button>
         </NavBar>
 
