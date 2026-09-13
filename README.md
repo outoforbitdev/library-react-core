@@ -6,8 +6,8 @@ A React library.
   <a href="https://github.com/outoforbitdev/library-react-core/actions?query=workflow%3ATest+branch%3Amaster">
     <img alt="Test build states" src="https://github.com/outoforbitdev/library-react-core/workflows/Test/badge.svg">
   </a>
-  <a href="https://github.com/outoforbitdev/library-react-core/actions?query=workflow%3ATest+branch%3Amaster">
-    <img alt="Release build states" src="https://github.com/outoforbitdev/library-react-core/workflows/NPM Publish/badge.svg">
+  <a href="https://github.com/outoforbitdev/library-react-core/actions/workflows/release.yml">
+    <img alt="Release build states" src="https://github.com/outoforbitdev/library-react-core/actions/workflows/release.yml/badge.svg">
   </a>
   <a href="https://securityscorecards.dev/viewer/?uri=github.com/outoforbitdev/library-react-core">
     <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/outoforbitdev/library-react-core/badge">
