@@ -104,7 +104,7 @@ The `test` workflow (`.github/workflows/test.yml`) runs on every pull request an
 
 All steps must pass before merge. There is no override for a failing check — fix the underlying issue (or, for a theme contrast failure, follow the process in [Adding a Theme](./adding-a-theme.md)) rather than working around it.
 
-On merge to `main`, the release workflow (`.github/workflows/release.yml`) and `npm_publish.yml` handle building and publishing — see the [release workflow files](../../../.github/workflows/) for details; this document covers the pre-merge process only.
+On merge to `main`, the release workflow (`.github/workflows/release.yml`) handles building and publishing — see the [release workflow files](../../../.github/workflows/) for details; this document covers the pre-merge process only.
 
 ## 7. Review and Approval
 
