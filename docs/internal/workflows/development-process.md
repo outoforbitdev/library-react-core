@@ -54,7 +54,6 @@ chore(deps): bump storybook to 10.1.4
 Commit messages are validated locally, not just in CI:
 
 - `.pre-commit-config.yaml` runs `conventional-pre-commit` on the `commit-msg` hook.
-- `.linters/config/commitlint.config.js` extends `@commitlint/config-conventional`.
 
 Run `just setup` (or `pre-commit install --hook-type commit-msg`) once after cloning so the hook is active locally — a non-conforming commit message will be rejected before it's created, not caught later in review.
 
@@ -116,7 +115,7 @@ On merge to `main`, the release workflow (`.github/workflows/release.yml`) handl
 ## 8. Summary Checklist
 
 - [ ] Branch from `main`: `<username>/<issue-number>-<slug>`
-- [ ] Commits follow Conventional Commits (enforced by pre-commit + commitlint)
+- [ ] Commits follow Conventional Commits (enforced by pre-commit)
 - [ ] `just gate` passes locally
 - [ ] PR opened against `main` using the org template, self-assigned, labeled (`effort`, `type`, `work`), linked to an issue
 - [ ] PR description calls out any ramp/cross-theme cascade explicitly

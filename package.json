@@ -9,8 +9,6 @@
     "dist/*"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
@@ -22,7 +20,6 @@
     "@storybook/react-webpack5": "^9.1.4",
     "@storybook/test-runner": "^0.23.0",
     "@types/react": "^19.1.1",
-    "commitlint": "^20.1.0",
     "concurrently": "^10.0.5",
     "http-server": "^14.1.1",
     "postcss": "^8.5.1",

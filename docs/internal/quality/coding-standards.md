@@ -38,7 +38,7 @@ Formatting is enforced by **Prettier** using the shared config at `.linters/conf
 
 ## Commits
 
-Commit messages follow the **Conventional Commits** specification, enforced by commitlint (`@commitlint/config-conventional`, configured at `.linters/config/commitlint.config.js`) and the `conventional-pre-commit` git hook.
+Commit messages follow the **Conventional Commits** specification, enforced by the `conventional-pre-commit` git hook.
 
 - Format: `<type>(<optional scope>): <description>`, e.g. `feat(button): add loading state`, `fix(navbar): correct focus trap on close`, `docs: add coding standards and testing strategy`.
 - Common types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `build`, `ci`.
