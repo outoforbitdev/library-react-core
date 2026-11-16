@@ -75,7 +75,7 @@ Everything runs through `just` (defined in [Justfile](../../../Justfile)):
 
 | Command           | What it does                                                                                                        |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `just setup`      | `npm install` + `pre-commit install` — run this once after cloning                                                  |
+| `just bootstrap`  | `npm install` + `pre-commit install` — run this once after cloning                                                  |
 | `just install`    | `npm install` only                                                                                                  |
 | `just test`       | `npm test` (theme validation) + `npx tsc --noEmit`                                                                  |
 | `just lint`       | `npx prettier --check .`                                                                                            |

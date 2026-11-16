@@ -1,4 +1,5 @@
-setup:
+# Bootstrap: one-time repository initialization
+bootstrap:
     npm install
     pre-commit install
 
