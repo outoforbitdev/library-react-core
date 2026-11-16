@@ -10,7 +10,7 @@ You'll need:
 
 - Node.js and npm installed
 - [`just`](https://github.com/casey/just) installed (the command runner used for all repo tasks — see the [Justfile](../../../Justfile))
-- [`pre-commit`](https://pre-commit.com/) installed (`just setup` installs the git hook, but the `pre-commit` binary itself must already be on your `PATH`)
+- [`pre-commit`](https://pre-commit.com/) installed (`just bootstrap` installs the git hook, but the `pre-commit` binary itself must already be on your `PATH`)
 - Git configured with your name/email
 
 ## 1. Clone the repo (1 minute)
@@ -20,10 +20,10 @@ git clone git@github.com:outoforbitdev/library-react-core.git
 cd library-react-core
 ```
 
-## 2. Run `just setup` (2 minutes)
+## 2. Run `just bootstrap` (2 minutes)
 
 ```bash
-just setup
+just bootstrap
 ```
 
 This runs `npm install` and `pre-commit install`. The pre-commit hook enforces [Conventional Commits](https://www.conventionalcommits.org/) on your commit messages and runs `npm test`, `npx prettier --check .`, and `npx tsc --noEmit` before each commit — the same checks CI runs, so failures surface locally first.

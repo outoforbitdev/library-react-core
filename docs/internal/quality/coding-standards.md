@@ -19,7 +19,7 @@ Formatting is enforced by **Prettier** using the shared config at `.linters/conf
 - Run `just lint-write` to auto-fix formatting issues.
 - Do not hand-tune whitespace, quote style, or line breaks to disagree with what Prettier produces — if Prettier's output looks wrong, that's a config discussion, not a per-file override.
 - The `.prettierignore` rules at `.linters/config/.prettierignore` apply; don't add new ignore patterns without discussion.
-- Formatting is checked automatically by the `npm-lint` pre-commit hook (see `.pre-commit-config.yaml`), so a properly configured local environment (`just setup`) will catch violations before they reach a commit.
+- Formatting is checked automatically by the `npm-lint` pre-commit hook (see `.pre-commit-config.yaml`), so a properly configured local environment (`just bootstrap`) will catch violations before they reach a commit.
 
 ## Component Conventions
 
@@ -43,7 +43,7 @@ Commit messages follow the **Conventional Commits** specification, enforced by t
 - Format: `<type>(<optional scope>): <description>`, e.g. `feat(button): add loading state`, `fix(navbar): correct focus trap on close`, `docs: add coding standards and testing strategy`.
 - Common types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `build`, `ci`.
 - Keep the description concise and in the imperative mood ("add", not "added" or "adds").
-- Commit messages are validated automatically by the git hooks installed via `just setup`; a non-conforming message will be rejected at commit time.
+- Commit messages are validated automatically by the git hooks installed via `just bootstrap`; a non-conforming message will be rejected at commit time.
 
 ## Dependencies
 

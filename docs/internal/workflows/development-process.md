@@ -55,7 +55,7 @@ Commit messages are validated locally, not just in CI:
 
 - `.pre-commit-config.yaml` runs `conventional-pre-commit` on the `commit-msg` hook.
 
-Run `just setup` (or `pre-commit install --hook-type commit-msg`) once after cloning so the hook is active locally — a non-conforming commit message will be rejected before it's created, not caught later in review.
+Run `just bootstrap` (or `pre-commit install --hook-type commit-msg`) once after cloning so the hook is active locally — a non-conforming commit message will be rejected before it's created, not caught later in review.
 
 ### Commit hygiene
 

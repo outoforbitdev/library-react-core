@@ -6,7 +6,7 @@
 
 ## Key Commands
 
-- **`just setup`**: Initialize the repository with dependencies and git hooks
+- **`just bootstrap`**: Initialize the repository with dependencies and git hooks
 - **`just install`**: Install dependencies only
 - **`just build`**: Build the library (validates themes + rollup bundling)
 - **`just test`**: Run the test suite
